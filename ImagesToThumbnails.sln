@@ -1,7 +1,11 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio 2012
+# Visual Studio 2013
+VisualStudioVersion = 12.0.21005.1
+MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ImagesToThumbnails", "ImagesToThumbnails\ImagesToThumbnails.csproj", "{4AA7D4A2-7785-4998-9449-82324A9C3F21}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TestThreads", "TestThreads\TestThreads.csproj", "{7FDC0ECB-1D9D-48C4-8454-E0B0B2D68F15}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -13,6 +17,10 @@ Global
 		{4AA7D4A2-7785-4998-9449-82324A9C3F21}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{4AA7D4A2-7785-4998-9449-82324A9C3F21}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{4AA7D4A2-7785-4998-9449-82324A9C3F21}.Release|Any CPU.Build.0 = Release|Any CPU
+		{7FDC0ECB-1D9D-48C4-8454-E0B0B2D68F15}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{7FDC0ECB-1D9D-48C4-8454-E0B0B2D68F15}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{7FDC0ECB-1D9D-48C4-8454-E0B0B2D68F15}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{7FDC0ECB-1D9D-48C4-8454-E0B0B2D68F15}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
