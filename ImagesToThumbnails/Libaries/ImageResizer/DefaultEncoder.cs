@@ -248,8 +248,9 @@ namespace ImageResizer.Plugins.Basic {
             if (quality < 0) quality = 90; //90 is a very good default to stick with.
             if (quality > 100) quality = 100;
             //Prepare paramater for encoder
+            //One pair of parenthesis used for easier reading of the usings.
             using (EncoderParameters p = new EncoderParameters(1))
-            using (var ep = new EncoderParameter(Encoder.Quality, (long)quality))
+            using (EncoderParameter ep = new EncoderParameter(Encoder.Quality, (long)quality))
             {
                 p.Param[0] = ep;
                 //save
