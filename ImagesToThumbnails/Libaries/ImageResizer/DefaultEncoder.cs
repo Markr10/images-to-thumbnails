@@ -115,7 +115,7 @@ namespace ImageResizer.Plugins.Basic {
         /// <returns></returns>
         public static ImageFormat GetImageFormatFromPhysicalPath(string path)
         {
-            return GetImageFormatFromExtension(System.IO.Path.GetExtension(path));
+            return GetImageFormatFromExtension(Path.GetExtension(path));
         }
 
         /// <summary>
@@ -249,7 +249,7 @@ namespace ImageResizer.Plugins.Basic {
             if (quality > 100) quality = 100;
             //Prepare paramater for encoder
             using (EncoderParameters p = new EncoderParameters(1))
-                using (var ep = new EncoderParameter(System.Drawing.Imaging.Encoder.Quality, (long)quality))
+                using (var ep = new EncoderParameter(Encoder.Quality, (long)quality))
                 {
                     p.Param[0] = ep;
                     //save
@@ -270,14 +270,14 @@ namespace ImageResizer.Plugins.Basic {
                 //Write to an intermediate, seekable memory stream (PNG compression requires it)
                 using (MemoryStream ms = new MemoryStream(4096))
                 {
-                    img.Save(ms, System.Drawing.Imaging.ImageFormat.Png);
+                    img.Save(ms, ImageFormat.Png);
                     ms.WriteTo(target);
                 }
             }
             else 
             {
                 // The parameter list requires 0 bytes.
-                img.Save(target, System.Drawing.Imaging.ImageFormat.Png);
+                img.Save(target, ImageFormat.Png);
             }
         }
 
