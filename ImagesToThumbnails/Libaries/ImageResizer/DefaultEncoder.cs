@@ -200,7 +200,7 @@ namespace ImageResizer.Plugins.Basic {
         /// </summary>
         /// <param name="mimeType"></param>
         /// <returns></returns>
-        public static ImageCodecInfo GetImageCodeInfo(string mimeType) {
+        public static ImageCodecInfo GetImageCodecInfo(string mimeType) {
             ImageCodecInfo[] info = ImageCodecInfo.GetImageEncoders();
             foreach (ImageCodecInfo ici in info)
                 if (ici.MimeType.Equals(mimeType, StringComparison.OrdinalIgnoreCase)) return ici;
@@ -253,7 +253,7 @@ namespace ImageResizer.Plugins.Basic {
                 {
                     p.Param[0] = ep;
                     //save
-                    b.Save(target, GetImageCodeInfo("image/jpeg"), p);
+                    b.Save(target, GetImageCodecInfo("image/jpeg"), p);
                 }
             }
         }
