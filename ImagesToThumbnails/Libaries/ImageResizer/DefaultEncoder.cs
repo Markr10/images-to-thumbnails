@@ -259,7 +259,7 @@ namespace ImageResizer.Plugins.Basic {
         }
         
         /// <summary>
-        /// Saves the image in png form. If Stream 'target' is not seekable, a temporary MemoryStream will be used to buffer the image data into the stream
+        /// Saves the image in png form. If Stream 'target' is not seekable, a temporary MemoryStream will be used to buffer the image data into the stream.
         /// </summary>
         /// <param name="img"></param>
         /// <param name="target"></param>
