@@ -5,23 +5,30 @@ using System.Drawing;
 using System.Drawing.Imaging;
 using System.IO;
 
-namespace ImageResizer.Encoding {
+namespace ImageResizer.Encoding
+{
     /// <summary>
     /// Provides basic encoding functionality for Jpeg, Png, Gif and Bmp output. Allows adjustable Jpeg compression, but doesn't implement indexed PNG files or quantized GIF files.
     /// </summary>
-    public class DefaultEncoder :IEncoder {
-
-        public DefaultEncoder() {
+    public class DefaultEncoder : IEncoder
+    {
+        public DefaultEncoder()
+        {
         }
-        public DefaultEncoder(ImageFormat outputFormat) {
+
+        public DefaultEncoder(ImageFormat outputFormat)
+        {
             this.OutputFormat = outputFormat;
         }
-        public DefaultEncoder(ImageFormat outputFormat, int jpegQuality) {
+
+        public DefaultEncoder(ImageFormat outputFormat, int jpegQuality)
+        {
             this.OutputFormat = outputFormat;
             this.Quality = jpegQuality;
         }
 
-        public DefaultEncoder(object original) {
+        public DefaultEncoder(object original)
+        {
             //What format was the image originally (used as a fallback).
             ImageFormat originalFormat = GetOriginalFormat(original);
             if (!IsValidOutputFormat(originalFormat))
@@ -37,9 +44,11 @@ namespace ImageResizer.Encoding {
         /// <summary>
         /// If you set this to anything other than Jpeg, Png, Gif or Bmp it will throw an exception. Defaults to Jpeg
         /// </summary>
-        public ImageFormat OutputFormat {
+        public ImageFormat OutputFormat
+        {
             get { return _outputFormat; }
-            set {
+            set
+            {
                 if (!IsValidOutputFormat(value)) throw new ArgumentException(value.ToString() + " is not a valid OutputFormat for DefaultEncoder.");
                 _outputFormat = value;
             }
@@ -50,7 +59,8 @@ namespace ImageResizer.Encoding {
         /// </summary>
         /// <param name="f"></param>
         /// <returns></returns>
-        public bool IsValidOutputFormat(ImageFormat f) {
+        public bool IsValidOutputFormat(ImageFormat f)
+        {
             return (ImageFormat.Jpeg.Equals(f) || ImageFormat.Png.Equals(f) || ImageFormat.Gif.Equals(f) || ImageFormat.Bmp.Equals(f));
         }
 
@@ -59,17 +69,20 @@ namespace ImageResizer.Encoding {
         /// <summary>
         /// 0..100 value. The Jpeg compression quality. 90 is default and the best setting. It has excellent quality and file size. Not relevant in Png or Gif compression
         /// </summary>
-        public int Quality {
+        public int Quality
+        {
             get { return quality; }
             set { quality = value; }
         }
-        
+
+
         /// <summary>
         /// Writes the specified image to the stream using Quality and OutputFormat
         /// </summary>
         /// <param name="image"></param>
         /// <param name="s"></param>
-        public void Write(Image image, System.IO.Stream s) {
+        public void Write(Image image, System.IO.Stream s)
+        {
             if (ImageFormat.Jpeg.Equals(OutputFormat)) SaveJpeg(image, s, this.Quality);
             else if (ImageFormat.Png.Equals(OutputFormat)) SavePng(image, s);
             else if (ImageFormat.Gif.Equals(OutputFormat)) SaveGif(image, s);
@@ -79,7 +92,8 @@ namespace ImageResizer.Encoding {
         /// <summary>
         /// Returns the default file extension for OutputFormat
         /// </summary>
-        public string Extension {
+        public string Extension
+        {
             get { return DefaultEncoder.GetExtensionFromImageFormat(OutputFormat); }
         }
 
@@ -92,13 +106,15 @@ namespace ImageResizer.Encoding {
         /// </summary>
         /// <param name="original">A string path or the source image that was loaded from a stream</param>
         /// <returns></returns>
-        public static ImageFormat GetOriginalFormat(object original) {
+        public static ImageFormat GetOriginalFormat(object original)
+        {
             if (original == null) return null;
             //Try to parse the original file extension first.
             string path = original as string;
-            
+
             //We have a path? Parse it!
-            if (path != null) {
+            if (path != null)
+            {
                 ImageFormat f = DefaultEncoder.GetImageFormatFromPhysicalPath(path);
                 if (f != null) return f; //From the path
             }
@@ -121,28 +137,34 @@ namespace ImageResizer.Encoding {
         /// Returns an string instance from the specfied ImageFormat. First matching entry in imageExtensions is used.
         /// Returns null if not recognized.
         /// </summary>
-		/// <param name="format"></param>
+        /// <param name="format"></param>
         /// <returns></returns>
         public static string GetExtensionFromImageFormat(ImageFormat format)
         {
-            lock (_syncExts) {
-                foreach (KeyValuePair<string, ImageFormat> p in imageExtensions) {
+            lock (_syncExts)
+            {
+                foreach (KeyValuePair<string, ImageFormat> p in imageExtensions)
+                {
                     if (p.Value.Guid.Equals(format.Guid)) return p.Key;
                 }
             }
             return null;
         }
-        
+
 
         private static object _syncExts = new object();
         /// <summary>
         /// Returns a dict of (lowercase invariant) image extensions and ImageFormat values
         /// </summary>
-        private static IDictionary<String,ImageFormat> _imageExtensions = null;
-        private static IDictionary<String,ImageFormat> imageExtensions{
-            get{
-                lock (_syncExts) {
-                    if (_imageExtensions == null) {
+        private static IDictionary<String, ImageFormat> _imageExtensions = null;
+        private static IDictionary<String, ImageFormat> imageExtensions
+        {
+            get
+            {
+                lock (_syncExts)
+                {
+                    if (_imageExtensions == null)
+                    {
                         _imageExtensions = new Dictionary<String, ImageFormat>();
                         addImageExtension("jpg", ImageFormat.Jpeg);
                         addImageExtension("jpeg", ImageFormat.Jpeg);
@@ -170,7 +192,8 @@ namespace ImageResizer.Encoding {
         public static ImageFormat GetImageFormatFromExtension(string ext)
         {
             if (string.IsNullOrEmpty(ext)) return null;
-            lock (_syncExts) {
+            lock (_syncExts)
+            {
                 ext = ext.Trim(' ', '.').ToLowerInvariant();
                 if (!imageExtensions.ContainsKey(ext)) return null;
                 return imageExtensions[ext];
@@ -182,13 +205,16 @@ namespace ImageResizer.Encoding {
         /// </summary>
         /// <param name="extension"></param>
         /// <param name="matchingFormat"></param>
-        private static void addImageExtension(string extension, ImageFormat matchingFormat) {
+        private static void addImageExtension(string extension, ImageFormat matchingFormat)
+        {
             //In case first call is to this method, use the property. Will be recursive, but that's fine, since it won't be null.
             imageExtensions.Add(extension.TrimStart('.', ' ').ToLowerInvariant(), matchingFormat);
         }
 
-        public static void AddImageExtension(string extension, ImageFormat matchingFormat){
-            lock (_syncExts) {//In case first call is to this method, use the property. Will be recursive, but that's fine, since it won't be null.
+        public static void AddImageExtension(string extension, ImageFormat matchingFormat)
+        {
+            lock (_syncExts)
+            {//In case first call is to this method, use the property. Will be recursive, but that's fine, since it won't be null.
                 imageExtensions.Add(extension.TrimStart('.', ' ').ToLowerInvariant(), matchingFormat);
             }
         }
@@ -199,7 +225,8 @@ namespace ImageResizer.Encoding {
         /// </summary>
         /// <param name="mimeType"></param>
         /// <returns></returns>
-        public static ImageCodecInfo GetImageCodecInfo(string mimeType) {
+        public static ImageCodecInfo GetImageCodecInfo(string mimeType)
+        {
             ImageCodecInfo[] info = ImageCodecInfo.GetImageEncoders();
             foreach (ImageCodecInfo ici in info)
                 if (ici.MimeType.Equals(mimeType, StringComparison.OrdinalIgnoreCase)) return ici;
@@ -215,7 +242,8 @@ namespace ImageResizer.Encoding {
         /// 90 is a *very* good setting.
         /// </param>
         /// <param name="target"></param>
-        public static void SaveJpeg(Image b, Stream target, int quality) {
+        public static void SaveJpeg(Image b, Stream target, int quality)
+        {
             #region Encoder paramater notes
             //image/jpeg
             //  The parameter list requires 172 bytes.
@@ -242,7 +270,7 @@ namespace ImageResizer.Encoding {
             // http://msdn.microsoft.com/en-us/library/ms533844(VS.85).aspx
             // TODO: What about ICC profiles
             #endregion
-            
+
             //Validate quality
             if (quality < 0) quality = 90; //90 is a very good default to stick with.
             if (quality > 100) quality = 100;
@@ -256,7 +284,7 @@ namespace ImageResizer.Encoding {
                 b.Save(target, GetImageCodecInfo("image/jpeg"), p);
             }
         }
-        
+
         /// <summary>
         /// Saves the image in png form. If Stream 'target' is not seekable, a temporary MemoryStream will be used to buffer the image data into the stream.
         /// </summary>
@@ -273,7 +301,7 @@ namespace ImageResizer.Encoding {
                     ms.WriteTo(target);
                 }
             }
-            else 
+            else
             {
                 // The parameter list requires 0 bytes.
                 img.Save(target, ImageFormat.Png);
