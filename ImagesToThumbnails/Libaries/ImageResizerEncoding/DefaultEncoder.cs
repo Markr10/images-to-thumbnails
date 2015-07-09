@@ -1,12 +1,11 @@
 ﻿/* Copyright (c) 2011 Nathanael Jones. See license.txt */
-using ImageResizer.Encoding;
 using System;
 using System.Collections.Generic;
 using System.Drawing;
 using System.Drawing.Imaging;
 using System.IO;
 
-namespace ImageResizer.Plugins.Basic {
+namespace ImageResizer.Encoding {
     /// <summary>
     /// Provides basic encoding functionality for Jpeg, Png, Gif and Bmp output. Allows adjustable Jpeg compression, but doesn't implement indexed PNG files or quantized GIF files.
     /// </summary>
