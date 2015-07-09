@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
 using System.Drawing;
+using System.Drawing.Imaging;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -27,9 +29,14 @@ namespace ImagesToThumbnails
             string filename = openFileDialog1.FileName;
             using (var image = Image.FromFile(filename))
             {
-                using (var thumbnail = image.GetThumbnailImage(image.Width / 10, image.Height / 10, null, IntPtr.Zero))
+                Bitmap target = new Bitmap(image.Width / 10, image.Height / 10);
+                using (Graphics graphics = Graphics.FromImage(target))
                 {
-                    thumbnail.Save(openFileDialog1.FileName + "thumb.png");
+                    graphics.DrawImage(image, 0, 0, target.Width, target.Height);
+                    using (FileStream file = new FileStream(openFileDialog1.FileName + "thumb.png", FileMode.Create, System.IO.FileAccess.Write))
+                    {
+                        target.Save(file, ImageFormat.Png);
+                    }
                 }
             }
         }
