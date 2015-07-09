@@ -45,6 +45,7 @@ namespace ImageResizer.Plugins.Basic {
                 _outputFormat = value;
             }
         }
+
         /// <summary>
         /// Returns true if the this encoder supports the specified image format
         /// </summary>
@@ -177,6 +178,7 @@ namespace ImageResizer.Plugins.Basic {
                 return imageExtensions[ext];
             }
         }
+
         /// <summary>
         /// NOT thread-safe! 
         /// </summary>
