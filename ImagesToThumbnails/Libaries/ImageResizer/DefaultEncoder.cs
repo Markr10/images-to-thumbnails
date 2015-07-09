@@ -249,12 +249,11 @@ namespace ImageResizer.Plugins.Basic {
             if (quality > 100) quality = 100;
             //Prepare paramater for encoder
             using (EncoderParameters p = new EncoderParameters(1))
-                using (var ep = new EncoderParameter(Encoder.Quality, (long)quality))
-                {
-                    p.Param[0] = ep;
-                    //save
-                    b.Save(target, GetImageCodecInfo("image/jpeg"), p);
-                }
+            using (var ep = new EncoderParameter(Encoder.Quality, (long)quality))
+            {
+                p.Param[0] = ep;
+                //save
+                b.Save(target, GetImageCodecInfo("image/jpeg"), p);
             }
         }
         
