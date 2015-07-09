@@ -12,34 +12,6 @@ namespace ImageResizer.Encoding
     /// </summary>
     public class DefaultEncoder : IEncoder
     {
-        public DefaultEncoder()
-        {
-        }
-
-        public DefaultEncoder(ImageFormat outputFormat)
-        {
-            this.OutputFormat = outputFormat;
-        }
-
-        public DefaultEncoder(ImageFormat outputFormat, int jpegQuality)
-        {
-            this.OutputFormat = outputFormat;
-            this.Quality = jpegQuality;
-        }
-
-        public DefaultEncoder(object original)
-        {
-            //What format was the image originally (used as a fallback).
-            ImageFormat originalFormat = GetOriginalFormat(original);
-            if (!IsValidOutputFormat(originalFormat))
-            {
-                throw new ArgumentException("No valid info available about the original format.");
-            }
-
-            //Ok, we've found our format.
-            this.OutputFormat = originalFormat;
-        }
-
         private ImageFormat _outputFormat = ImageFormat.Jpeg;
         /// <summary>
         /// If you set this to anything other than Jpeg, Png, Gif or Bmp it will throw an exception. Defaults to Jpeg
@@ -54,17 +26,6 @@ namespace ImageResizer.Encoding
             }
         }
 
-        /// <summary>
-        /// Returns true if the this encoder supports the specified image format
-        /// </summary>
-        /// <param name="f"></param>
-        /// <returns></returns>
-        public bool IsValidOutputFormat(ImageFormat f)
-        {
-            return (ImageFormat.Jpeg.Equals(f) || ImageFormat.Png.Equals(f) || ImageFormat.Gif.Equals(f) || ImageFormat.Bmp.Equals(f));
-        }
-
-
         private int quality = 90;
         /// <summary>
         /// 0..100 value. The Jpeg compression quality. 90 is default and the best setting. It has excellent quality and file size. Not relevant in Png or Gif compression
@@ -75,9 +36,62 @@ namespace ImageResizer.Encoding
             set { quality = value; }
         }
 
+        /// <summary>
+        /// Constructor that creates an instance of DefaultEncoder with the default values.
+        /// Sets the output format to Jpeg with a compression quality of 90.
+        /// </summary>
+        public DefaultEncoder()
+        {
+        }
 
         /// <summary>
-        /// Writes the specified image to the stream using Quality and OutputFormat
+        /// Constructor that creates an instance of DefaultEncoder wih
+        /// However it is possible.
+        /// </summary>
+        /// <param name="outputFormat">The default output format</param>
+        public DefaultEncoder(ImageFormat outputFormat)
+        {
+            this.OutputFormat = outputFormat;
+        }
+
+        public DefaultEncoder(ImageFormat outputFormat, int jpegQuality)
+        {
+            this.OutputFormat = outputFormat;
+            this.Quality = jpegQuality;
+        }
+
+        /// <summary>
+        /// Constructor that creates an instance of DefaultEncoder with the ImageFormat of the source image/path.
+        /// It also initialise the default value for Jpeg compression quality.
+        /// </summary>
+        /// <param name="original">A string path or the source image that was loaded from a stream</param>
+        public DefaultEncoder(object original)
+        {
+            //What format was the image originally (used as a fallback).
+            ImageFormat originalFormat = GetOriginalFormat(original);
+            if (!IsValidOutputFormat(originalFormat))
+            {
+                throw new ArgumentException("No valid info available about the original format.");
+            }
+
+            //Ok, we've found our format.
+            this.OutputFormat = originalFormat;
+        }
+
+
+        /// <summary>
+        /// Returns true if the this encoder supports the specified image format
+        /// </summary>
+        /// <param name="f"></param>
+        /// <returns></returns>
+        public bool IsValidOutputFormat(ImageFormat f)
+        {
+            return (ImageFormat.Jpeg.Equals(f) || ImageFormat.Png.Equals(f) || ImageFormat.Gif.Equals(f) || ImageFormat.Bmp.Equals(f));
+        }
+
+        #region IEncoder methods
+        /// <summary>
+        /// Writes the specified image to the stream using Quality (if needed) and OutputFormat
         /// </summary>
         /// <param name="image"></param>
         /// <param name="s"></param>
@@ -96,6 +110,7 @@ namespace ImageResizer.Encoding
         {
             get { return DefaultEncoder.GetExtensionFromImageFormat(OutputFormat); }
         }
+        #endregion
 
 
         #region Static methods
