@@ -1,21 +1,16 @@
 ﻿/* Copyright (c) 2011 Nathanael Jones. See license.txt */
+using ImageResizer.Encoding;
 using System;
 using System.Collections.Generic;
-using System.Text;
-using System.Drawing.Imaging;
 using System.Drawing;
+using System.Drawing.Imaging;
 using System.IO;
-using System.Collections.Specialized;
-using ImageResizer.Plugins;
-using ImageResizer.Encoding;
-using ImageResizer.Resizing;
-using System.Globalization;
 
 namespace ImageResizer.Plugins.Basic {
     /// <summary>
-    /// Provides basic encoding functionality for Jpeg, png, and gif output. Allows adjustable Jpeg compression, but doesn't implement indexed PNG files or quantized GIF files.
+    /// Provides basic encoding functionality for Jpeg, Png, Gif and Bmp output. Allows adjustable Jpeg compression, but doesn't implement indexed PNG files or quantized GIF files.
     /// </summary>
-    public class DefaultEncoder :IEncoder, IQuerystringPlugin, IPlugin, IFileSignatureProvider {
+    public class DefaultEncoder :IEncoder {
 
         public DefaultEncoder() {
         }
@@ -27,36 +22,21 @@ namespace ImageResizer.Plugins.Basic {
             this.Quality = jpegQuality;
         }
 
-        public DefaultEncoder(ResizeSettings settings, object original) {
+        public DefaultEncoder(object original) {
             //What format was the image originally (used as a fallback).
             ImageFormat originalFormat = GetOriginalFormat(original);
-            if (!IsValidOutputFormat(originalFormat)) originalFormat = ImageFormat.Jpeg;//No valid info available about the original format. Use Jpeg.
-
-            //What format was specified?
-            ImageFormat requestedFormat = GetRequestedFormat(settings.Format, originalFormat); //fallback to originalFormat if not specified.
-            if (!IsValidOutputFormat(requestedFormat))
-                throw new ArgumentException("An unrecognized or unsupported output format (" + (settings.Format != null ? settings.Format : "(null)") + ") was specified in 'settings'.");
+            if (!IsValidOutputFormat(originalFormat))
+            {
+                throw new ArgumentException("No valid info available about the original format.");
+            }
 
             //Ok, we've found our format.
-            this.OutputFormat = requestedFormat;
-
-            //parse quality;
-            int quality = 90;
-            if (!string.IsNullOrEmpty(settings["quality"]))
-                if (int.TryParse(settings["quality"], NumberStyles.Integer, NumberFormatInfo.InvariantInfo, out quality))
-                    this.Quality = quality;
-
-        }
-        
-        public virtual IEncoder CreateIfSuitable(ResizeSettings settings, object original) {
-            ImageFormat requestedFormat = GetRequestedFormat(settings.Format, ImageFormat.Jpeg);
-            if (requestedFormat == null || !IsValidOutputFormat(requestedFormat)) return null; //An unsupported format was explicitly specified.
-            return new DefaultEncoder(settings, original);
+            this.OutputFormat = originalFormat;
         }
 
         private ImageFormat _outputFormat = ImageFormat.Jpeg;
         /// <summary>
-        /// If you set this to anything other than Gif, Png, or Jpeg, it will throw an exception. Defaults to Jpeg
+        /// If you set this to anything other than Jpeg, Png, Gif or Bmp it will throw an exception. Defaults to Jpeg
         /// </summary>
         public ImageFormat OutputFormat {
             get { return _outputFormat; }
@@ -71,13 +51,13 @@ namespace ImageResizer.Plugins.Basic {
         /// <param name="f"></param>
         /// <returns></returns>
         public bool IsValidOutputFormat(ImageFormat f) {
-            return (ImageFormat.Gif.Equals(f) || ImageFormat.Png.Equals(f) || ImageFormat.Jpeg.Equals(f));
+            return (ImageFormat.Jpeg.Equals(f) || ImageFormat.Png.Equals(f) || ImageFormat.Gif.Equals(f) || ImageFormat.Bmp.Equals(f));
         }
 
 
         private int quality = 90;
         /// <summary>
-        /// 0..100 value. The Jpeg compression quality. 90 is the best setting. Not relevant in Png or Gif compression
+        /// 0..100 value. The Jpeg compression quality. 90 is default and the best setting. It has excellent quality and file size. Not relevant in Png or Gif compression
         /// </summary>
         public int Quality {
             get { return quality; }
@@ -93,23 +73,9 @@ namespace ImageResizer.Plugins.Basic {
             if (ImageFormat.Jpeg.Equals(OutputFormat)) SaveJpeg(image, s, this.Quality);
             else if (ImageFormat.Png.Equals(OutputFormat)) SavePng(image, s);
             else if (ImageFormat.Gif.Equals(OutputFormat)) SaveGif(image, s);
+            else if (ImageFormat.Bmp.Equals(OutputFormat)) SaveBmp(image, s);
         }
 
-        /// <summary>
-        /// Returns true if the desired output type supports transparency.
-        /// </summary>
-        public bool SupportsTransparency {
-            get {
-                return ImageFormat.Png.Equals(OutputFormat) || ImageFormat.Gif.Equals(OutputFormat); //Does Gif transparency work?
-            }
-        }
-
-        /// <summary>
-        /// Returns the default mime-type for the OutputFormat
-        /// </summary>
-        public string MimeType {
-            get { return DefaultEncoder.GetContentTypeFromImageFormat(OutputFormat); }
-        }
         /// <summary>
         /// Returns the default file extesnion for OutputFormat
         /// </summary>
@@ -121,40 +87,17 @@ namespace ImageResizer.Plugins.Basic {
 
         #region Static methods
         /// <summary>
-        /// Tries to parse an ImageFormat from the settings.Format value.
-        /// If an unrecogized format is specified, returns null.
-        /// If an unsupported format is specified, it is returned.
-        /// If *no* format is specified, returns defaultValue.
-        /// </summary>
-		/// <param name="format"></param>
-        /// <param name="defaultValue"></param>
-        /// <returns></returns>
-        public static ImageFormat GetRequestedFormat(string format, ImageFormat defaultValue) {
-            ImageFormat f = null;
-            if (!string.IsNullOrEmpty(format)) {
-                f = DefaultEncoder.GetImageFormatFromExtension(format);
-                return f;
-            }
-            //Fallback. No encoder was explicitly specified, so let's try to infer it from the image data.
-            return defaultValue;
-
-        }
-        /// <summary>
-        /// Attempts to determine the ImageFormat of the source image. First attempts to parse the path, if a string is present in original.Tag. (or if 'original' is a string)
+        /// Attempts to determine the ImageFormat of the source image. First attempts to parse the path, if 'original' is a string.
         /// Falls back to using original.RawFormat. Returns null if both 'original' is null.
         /// RawFormat has a bad reputation, so this may return unexpected values, like MemoryBitmap or something in some situations.
         /// </summary>
-        /// <param name="original">The source image that was loaded from a stream, or a string path</param>
+        /// <param name="original">A string path or the source image that was loaded from a stream</param>
         /// <returns></returns>
         public static ImageFormat GetOriginalFormat(object original) {
             if (original == null) return null;
             //Try to parse the original file extension first.
             string path = original as string;
             
-            if (path == null && original is Image) path = ((Image)original).Tag as string;
-
-            if (path == null && original is Image && ((Image)original).Tag is BitmapTag) path = ((BitmapTag)((Image)original).Tag).Path;
-
             //We have a path? Parse it!
             if (path != null) {
                 ImageFormat f = DefaultEncoder.GetImageFormatFromPhysicalPath(path);
@@ -209,13 +152,10 @@ namespace ImageResizer.Plugins.Basic {
                         addImageExtension("jfif", ImageFormat.Jpeg);
                         addImageExtension("jfi", ImageFormat.Jpeg);
                         addImageExtension("exif", ImageFormat.Jpeg);
-                        addImageExtension("bmp", ImageFormat.Bmp);
-                        addImageExtension("gif", ImageFormat.Gif);
                         addImageExtension("png", ImageFormat.Png);
-                        addImageExtension("tif", ImageFormat.Tiff);
-                        addImageExtension("tiff", ImageFormat.Tiff);
-                        addImageExtension("tff", ImageFormat.Tiff);
-                        //"bmp","gif","exif","png","tif","tiff","tff","jpg","jpeg", "jpe","jif","jfif","jfi"
+                        addImageExtension("gif", ImageFormat.Gif);
+                        addImageExtension("bmp", ImageFormat.Bmp);
+                        //"bmp","gif","jpg","jpeg","jpe","jif","jfif","jfi","exif","png"
                     }
                     return _imageExtensions;
                 }
@@ -253,31 +193,6 @@ namespace ImageResizer.Plugins.Basic {
             }
         }
 
-        /// <summary>
-        /// Supports Png, Jpeg, Gif, Bmp, and Tiff. Throws a ArgumentOutOfRangeException if not png, jpeg, gif, bmp, or tiff
-        /// </summary>
-        /// <param name="format"></param>
-        /// <returns></returns>
-        public static string GetContentTypeFromImageFormat(ImageFormat format)
-        {
-            if (format == null) throw new ArgumentNullException();
-
-            if (ImageFormat.Png.Equals(format))
-                return "image/png"; //Changed from image/x-png to image/png on May 14, 2011, per http://www.w3.org/Graphics/PNG/
-            else if (ImageFormat.Jpeg.Equals(format))
-                return "image/jpeg";
-            else if (ImageFormat.Gif.Equals(format))
-                return "image/gif";
-            else if (ImageFormat.Bmp.Equals(format))
-                return "image/x-ms-bmp";
-            else if (ImageFormat.Tiff.Equals(format))
-                return "image/tiff";
-            else
-            {
-                throw new ArgumentOutOfRangeException("Unsupported format " + format.ToString());
-            }
-
-        }
 
         /// <summary>
         /// Returns the first ImageCodeInfo instance with the specified mime type. Returns null if there are no matches.
@@ -332,7 +247,7 @@ namespace ImageResizer.Plugins.Basic {
             if (quality < 0) quality = 90; //90 is a very good default to stick with.
             if (quality > 100) quality = 100;
             //Prepare paramater for encoder
-            using (EncoderParameters p = new EncoderParameters(1)) {
+            using (EncoderParameters p = new EncoderParameters(1))
                 using (var ep = new EncoderParameter(System.Drawing.Imaging.Encoder.Quality, (long)quality))
                 {
                     p.Param[0] = ep;
@@ -349,74 +264,44 @@ namespace ImageResizer.Plugins.Basic {
         /// <param name="target"></param>
         public static void SavePng(Image img, Stream target)
         {
-            if (!target.CanSeek) {
+            if (!target.CanSeek)
+            {
                 //Write to an intermediate, seekable memory stream (PNG compression requires it)
-                using (MemoryStream ms = new MemoryStream(4096)) {
+                using (MemoryStream ms = new MemoryStream(4096))
+                {
                     img.Save(ms, System.Drawing.Imaging.ImageFormat.Png);
                     ms.WriteTo(target);
                 }
-            } else {
-                //image/png
-                //  The parameter list requires 0 bytes.
+            }
+            else 
+            {
+                // The parameter list requires 0 bytes.
                 img.Save(target, System.Drawing.Imaging.ImageFormat.Png);
             }
         }
-        public static void SaveBmp(Image img, Stream target)
+
+        /// <summary>
+        /// Saves the image in gif form.
+        /// </summary>
+        /// <param name="img"></param>
+        /// <param name="target"></param>
+        public static void SaveGif(Image img, Stream target)
         {
-            //  image/bmp
-            //  The parameter list requires 0 bytes.
-            img.Save(target, ImageFormat.Bmp);
-        }
-
-
-        public static void SaveGif(Image img, Stream target) {
-            //image/gif
-            //  The parameter list requires 0 bytes.
+            // The parameter list requires 0 bytes.
             img.Save(target, ImageFormat.Gif);
         }
 
-        #endregion
-
-
-
-     
         /// <summary>
-        /// Returns the querystring keys used by DefaultEncoder (quality, format, and thumbnail)
+        /// Saves the image in bmp form.
         /// </summary>
-        /// <returns></returns>
-        public virtual IEnumerable<string> GetSupportedQuerystringKeys() {
-            return new string[] { "quality", "format", "thumbnail" };
-        }
-
-        public IPlugin Install(Configuration.Config c) {
-            c.Plugins.add_plugin(this);
-            return this;
-        }
-
-        public bool Uninstall(Configuration.Config c) {
-            c.Plugins.remove_plugin(this);
-            return true;
-        }
-
-        /// <summary>
-        /// Returns signatures for jpeg, bmp, gif, png, wmf, ico, and tif
-        /// </summary>
-        /// <returns></returns>
-        public IEnumerable<FileSignature> GetSignatures()
+        /// <param name="img"></param>
+        /// <param name="target"></param>
+        public static void SaveBmp(Image img, Stream target)
         {
-            //Source http://www.filesignatures.net/
-            return new FileSignature[]{
-                new FileSignature(new byte[] {0xFF, 0xD8, 0xFF}, "jpg", "image/jpeg"),
-                new FileSignature(new byte[] {0x42, 0x4D}, "bmp", "image/x-ms-bmp"), //Can be a BMP or DIB
-                new FileSignature(new byte[] {0x47,0x49,0x46, 0x38}, "gif", "image/gif"),
-                new FileSignature(new byte[] {0x89, 0x50, 0x4E, 0x47, 0x0D, 0x0A, 0x1A, 0x0A}, "png","image/png"),
-                new FileSignature(new byte[] {0xD7, 0xCD, 0xC6, 0x9A}, "wmf", "image/x-wmf"),
-                new FileSignature(new byte[] {0x00, 0x00,0x01, 0x00}, "ico", "image/x-icon"), //Can be a printer spool or an icon
-                new FileSignature(new byte[] {0x49, 0x20, 0x49}, "tif", "image/tiff"),
-                new FileSignature(new byte[] {0x49, 0x49, 0x2A, 0x00}, "tif", "image/tiff"),
-                new FileSignature(new byte[] {0x4D, 0x4D, 0x00, 0x2A}, "tif", "image/tiff"),
-                new FileSignature(new byte[] {0x4D, 0x4D, 0x00, 0x2B}, "tif", "image/tiff")
-            };
+            // The parameter list requires 0 bytes.
+            img.Save(target, ImageFormat.Bmp);
         }
+
+        #endregion
     }
 }
