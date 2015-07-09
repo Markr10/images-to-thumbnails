@@ -78,7 +78,7 @@ namespace ImageResizer.Plugins.Basic {
         }
 
         /// <summary>
-        /// Returns the default file extesnion for OutputFormat
+        /// Returns the default file extension for OutputFormat
         /// </summary>
         public string Extension {
             get { return DefaultEncoder.GetExtensionFromImageFormat(OutputFormat); }
