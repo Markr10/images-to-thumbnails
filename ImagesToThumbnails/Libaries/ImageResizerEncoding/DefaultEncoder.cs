@@ -28,41 +28,49 @@ namespace ImageResizer.Encoding
 
         private int quality = 90;
         /// <summary>
-        /// 0..100 value. The Jpeg compression quality. 90 is default and the best setting. It has excellent quality and file size. Not relevant in Png or Gif compression
+        /// 0..100 value. The Jpeg compression quality. 90 is default and the best setting. It has excellent quality and file size.
+        /// Defaults to 90 if passed as a negative number. Numbers over 100 are truncated to 100.
+        /// Not relevant in Png or Gif compression
         /// </summary>
         public int Quality
         {
             get { return quality; }
-            set { quality = value; }
+            set { quality = GetValidQuality(value); }
         }
 
         /// <summary>
         /// Constructor that creates an instance of DefaultEncoder with the default values.
-        /// Sets the output format to Jpeg with a compression quality of 90.
+        /// Initialises the default output format to Jpeg with a compression quality of 90.
         /// </summary>
         public DefaultEncoder()
         {
         }
 
         /// <summary>
-        /// Constructor that creates an instance of DefaultEncoder wih
-        /// However it is possible.
+        /// Constructor that creates an instance of DefaultEncoder with the given output format.
+        /// It also initialises the default value for Jpeg compression quality.
         /// </summary>
-        /// <param name="outputFormat">The default output format</param>
+        /// <param name="outputFormat">Any supported output format</param>
         public DefaultEncoder(ImageFormat outputFormat)
         {
             this.OutputFormat = outputFormat;
         }
 
-        public DefaultEncoder(ImageFormat outputFormat, int jpegQuality)
+        /// <summary>
+        /// Constructor that creates an instance of DefaultEncoder with the default output format set to Jpeg and
+        /// the given Jpeg compression quality.
+        /// </summary>
+        /// <param name="jpegQuality">The Jpeg compression quality. It must be a number between 0 and 100.
+        /// Defaults to 90 if passed as a negative number. Numbers over 100 are truncated to 100.
+        /// </param>
+        public DefaultEncoder(int jpegQuality)
         {
-            this.OutputFormat = outputFormat;
             this.Quality = jpegQuality;
         }
 
         /// <summary>
         /// Constructor that creates an instance of DefaultEncoder with the ImageFormat of the source image/path.
-        /// It also initialise the default value for Jpeg compression quality.
+        /// It also initialises the default value for Jpeg compression quality.
         /// </summary>
         /// <param name="original">A string path or the source image that was loaded from a stream</param>
         public DefaultEncoder(object original)
@@ -236,6 +244,40 @@ namespace ImageResizer.Encoding
 
 
         /// <summary>
+        /// Returns a valid Jpeg compression quality value.
+        /// </summary>
+        /// <param name="quality">The Jpeg compression quality. It must be a number between 0 and 100.
+        /// Defaults to 90 if passed as a negative number. Numbers over 100 are truncated to 100.
+        /// </param>
+        /// <returns>A number between 0 and 100</returns>
+        public static int GetValidQuality(int quality)
+        {
+            if (quality < 0)
+            {
+                return 90; //90 is a very good default to stick with.
+            }
+            else if (quality > 100)
+            {
+                return 100;
+            }
+            else
+            {
+                return quality;
+            }
+        }
+
+
+        /// <summary>
+        /// Returns true if quality is a valid Jpeg compression quality value.
+        /// </summary>
+        /// <param name="quality"></param>
+        /// <returns></returns>
+        public static bool IsValidQuality(int quality)
+        {
+            return ((quality >= 0) && (quality <= 100));
+        }
+
+        /// <summary>
         /// Returns the first ImageCodeInfo instance with the specified mime type. Returns null if there are no matches.
         /// </summary>
         /// <param name="mimeType"></param>
@@ -253,7 +295,7 @@ namespace ImageResizer.Encoding
         /// Saves the specified image to the specified stream using jpeg compression of the specified quality.
         /// </summary>
         /// <param name="b"></param>
-        /// <param name="quality">A number between 0 and 100. Defaults to 90 if passed a negative number. Numbers over 100 are truncated to 100. 
+        /// <param name="quality">A number between 0 and 100. Throws an exception when it is not valid.
         /// 90 is a *very* good setting.
         /// </param>
         /// <param name="target"></param>
@@ -287,8 +329,11 @@ namespace ImageResizer.Encoding
             #endregion
 
             //Validate quality
-            if (quality < 0) quality = 90; //90 is a very good default to stick with.
-            if (quality > 100) quality = 100;
+            if (!IsValidQuality(quality))
+            {
+                throw new ArgumentException(quality.ToString() + " is not a valid Jpeg compression quality value.");
+            }
+
             //Prepare paramater for encoder
             //One pair of parenthesis used for easier reading of the usings.
             using (EncoderParameters p = new EncoderParameters(1))
