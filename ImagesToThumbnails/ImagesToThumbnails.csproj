@@ -32,6 +32,10 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="Ariadne, Version=0.1.4405.42857, Culture=neutral, PublicKeyToken=d3dbb64015e452b7, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>Libaries\DLLs\Ariadne.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
     <Reference Include="System.Xml.Linq" />
@@ -90,6 +94,8 @@
   </ItemGroup>
   <ItemGroup />
   <ItemGroup>
+    <Content Include="Libaries\DLLs\Ariadne.dll" />
+    <Content Include="Libaries\DLLs\Ariadne.xml" />
     <Content Include="Libaries\ImageResizerEncoding\license.txt" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
