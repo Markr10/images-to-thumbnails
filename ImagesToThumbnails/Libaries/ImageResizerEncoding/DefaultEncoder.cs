@@ -30,7 +30,7 @@ namespace ImageResizer.Encoding
         /// <summary>
         /// 0..100 value. The Jpeg compression quality. 90 is default and the best setting. It has excellent quality and file size.
         /// Defaults to 90 if passed as a negative number. Numbers over 100 are truncated to 100.
-        /// Not relevant in Png or Gif compression
+        /// Not relevant in Png or Gif compression.
         /// </summary>
         public int Quality
         {
@@ -88,7 +88,7 @@ namespace ImageResizer.Encoding
 
 
         /// <summary>
-        /// Returns true if the this encoder supports the specified image format
+        /// Returns true if the this encoder supports the specified image format.
         /// </summary>
         /// <param name="f"></param>
         /// <returns></returns>
@@ -99,7 +99,7 @@ namespace ImageResizer.Encoding
 
         #region IEncoder methods
         /// <summary>
-        /// Writes the specified image to the stream using Quality (if needed) and OutputFormat
+        /// Writes the specified image to the stream using Quality (if needed) and OutputFormat.
         /// </summary>
         /// <param name="image"></param>
         /// <param name="s"></param>
@@ -112,7 +112,7 @@ namespace ImageResizer.Encoding
         }
 
         /// <summary>
-        /// Returns the default file extension for OutputFormat
+        /// Returns the default file extension for OutputFormat.
         /// </summary>
         public string Extension
         {
@@ -177,7 +177,7 @@ namespace ImageResizer.Encoding
 
         private static object _syncExts = new object();
         /// <summary>
-        /// Returns a dict of (lowercase invariant) image extensions and ImageFormat values
+        /// Returns a dict of (lowercase invariant) image extensions and ImageFormat values.
         /// </summary>
         private static IDictionary<String, ImageFormat> _imageExtensions = null;
         private static IDictionary<String, ImageFormat> imageExtensions
