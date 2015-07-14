@@ -48,6 +48,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="FitMode.cs" />
     <Compile Include="Libaries\ImageResizerEncoding\DefaultEncoder.cs" />
     <Compile Include="Libaries\ImageResizerEncoding\IEncoder.cs" />
     <Compile Include="Main.cs">
