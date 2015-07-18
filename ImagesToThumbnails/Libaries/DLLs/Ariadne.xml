@@ -1,0 +1,1781 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>Ariadne</name>
+    </assembly>
+    <members>
+        <member name="T:Ariadne.Collections.DictionaryExtensions">
+            <summary>Provides further static methods for manipulating <see cref="T:Ariadne.Collections.ThreadSafeDictionary`2"/>’s with
+            particular value types. In C♯ and VB.NET these extension methods can be called as instance methods on
+            appropriately typed <see cref="T:Ariadne.Collections.ThreadSafeDictionary`2"/>s.</summary>
+        </member>
+        <member name="M:Ariadne.Collections.DictionaryExtensions.Increment``1(Ariadne.Collections.ThreadSafeDictionary{``0,System.Int32},``0,System.Int32@)">
+            <summary>Atomically increments the <see cref="T:System.Int32"/> value identified by the key, by one.</summary>
+            <typeparam name="TKey">The type of the keys in the dictionary.</typeparam>
+            <param name="dict">The <see cref="T:Ariadne.Collections.ThreadSafeDictionary`2"/> to operate on.
+            TValue must be <see cref="T:System.Int32"/>.</param>
+            <param name="key">The key that identifies the value to increment.</param>
+            <param name="result">The result of incrementing the value.</param>
+            <returns>True if the value was found and incremented, false if the key was not found.</returns>
+            <exception cref="T:System.ArgumentNullException"><paramref name="dict"/> was null.</exception>
+        </member>
+        <member name="M:Ariadne.Collections.DictionaryExtensions.Increment``1(Ariadne.Collections.ThreadSafeDictionary{``0,System.Int32},``0)">
+            <summary>Atomically increments the <see cref="T:System.Int32"/> value identified by the key, by one.</summary>
+            <typeparam name="TKey">The type of the keys in the dictionary.</typeparam>
+            <param name="dict">The <see cref="T:Ariadne.Collections.ThreadSafeDictionary`2"/> to operate on.
+            TValue must be <see cref="T:System.Int32"/>.</param>
+            <param name="key">The key that identifies the value to increment.</param>
+            <returns>The result of incrementing the value.</returns>
+            <exception cref="T:System.Collections.Generic.KeyNotFoundException">The key was not found in the dictionary.</exception>
+            <exception cref="T:System.ArgumentNullException"><paramref name="dict"/> was null.</exception>
+        </member>
+        <member name="M:Ariadne.Collections.DictionaryExtensions.Increment``1(Ariadne.Collections.ThreadSafeDictionary{``0,System.Int64},``0,System.Int64@)">
+            <summary>Atomically increments the <see cref="T:System.Int64"/> value identified by the key, by one.</summary>
+            <typeparam name="TKey">The type of the keys in the dictionary.</typeparam>
+            <param name="dict">The <see cref="T:Ariadne.Collections.ThreadSafeDictionary`2"/> to operate on.
+            TValue must be <see cref="T:System.Int64"/>.</param>
+            <param name="key">The key that identifies the value to increment.</param>
+            <param name="result">The result of incrementing the value.</param>
+            <returns>True if the value was found and incremented, false if the key was not found.</returns>
+            <exception cref="T:System.ArgumentNullException"><paramref name="dict"/> was null.</exception>
+        </member>
+        <member name="M:Ariadne.Collections.DictionaryExtensions.Increment``1(Ariadne.Collections.ThreadSafeDictionary{``0,System.Int64},``0)">
+            <summary>Atomically increments the <see cref="T:System.Int64"/> value identified by the key, by one.</summary>
+            <typeparam name="TKey">The type of the keys in the dictionary.</typeparam>
+            <param name="dict">The <see cref="T:Ariadne.Collections.ThreadSafeDictionary`2"/> to operate on.
+            TValue must be <see cref="T:System.Int64"/>.</param>
+            <param name="key">The key that identifies the value to increment.</param>
+            <returns>The result of incrementing the value.</returns>
+            <exception cref="T:System.Collections.Generic.KeyNotFoundException">The key was not found in the dictionary.</exception>
+            <exception cref="T:System.ArgumentNullException"><paramref name="dict"/> was null.</exception>
+        </member>
+        <member name="M:Ariadne.Collections.DictionaryExtensions.Decrement``1(Ariadne.Collections.ThreadSafeDictionary{``0,System.Int32},``0,System.Int32@)">
+            <summary>Atomically decrements the <see cref="T:System.Int32"/> value identified by the key, by one.</summary>
+            <typeparam name="TKey">The type of the keys in the dictionary.</typeparam>
+            <param name="dict">The <see cref="T:Ariadne.Collections.ThreadSafeDictionary`2"/> to operate on.
+            TValue must be <see cref="T:System.Int32"/>.</param>
+            <param name="key">The key that identifies the value to decrement.</param>
+            <param name="result">The result of decrementing the value.</param>
+            <returns>True if the value was found and decremented, false if the key was not found.</returns>
+            <exception cref="T:System.ArgumentNullException"><paramref name="dict"/> was null.</exception>
+        </member>
+        <member name="M:Ariadne.Collections.DictionaryExtensions.Decrement``1(Ariadne.Collections.ThreadSafeDictionary{``0,System.Int32},``0)">
+            <summary>Atomically decrements the <see cref="T:System.Int32"/> value identified by the key, by one.</summary>
+            <typeparam name="TKey">The type of the keys in the dictionary.</typeparam>
+            <param name="dict">The <see cref="T:Ariadne.Collections.ThreadSafeDictionary`2"/> to operate on.
+            TValue must be <see cref="T:System.Int32"/>.</param>
+            <param name="key">The key that identifies the value to decrement.</param>
+            <returns>The result of decrementing the value.</returns>
+            <exception cref="T:System.Collections.Generic.KeyNotFoundException">The key was not found in the dictionary.</exception>
+            <exception cref="T:System.ArgumentNullException"><paramref name="dict"/> was null.</exception>
+        </member>
+        <member name="M:Ariadne.Collections.DictionaryExtensions.Decrement``1(Ariadne.Collections.ThreadSafeDictionary{``0,System.Int64},``0,System.Int64@)">
+            <summary>Atomically decrements the <see cref="T:System.Int64"/> value identified by the key, by one.</summary>
+            <typeparam name="TKey">The type of the keys in the dictionary.</typeparam>
+            <param name="dict">The <see cref="T:Ariadne.Collections.ThreadSafeDictionary`2"/> to operate on.
+            TValue must be <see cref="T:System.Int64"/>.</param>
+            <param name="key">The key that identifies the value to decrement.</param>
+            <param name="result">The result of decrementing the value.</param>
+            <returns>True if the value was found and decremented, false if the key was not found.</returns>
+            <exception cref="T:System.ArgumentNullException"><paramref name="dict"/> was null.</exception>
+        </member>
+        <member name="M:Ariadne.Collections.DictionaryExtensions.Decrement``1(Ariadne.Collections.ThreadSafeDictionary{``0,System.Int64},``0)">
+            <summary>Atomically decrements the <see cref="T:System.Int64"/> value identified by the key, by one.</summary>
+            <typeparam name="TKey">The type of the keys in the dictionary.</typeparam>
+            <param name="dict">The <see cref="T:Ariadne.Collections.ThreadSafeDictionary`2"/> to operate on.
+            TValue must be <see cref="T:System.Int64"/>.</param>
+            <param name="key">The key that identifies the value to decrement.</param>
+            <returns>The result of decrementing the value.</returns>
+            <exception cref="T:System.Collections.Generic.KeyNotFoundException">The key was not found in the dictionary.</exception>
+            <exception cref="T:System.ArgumentNullException"><paramref name="dict"/> was null.</exception>
+        </member>
+        <member name="M:Ariadne.Collections.DictionaryExtensions.Plus``1(Ariadne.Collections.ThreadSafeDictionary{``0,System.Int64},``0,System.Int64,System.Int64@)">
+            <summary>Atomically adds the supplied <see cref="T:System.Int64"/> value to the value identified by the key, returning
+            the result.</summary>
+            <typeparam name="TKey">The type of the keys in the dictionary.</typeparam>
+            <param name="dict">The <see cref="T:Ariadne.Collections.ThreadSafeDictionary`2"/> to operate on.
+            TValue must be <see cref="T:System.Int64"/>.</param>
+            <param name="key">The key that identifies the value to increment.</param>
+            <param name="addend">The value to add to that in the dictionary.</param>
+            <param name="result">The result of adding the values.</param>
+            <returns>True if the value was found and the addition performed, false if the key was not found.</returns>
+            <exception cref="T:System.ArgumentNullException"><paramref name="dict"/> was null.</exception>
+        </member>
+        <member name="M:Ariadne.Collections.DictionaryExtensions.Plus``1(Ariadne.Collections.ThreadSafeDictionary{``0,System.Int64},``0,System.Int64)">
+            <summary>Atomically adds the supplied <see cref="T:System.Int64"/> value to the value identified by the key, returning
+            the result.</summary>
+            <typeparam name="TKey">The type of the keys in the dictionary.</typeparam>
+            <param name="dict">The <see cref="T:Ariadne.Collections.ThreadSafeDictionary`2"/> to operate on.
+            TValue must be <see cref="T:System.Int64"/>.</param>
+            <param name="key">The key that identifies the value to increment.</param>
+            <param name="addend">The value to add to that in the dictionary.</param>
+            <returns>The result of adding the values.</returns>
+            <exception cref="T:System.Collections.Generic.KeyNotFoundException">The key was not found in the dictionary.</exception>
+            <exception cref="T:System.ArgumentNullException"><paramref name="dict"/> was null.</exception>
+        </member>
+        <member name="M:Ariadne.Collections.DictionaryExtensions.Plus``1(Ariadne.Collections.ThreadSafeDictionary{``0,System.Int32},``0,System.Int32,System.Int32@)">
+            <summary>Atomically adds the supplied <see cref="T:System.Int32"/> value to the value identified by the key, returning
+            the result.</summary>
+            <typeparam name="TKey">The type of the keys in the dictionary.</typeparam>
+            <param name="dict">The <see cref="T:Ariadne.Collections.ThreadSafeDictionary`2"/> to operate on.
+            TValue must be <see cref="T:System.Int32"/>.</param>
+            <param name="key">The key that identifies the value to increment.</param>
+            <param name="addend">The value to add to that in the dictionary.</param>
+            <param name="result">The result of adding the values.</param>
+            <returns>True if the value was found and the addition performed, false if the key was not found.</returns>
+            <exception cref="T:System.ArgumentNullException"><paramref name="dict"/> was null.</exception>
+        </member>
+        <member name="M:Ariadne.Collections.DictionaryExtensions.Plus``1(Ariadne.Collections.ThreadSafeDictionary{``0,System.Int32},``0,System.Int32)">
+            <summary>Atomically adds the supplied <see cref="T:System.Int32"/> value to the value identified by the key, returning
+            the result.</summary>
+            <typeparam name="TKey">The type of the keys in the dictionary.</typeparam>
+            <param name="dict">The <see cref="T:Ariadne.Collections.ThreadSafeDictionary`2"/> to operate on.
+            TValue must be <see cref="T:System.Int32"/>.</param>
+            <param name="key">The key that identifies the value to increment.</param>
+            <param name="addend">The value to add to that in the dictionary.</param>
+            <returns>The result of adding the values.</returns>
+            <exception cref="T:System.Collections.Generic.KeyNotFoundException">The key was not found in the dictionary.</exception>
+            <exception cref="T:System.ArgumentNullException"><paramref name="dict"/> was null.</exception>
+        </member>
+        <member name="T:Ariadne.Collections.LLQueue`1">
+            <summary>A lock-free type-safe queue. This class is included mainly for completion, to allow for
+            adoption to framework versions prior to the introduction of <see cref="T:System.Collections.Concurrent.ConcurrentQueue`1"/>
+            and for use as the basis of other algorithms in this library. It does however also offer
+            some other functionality</summary>
+            <typeparam name="T">The type of the values stored.</typeparam>
+            <threadsafety static="true" instance="true"/>
+        </member>
+        <member name="M:Ariadne.Collections.LLQueue`1.#ctor">
+            <summary>Creates a new <see cref="T:Ariadne.Collections.LLQueue`1"/></summary>
+        </member>
+        <member name="M:Ariadne.Collections.LLQueue`1.#ctor(System.Collections.Generic.IEnumerable{`0})">
+            <summary>Creates a new <see cref="T:Ariadne.Collections.LLQueue`1"/> filled from the collection passed to it.</summary>
+            <param name="collection">An <see cref="T:System.Collections.Generic.IEnumerable`1"/> that the queue will be filled from on construction.</param>
+        </member>
+        <member name="M:Ariadne.Collections.LLQueue`1.Enqueue(`0)">
+            <summary>Adds an item to the end of the queue.</summary>
+            <param name="item">The item to add.</param>
+        </member>
+        <member name="M:Ariadne.Collections.LLQueue`1.EnqueueRange(System.Collections.Generic.IEnumerable{`0})">
+            <summary>Adds a collection of items to the queue.</summary>
+            <param name="items">The <see cref="T:System.Collections.Generic.IEnumerable`1"/> to add to the queue.</param>
+            <remarks>The operation is not atomic, and may interleave with other enqueues or
+            have some of the first items added dequeued before the last is enqueued.</remarks>
+        </member>
+        <member name="M:Ariadne.Collections.LLQueue`1.TryDequeue(`0@)">
+            <summary>Attempts to remove an item from the start of the queue.</summary>
+            <param name="item">The item dequeued if successful.</param>
+            <returns>True if the operation succeeds, false if the queue was empty.</returns>
+        </member>
+        <member name="M:Ariadne.Collections.LLQueue`1.TryPeek(`0@)">
+            <summary>Attempts to obtain a the item at the start of the queue without removing it.</summary>
+            <param name="item">The item found.</param>
+            <returns>True if the method succeeds, false if the queue was empty.</returns>
+        </member>
+        <member name="M:Ariadne.Collections.LLQueue`1.ClearLastItem">
+            <summary>Clears the last item dequeued from the queue, allowing it to be collected.</summary>
+            <remarks>The last item to be dequeued from the queue remains referenced by the queue. In the majority of cases, this will not be an issue,
+            but calling this method will be necessary if:
+            <list type="number">
+            <item>The collection may be held in memory for some time.</item>
+            <item>The collection may not be dequeued for some time.</item>
+            <item>The collection consumes a large amount of memory that will not be cleared by disposing it.</item>
+            </list>
+            As a rule, this should almost never be necessary, and it is best avoided as the enumerating methods will then encounter a default
+            value (null for a reference type) rather than that which was originally enqueued, but this method exists for this rare case.</remarks>
+        </member>
+        <member name="M:Ariadne.Collections.LLQueue`1.GetEnumerator">
+            <summary>Returns an object that enumerates the queue without removing items.</summary>
+            <returns>An <see cref="T:Ariadne.Collections.LLQueue`1.Enumerator"/> that starts with the current start of the queue.</returns>
+        </member>
+        <member name="M:Ariadne.Collections.LLQueue`1.DequeueAll">
+            <summary>Returns an enumerator that removes items from the queue as it returns them.</summary>
+            <returns>A <see cref="T:Ariadne.Collections.LLQueue`1.DequeuEnumerator"/> that removes from the queue as it is processed.</returns>
+            <remarks>The operation is not atomic and will interleave with other dequeue operations, and can
+            return items enqueued after the method was called. Use <see cref="M:Ariadne.Collections.LLQueue`1.AtomicDequeueAll"/> if you
+            want to clear the queue as a single atomic operation.</remarks>
+        </member>
+        <member name="M:Ariadne.Collections.LLQueue`1.AtomicDequeueAll">
+            <summary>Clears the queue as an atomic operation, and returns an enumeration of the items so-removed.</summary>
+            <returns>A <see cref="T:Ariadne.Collections.LLQueue`1.AtDequeuEnumerator"/> that enumerates through the items removed.</returns>
+        </member>
+        <member name="M:Ariadne.Collections.LLQueue`1.CountUntil(System.Int32)">
+            <summary>Returns the count of the queue, or max, whichever is larger.</summary>
+            <param name="max">The maximum count to count to.</param>
+            <returns>This method is designed to deal with one of the problems with the <see cref="P:Ariadne.Collections.LLQueue`1.Count"/> property,
+            being guaranteed to return once max is reached, even when racing with other threads.</returns>
+        </member>
+        <member name="M:Ariadne.Collections.LLQueue`1.ToList">
+            <summary>Returns a <see cref="T:System.Collections.Generic.List`1"/> of the current items in the queue without removing them.</summary>
+            <returns>A <see cref="T:System.Collections.Generic.List`1"/> of the current items in the queue.</returns>
+            <remarks>This method races with other threads as described for <see cref="M:Ariadne.Collections.LLQueue`1.GetEnumerator"/>.</remarks>
+        </member>
+        <member name="M:Ariadne.Collections.LLQueue`1.DequeueToList">
+            <summary>Clears the queue as an atomic operation, and returns a <see cref="T:System.Collections.Generic.List`1"/> of the items removed.</summary>
+            <returns>A <see cref="T:System.Collections.Generic.List`1"/> of the items removed.</returns>
+        </member>
+        <member name="M:Ariadne.Collections.LLQueue`1.Clone">
+            <summary>Creates a new queue with the same items as this one.</summary>
+            <returns>A new <see cref="T:Ariadne.Collections.LLQueue`1"/>.</returns>
+            <remarks>This method races with other threads as described for <see cref="M:Ariadne.Collections.LLQueue`1.GetEnumerator"/>. Use
+            <see cref="M:Ariadne.Collections.LLQueue`1.Transfer"/> to create a copy of the queue while clearing it atomically.</remarks>
+        </member>
+        <member name="M:Ariadne.Collections.LLQueue`1.Transfer">
+            <summary>Clears the queue as a single atomic operation, and returns a queue with the same contents as those removed.</summary>
+            <returns>The new queue.</returns>
+        </member>
+        <member name="M:Ariadne.Collections.LLQueue`1.Clear">
+            <summary>Clears the queue as a single atomic operation.</summary>
+        </member>
+        <member name="M:Ariadne.Collections.LLQueue`1.Contains(`0,System.Collections.Generic.IEqualityComparer{`0})">
+            <summary>Examines the queue for the presence of an item.</summary>
+            <param name="item">The item to search for.</param>
+            <param name="comparer">An <see cref="T:System.Collections.Generic.IEqualityComparer`1"/> to use to compare
+            the item with those in the collections.</param>
+            <returns>True if the item was found, false otherwise.</returns>
+            <remarks>This method races with other threads as described for <see cref="M:Ariadne.Collections.LLQueue`1.GetEnumerator"/>.</remarks>
+        </member>
+        <member name="M:Ariadne.Collections.LLQueue`1.Contains(`0)">
+            <summary>Examines the queue for the presence of an item.</summary>
+            <param name="item">The item to search for.</param>
+            <returns>True if the item was found, false otherwise.</returns>
+            <remarks>This method races with other threads as described for <see cref="M:Ariadne.Collections.LLQueue`1.GetEnumerator"/>.</remarks>
+        </member>
+        <member name="M:Ariadne.Collections.LLQueue`1.CopyTo(`0[],System.Int32)">
+            <summary>Copies the contents of the queue to an array.</summary>
+            <param name="array">The array to copy to.</param>
+            <param name="arrayIndex">The index within the array to start copying from</param>
+            <exception cref="T:System.ArgumentNullException"/>The array was null.
+            <exception cref="T:System.ArgumentOutOfRangeException"/>The array index was less than zero.
+            <exception cref="T:System.ArgumentException"/>The number of items in the collection was
+            too great to copy into the array at the index given.
+            <remarks>This method races with other threads as described for <see cref="M:Ariadne.Collections.LLQueue`1.GetEnumerator"/>.</remarks>
+        </member>
+        <member name="M:Ariadne.Collections.LLQueue`1.ToArray">
+            <summary>Returns an array of the current items in the queue without removing them.</summary>
+            <returns>The array of the current items in the queue.</returns>
+            <remarks>This method races with other threads as described for <see cref="M:Ariadne.Collections.LLQueue`1.GetEnumerator"/>.</remarks>
+        </member>
+        <member name="P:Ariadne.Collections.LLQueue`1.IsEmpty">
+            <summary>Tests whether the queue has no items.</summary>
+            <remarks>The operation is atomic, but may be stale by the time it returns.</remarks>
+        </member>
+        <member name="P:Ariadne.Collections.LLQueue`1.Count">
+            <summary>Returns the count of the queue.</summary>
+            <remarks>The operation is O(n), and counts from the start of the queue at the time the property is called,
+            until the end of the queue at the time it reaches it. As such its utility in most cases is limited, and
+            it can take a long (potentially unbounded) time to return if threads with higher priority are adding
+            to the queue. If the count is greater than <see cref="F:System.Int32.MaxValue"/> it will return int.MaxValue.</remarks>
+        </member>
+        <member name="T:Ariadne.Collections.LLQueue`1.AtDequeuEnumerator">
+            <summary>An enumeration &amp; enumerator of items that were removed from the queue as an atomic operation.</summary>
+            <remarks><see cref="M:Ariadne.Collections.LLQueue`1.AtomicDequeueAll"/> for more information.</remarks>
+            <threadsafety static="true" instance="false">This class is not thread-safe in itself, though its methods may be called
+            concurrently with other operations on the same collection.</threadsafety>
+            <tocexclude/>
+        </member>
+        <member name="M:Ariadne.Collections.LLQueue`1.AtDequeuEnumerator.GetEnumerator">
+            <summary>Returns the enumeration itself, as it is also its own enumerator.</summary>
+            <returns>The enumeration itself.</returns>
+        </member>
+        <member name="M:Ariadne.Collections.LLQueue`1.AtDequeuEnumerator.MoveNext">
+            <summary>Moves through the enumeration to the next item.</summary>
+            <returns>True if another item was found, false if the end of the enumeration was reached.</returns>
+        </member>
+        <member name="P:Ariadne.Collections.LLQueue`1.AtDequeuEnumerator.Current">
+            <summary>Returns the current item.</summary>
+        </member>
+        <member name="T:Ariadne.Collections.LLQueue`1.DequeuEnumerator">
+            <summary>An enumeration &amp; enumerator of items that are removed from the queue as the enumeration is processed</summary>
+            <remarks><see cref="M:Ariadne.Collections.LLQueue`1.DequeueAll"/> for more information.</remarks>
+            <threadsafety static="true" instance="false">This class is not thread-safe in itself, though its methods may be called
+            concurrently with other operations on the same collection.</threadsafety>
+            <tocexclude/>
+        </member>
+        <member name="M:Ariadne.Collections.LLQueue`1.DequeuEnumerator.MoveNext">
+            <summary>Moves to the next item in the enumeration (removing it from the queue)</summary>
+            <returns>True if the method succeeds, false if the queue was empty</returns>
+            <remarks>Since the class refers to the live state of the queue, after returning false
+            it may return true on a subsequent call, if items were added in the meantime.</remarks>
+        </member>
+        <member name="M:Ariadne.Collections.LLQueue`1.DequeuEnumerator.Reset">
+            <summary>Resets the enumeration.</summary>
+            <remarks>Since the class refers to the live state of the queue, this is a non-operation
+            as the enumeration is always attempting to dequeue from the front of the queue.</remarks>
+        </member>
+        <member name="M:Ariadne.Collections.LLQueue`1.DequeuEnumerator.GetEnumerator">
+            <summary>Returns the enumeration itself, as it is also its own enumerator.</summary>
+            <returns>The enumeration itself.</returns>
+        </member>
+        <member name="P:Ariadne.Collections.LLQueue`1.DequeuEnumerator.Current">
+            <summary>The current item.</summary>
+        </member>
+        <member name="T:Ariadne.Collections.LLQueue`1.Enumerator">
+            <summary>An enumerator that enumerates through the queue, without removing them.</summary>
+            <remarks>The enumerator is created based on the current front of the queue and continues
+            until it reaches what is then the end. It may therefore on the one hand return items that
+            have already been dequeued, and on the other never reach an end should new items be added
+            frequently enough.</remarks>
+            <threadsafety static="true" instance="false">This class is not thread-safe in itself, though its methods may be called
+            concurrently with other operations on the same collection.</threadsafety>
+            <tocexclude/>
+        </member>
+        <member name="M:Ariadne.Collections.LLQueue`1.Enumerator.MoveNext">
+            <summary>Moves to the next item.</summary>
+            <returns>True if an item is found, false if it reaches the end of the queue.</returns>
+        </member>
+        <member name="M:Ariadne.Collections.LLQueue`1.Enumerator.Reset">
+            <summary>Resets the enumeration to the current start of the queue.</summary>
+        </member>
+        <member name="P:Ariadne.Collections.LLQueue`1.Enumerator.Current">
+            <summary>Returns the current item.</summary>
+        </member>
+        <member name="T:Ariadne.Collections.LLStack`1">
+            <summary>A lock-free type-safe stack. This class is included mainly for completion, to allow for
+            adoption to framework versions prior to the introduction of <see cref="T:System.Collections.Concurrent.ConcurrentStack`1"/>
+            and for use as the basis of other algorithms in this library. It does however also offer
+            some other functionality.</summary>
+            <typeparam name="T">The type of the values stored.</typeparam>
+            <threadsafety static="true" instance="true"/>
+        </member>
+        <member name="M:Ariadne.Collections.LLStack`1.#ctor">
+            <summary>Creates a new <see cref="T:Ariadne.Collections.LLStack`1"/></summary>
+        </member>
+        <member name="M:Ariadne.Collections.LLStack`1.#ctor(System.Collections.Generic.IEnumerable{`0})">
+            <summary>Creates a new <see cref="T:Ariadne.Collections.LLStack`1"/> filled from the collection passed to it.</summary>
+            <param name="collection">An <see cref="T:System.Collections.Generic.IEnumerable`1"/> that the stack will be filled from on construction.</param>
+        </member>
+        <member name="M:Ariadne.Collections.LLStack`1.Push(`0)">
+            <summary>Adds an item to the top of the stack.</summary>
+            <param name="item">The item to add.</param>
+        </member>
+        <member name="M:Ariadne.Collections.LLStack`1.PushRange(System.Collections.Generic.IEnumerable{`0})">
+            <summary>Pushes a collection of items to the top of the stack as a single atomic operation.</summary>
+            <param name="items">The items to push onto the stack.</param>
+            <exception cref="T:System.ArgumentNullException"/>The collection was null.
+        </member>
+        <member name="M:Ariadne.Collections.LLStack`1.TryPop(`0@)">
+            <summary>Attempts to pop an item from the top of the stack.</summary>
+            <param name="item">The item removed from the stack.</param>
+            <returns>True if the method succeeds, false if the stack was empty.</returns>
+        </member>
+        <member name="M:Ariadne.Collections.LLStack`1.TryPeek(`0@)">
+            <summary>Attempts to retrieve the item that is currently at the top of the stack, without removing it.</summary>
+            <param name="item">The item at the top of the stack.</param>
+            <returns>True if the method succeeds, false if the stack was empty.</returns>
+        </member>
+        <member name="M:Ariadne.Collections.LLStack`1.GetEnumerator">
+            <summary>Returns an object that enumerates the stack without removing items.</summary>
+            <returns>An <see cref="T:Ariadne.Collections.LLStack`1.Enumerator"/> that starts with the current top of the stack.</returns>
+        </member>
+        <member name="M:Ariadne.Collections.LLStack`1.PopAll">
+            <summary>Returns an enumerator that removes items from the stack as it returns them.</summary>
+            <returns>A <see cref="T:Ariadne.Collections.LLStack`1.PopEnumerator"/></returns>
+            <remarks>The operation is not atomic and will interleave with other pop operations, and can
+            return items pushed after the method was called. Use <see cref="M:Ariadne.Collections.LLStack`1.AtomicPopAll"/> if you
+            want to clear the stack as a single atomic operation.</remarks>
+        </member>
+        <member name="M:Ariadne.Collections.LLStack`1.AtomicPopAll">
+            <summary>Clears the stack as an atomic operation, and returns an enumeration of the items so-removed.</summary>
+            <returns>A <see cref="T:Ariadne.Collections.LLStack`1.AtPopEnumerator"/> that enumerates through the items removed.</returns>
+        </member>
+        <member name="M:Ariadne.Collections.LLStack`1.ToList">
+            <summary>Returns a <see cref="T:System.Collections.Generic.List`1"/> of the current items in the stack without removing them.</summary>
+            <returns>A <see cref="T:System.Collections.Generic.List`1"/> of the current items in the stack.</returns>
+        </member>
+        <member name="M:Ariadne.Collections.LLStack`1.PopToList">
+            <summary>Clears the stack as an atomic operation, and returns a <see cref="T:System.Collections.Generic.List`1"/> of the items removed.</summary>
+            <returns>A <see cref="T:System.Collections.Generic.List`1"/> of the items removed.</returns>
+        </member>
+        <member name="M:Ariadne.Collections.LLStack`1.Clone">
+            <summary>Creates a new stack with the same items as this one.</summary>
+            <returns>A new <see cref="T:Ariadne.Collections.LLStack`1"/>.</returns>
+        </member>
+        <member name="M:Ariadne.Collections.LLStack`1.Transfer">
+            <summary>Clears the stack as a single atomic operation, and returns a stack with the same contents as those removed.</summary>
+            <returns>The new stack.</returns>
+        </member>
+        <member name="M:Ariadne.Collections.LLStack`1.Clear">
+            <summary>Clears the stack as a single atomic operation.</summary>
+        </member>
+        <member name="M:Ariadne.Collections.LLStack`1.Contains(`0,System.Collections.Generic.IEqualityComparer{`0})">
+            <summary>Examines the stack for the presence of an item.</summary>
+            <param name="item">The item to search for.</param>
+            <param name="comparer">An <see cref="T:System.Collections.Generic.IEqualityComparer`1"/> to use to compare
+            the item with those in the collections.</param>
+            <returns>True if the item was found, false otherwise.</returns>
+        </member>
+        <member name="M:Ariadne.Collections.LLStack`1.Contains(`0)">
+            <summary>Examines the stack for the presence of an item.</summary>
+            <param name="item">The item to search for.</param>
+            <returns>True if the item was found, false otherwise.</returns>
+        </member>
+        <member name="M:Ariadne.Collections.LLStack`1.CopyTo(`0[],System.Int32)">
+            <summary>Copies the contents of the stack to an array.</summary>
+            <param name="array">The array to copy to.</param>
+            <param name="arrayIndex">The index within the array to start copying from</param>
+            <exception cref="T:System.ArgumentNullException"/>The array was null.
+            <exception cref="T:System.ArgumentOutOfRangeException"/>The array index was less than zero.
+            <exception cref="T:System.ArgumentException"/>The number of items in the collection was
+            too great to copy into the array at the index given.
+        </member>
+        <member name="M:Ariadne.Collections.LLStack`1.ToArray">
+            <summary>Returns an array of the current items in the stack without removing them.</summary>
+            <returns>The array of the current items in the stack.</returns>
+        </member>
+        <member name="P:Ariadne.Collections.LLStack`1.IsEmpty">
+            <summary>Tests whether the stack has no items.</summary>
+            <remarks>The operation is atomic, but may be stale by the time it returns.</remarks>
+        </member>
+        <member name="P:Ariadne.Collections.LLStack`1.Count">
+            <summary>Returns the count of the stack.</summary>
+            <remarks>The operation is O(n), and may be stale by the time it returns.</remarks>
+        </member>
+        <member name="T:Ariadne.Collections.LLStack`1.AtPopEnumerator">
+            <summary>An enumeration &amp; enumerator of items that were removed from the stack as an atomic operation.</summary>
+            <remarks><see cref="M:Ariadne.Collections.LLStack`1.AtomicPopAll"/> for more information.</remarks>
+            <threadsafety static="true" instance="false">This class is not thread-safe in itself, though its methods may be called
+            concurrently with other operations on the same collection.</threadsafety>
+            <tocexclude/>
+        </member>
+        <member name="M:Ariadne.Collections.LLStack`1.AtPopEnumerator.GetEnumerator">
+            <summary>Returns the enumeration itself, as it is also its own enumerator.</summary>
+            <returns>The enumeration itself.</returns>
+        </member>
+        <member name="M:Ariadne.Collections.LLStack`1.AtPopEnumerator.MoveNext">
+            <summary>Moves through the enumeration to the next item.</summary>
+            <returns>True if another item was found, false if the end of the enumeration was reached.</returns>
+        </member>
+        <member name="P:Ariadne.Collections.LLStack`1.AtPopEnumerator.Current">
+            <summary>Returns the current item.</summary>
+        </member>
+        <member name="T:Ariadne.Collections.LLStack`1.PopEnumerator">
+            <summary>An enumeration &amp; enumerator of items that are removed from the stack as the enumeration is processed</summary>
+            <remarks><see cref="M:Ariadne.Collections.LLStack`1.PopAll"/> for more information.</remarks>
+            <threadsafety static="true" instance="false">This class is not thread-safe in itself, though its methods may be called
+            concurrently with other operations on the same collection.</threadsafety>
+            <tocexclude/>
+        </member>
+        <member name="M:Ariadne.Collections.LLStack`1.PopEnumerator.MoveNext">
+            <summary>Moves to the next item in the enumeration (removing it from the stack)</summary>
+            <returns>True if the method succeeds, false if the stack was empty</returns>
+            <remarks>Since the class refers to the live state of the stack, after returning false
+            it may return true on a subsequent call, if items were added in the meantime.</remarks>
+        </member>
+        <member name="M:Ariadne.Collections.LLStack`1.PopEnumerator.Reset">
+            <summary>Resets the enumeration.</summary>
+            <remarks>Since the class refers to the live state of the stack, this is a non-operation
+            as the enumeration is always attempting to pop from the front of the stack.</remarks>
+        </member>
+        <member name="M:Ariadne.Collections.LLStack`1.PopEnumerator.GetEnumerator">
+            <summary>Returns the enumeration itself, as it is also its own enumerator.</summary>
+            <returns>The enumeration itself.</returns>
+        </member>
+        <member name="P:Ariadne.Collections.LLStack`1.PopEnumerator.Current">
+            <summary>The current item.</summary>
+        </member>
+        <member name="T:Ariadne.Collections.LLStack`1.Enumerator">
+            <summary>An enumerator that enumerates through the stack, without removing them.</summary>
+            <remarks>The enumerator is created based on the current top of the stack and continues
+            until it reaches what is then the end. It may therefore on the one hand return items that
+            have already been popped, and on the other never reach an end should new items be added
+            frequently enough.</remarks>
+            <threadsafety static="true" instance="false">This class is not thread-safe in itself, though its methods may be called
+            concurrently with other operations on the same collection.</threadsafety>
+            <tocexclude/>
+        </member>
+        <member name="M:Ariadne.Collections.LLStack`1.Enumerator.MoveNext">
+            <summary>Moves to the next item.</summary>
+            <returns>True if an item is found, false if it reaches the end of the stack.</returns>
+        </member>
+        <member name="M:Ariadne.Collections.LLStack`1.Enumerator.Reset">
+            <summary>Resets the enumeration to the current top of the stack.</summary>
+        </member>
+        <member name="P:Ariadne.Collections.LLStack`1.Enumerator.Current">
+            <summary>Returns the current item.</summary>
+        </member>
+        <member name="T:Ariadne.Collections.ThreadSafeDictionary`2">
+            <summary>A dictionary which is thread-safe for all operations, without locking.</summary>
+            <remarks>The documentation of <see cref="T:System.Collections.Generic.IDictionary`2"/> states
+            that null keys may or may not be allowed by a conformant implentation. In this case, they are.</remarks>
+            <typeparam name="TKey">The type of the keys in the dictionary.</typeparam>
+            <typeparam name="TValue">The type of the values in the dictionary.</typeparam>
+            <threadsafety static="true" instance="true"/>
+        </member>
+        <member name="M:Ariadne.Collections.ThreadSafeDictionary`2.#ctor(System.Int32,System.Collections.Generic.IEqualityComparer{`0})">
+            <summary>Constructs a new ThreadSafeDictionary.</summary>
+            <param name="capacity">The initial capactiy of the dictionary</param>
+            <param name="comparer">An <see cref="T:System.Collections.Generic.IEqualityComparer`1"/> that compares the keys.</param>
+        </member>
+        <member name="M:Ariadne.Collections.ThreadSafeDictionary`2.#ctor(System.Int32)">
+            <summary>Constructs a new ThreadSafeDictionary.</summary>
+            <param name="capacity">The initial capactiy of the dictionary</param>
+        </member>
+        <member name="M:Ariadne.Collections.ThreadSafeDictionary`2.#ctor(System.Collections.Generic.IEqualityComparer{`0})">
+            <summary>Constructs a new ThreadSafeDictionary.</summary>
+            <param name="comparer">An <see cref="T:System.Collections.Generic.IEqualityComparer`1"/> that compares the keys.</param>
+        </member>
+        <member name="M:Ariadne.Collections.ThreadSafeDictionary`2.#ctor">
+            <summary>Constructs a new ThreadSafeDictionary.</summary>
+        </member>
+        <member name="M:Ariadne.Collections.ThreadSafeDictionary`2.#ctor(System.Collections.Generic.IEnumerable{System.Collections.Generic.KeyValuePair{`0,`1}},System.Collections.Generic.IEqualityComparer{`0})">
+            <summary>Constructs a new ThreadSafeDictionary.</summary>
+            <param name="collection">A collection from which the dictionary will be filled.</param>
+            <param name="comparer">An <see cref="T:System.Collections.Generic.IEqualityComparer`1"/> that compares the keys.</param>
+        </member>
+        <member name="M:Ariadne.Collections.ThreadSafeDictionary`2.#ctor(System.Collections.Generic.IEnumerable{System.Collections.Generic.KeyValuePair{`0,`1}})">
+            <summary>Constructs a new ThreadSafeDictionary.</summary>
+            <param name="collection">A collection from which the dictionary will be filled.</param>
+        </member>
+        <member name="M:Ariadne.Collections.ThreadSafeDictionary`2.ToDictionary">
+            <summary>Creates an <see cref="T:System.Collections.Generic.IDictionary`2"/> that is
+            a copy of the current contents.</summary>
+            <remarks>Because this operation does not lock, the resulting dictionary’s contents
+            could be inconsistent in terms of an application’s use of the values.
+            <para>If there is a value stored with a null key, it is ignored.</para></remarks>
+            <returns>The <see cref="T:System.Collections.Generic.IDictionary`2"/>.</returns>
+        </member>
+        <member name="M:Ariadne.Collections.ThreadSafeDictionary`2.Clone">
+            <summary>Returns a copy of the current dictionary.</summary>
+            <remarks>Because this operation does not lock, the resulting dictionary’s contents
+            could be inconsistent in terms of an application’s use of the values.</remarks>
+            <returns>The <see cref="T:Ariadne.Collections.ThreadSafeDictionary`2"/>.</returns>
+        </member>
+        <member name="M:Ariadne.Collections.ThreadSafeDictionary`2.ContainsKey(`0)">
+            <summary>Tests whether a given key is present in the collection.</summary>
+            <param name="key">The key to search for.</param>
+            <returns>True if the key is present, false otherwise.</returns>
+        </member>
+        <member name="M:Ariadne.Collections.ThreadSafeDictionary`2.Add(`0,`1)">
+            <summary>Adds a key and value to the collection, as long as it is not currently present.</summary>
+            <param name="key">The key to add.</param>
+            <param name="value">The value to add.</param>
+            <exception cref="T:System.ArgumentException">An item with the same key has already been added.</exception>
+        </member>
+        <member name="M:Ariadne.Collections.ThreadSafeDictionary`2.TryAdd(`0,`1,`1@)">
+            <summary>Attempts to add the specified key and value into the dictionary.</summary>
+            <param name="key">The key to add.</param>
+            <param name="value">The value to add.</param>
+            <param name="existing">The existing value for the key, if the attempt fails. The default value of <c>TValue</c> if it succeeds.</param>
+            <returns>True if the method succeeds, false if there was a value for the given key.</returns>
+        </member>
+        <member name="M:Ariadne.Collections.ThreadSafeDictionary`2.TryAdd(`0,`1)">
+            <summary>Attempts to add the specified key and value into the dictionary.</summary>
+            <param name="key">The key to add.</param>
+            <param name="value">The value to add.</param>
+            <returns>True if the method succeeds, false if there was a value for the given key.</returns>
+        </member>
+        <member name="M:Ariadne.Collections.ThreadSafeDictionary`2.TryAdd(System.Collections.Generic.KeyValuePair{`0,`1})">
+            <summary>Attempts to add the specified key and value into the dictionary.</summary>
+            <param name="kvp">The key and value to add.</param>
+            <returns>True if the method succeeds, false if there was a value for the given key.</returns>
+        </member>
+        <member name="M:Ariadne.Collections.ThreadSafeDictionary`2.TryAdd(`0,System.Func{`0,`1},`1@)">
+            <summary>Attempts to add a key and value to the dictionary, producing the value as needed.</summary>
+            <param name="key">The key to add.</param>
+            <param name="factory">The function to produce the value for the absent key.</param>
+            <param name="existing">The existing value for the key, if the attempt fails. The default value of <c>TValue</c> if it succeeds.</param>
+            <returns>True if the method succeeds, false if there was a value for the given key.</returns>
+            <remarks><para><paramref name="factory"/> will only be invoked if the key is not already present in the dictionary. However, it will not block other
+            attempts to add values for the key, and so the method can still fail after it has been called.</para>
+            <para>It is up to the caller to ensure that
+            <paramref name="factory"/> has an appropriate degree of thread-safety.</para></remarks>
+        </member>
+        <member name="M:Ariadne.Collections.ThreadSafeDictionary`2.TryAdd(`0,System.Func{`0,`1})">
+            <summary>Attempts to add a key and value to the dictionary, producing the value as needed.</summary>
+            <param name="key">The key to add.</param>
+            <param name="factory">The function to produce the value for the absent key.</param>
+            <returns>True if the method succeeds, false if there was a value for the given key.</returns>
+            <remarks><para><paramref name="factory"/> will only be invoked if the key is not already present in the dictionary. However, it will not block other
+            attempts to add values for the key, and so the method can still fail after it has been called.</para>
+            <para>It is up to the caller to ensure that
+            <paramref name="factory"/> has an appropriate degree of thread-safety.</para></remarks>
+        </member>
+        <member name="M:Ariadne.Collections.ThreadSafeDictionary`2.Update(`0,`1,`1,System.Collections.Generic.IEqualityComparer{`1},`1@)">
+            <summary>Updates the value for a key if it exists and if the current value matches one given.</summary>
+            <param name="key">The key to update.</param>
+            <param name="value">The new value to set for the key.</param>
+            <param name="compare">The old value that must be present for the key.</param>
+            <param name="comparer">An <see cref="T:System.Collections.Generic.IEqualityComparer`1"/> used in comparing <paramref name="compare"/> with the current value.</param>
+            <param name="previous">The previous value if there was one for the key, irrespective of whether the method succeeds or not, or the default
+            value for <c>TValue</c> if there was no such key present.</param>
+            <returns>True if the key was updated, false if it wasn’t present or if <paramref name="compare"/> did not match the current value.</returns>
+        </member>
+        <member name="M:Ariadne.Collections.ThreadSafeDictionary`2.Update(`0,`1,`1,System.Collections.Generic.IEqualityComparer{`1})">
+            <summary>Updates the value for a key if it exists and if the current value matches one given.</summary>
+            <param name="key">The key to update.</param>
+            <param name="value">The new value to set for the key.</param>
+            <param name="compare">The old value that must be present for the key.</param>
+            <param name="comparer">An <see cref="T:System.Collections.Generic.IEqualityComparer`1"/> used in comparing <paramref name="compare"/> with the current value.</param>
+            <returns>True if the key was updated, false if it wasn’t present or if <paramref name="compare"/> did not match the current value.</returns>
+        </member>
+        <member name="M:Ariadne.Collections.ThreadSafeDictionary`2.Update(`0,`1,`1,`1@)">
+            <summary>Updates the value for a key if it exists and if the current value matches one given.</summary>
+            <param name="key">The key to update.</param>
+            <param name="value">The new value to set for the key.</param>
+            <param name="compare">The old value that must be present for the key.</param>
+            <param name="previous">The previous value if there was one for the key, irrespective of whether the method succeeds or not, or the default
+            value for <c>TValue</c> if there was no such key present.</param>
+            <returns>True if the key was updated, false if it wasn’t present or if <paramref name="compare"/> did not match the current value.</returns>
+        </member>
+        <member name="M:Ariadne.Collections.ThreadSafeDictionary`2.Update(`0,`1,`1)">
+            <summary>Updates the value for a key if it exists and if the current value matches one given.</summary>
+            <param name="key">The key to update.</param>
+            <param name="value">The new value to set for the key.</param>
+            <param name="compare">The old value that must be present for the key.</param>
+            <returns>True if the key was updated, false if it wasn’t present or if <paramref name="compare"/> did not match the current value.</returns>
+        </member>
+        <member name="M:Ariadne.Collections.ThreadSafeDictionary`2.Update(`0,`1,System.Func{`1,System.Boolean},`1@)">
+            <summary>Updates the value for a key if it exists and if the current value matches one given.</summary>
+            <param name="key">The key to update.</param>
+            <param name="value">The new value to set for the key.</param>
+            <param name="predicate">A <see cref="T:System.Func`2"/> that returns true for values that should be replaced, false for those that
+            should remain.</param>
+            <param name="previous">The previous value if there was one for the key, irrespective of whether the method succeeds or not, or the default
+            value for <c>TValue</c> if there was no such key present.</param>
+            <returns>True if the key was updated, false if it wasn’t present or if <paramref name="predicate"/> returned false.</returns>
+            <remarks>While the update will be atomic when (and if) it happens, it is possible for another thread to update or delete the value
+            in the meantime. Therefore predicate may be called more than once, until either the operation succeeds, another thread
+            deletes the value, or the predicate returns false.</remarks>
+        </member>
+        <member name="M:Ariadne.Collections.ThreadSafeDictionary`2.Update(`0,`1,System.Func{`1,System.Boolean})">
+            <summary>Updates the value for a key if it exists and if the current value matches one given.</summary>
+            <param name="key">The key to update.</param>
+            <param name="value">The new value to set for the key.</param>
+            <param name="predicate">A <see cref="T:System.Func`2"/> that returns true for values that should be replaced, false for those that
+            should remain.</param>
+            <returns>True if the key was updated, false if it wasn’t present or if <paramref name="predicate"/> returned false.</returns>
+            <remarks>While the update will be atomic when (and if) it happens, it is possible for another thread to update or delete the value
+            in the meantime. Therefore predicate may be called more than once, until either the operation succeeds, another thread
+            deletes the value, or the predicate returns false.</remarks>
+        </member>
+        <member name="M:Ariadne.Collections.ThreadSafeDictionary`2.AddOrUpdate(`0,`1,`1,System.Collections.Generic.IEqualityComparer{`1},`1@)">
+            <summary>Adds a value for a key, or updates it if the current value matches one given.</summary>
+            <param name="key">The key to add or change the value for.</param>
+            <param name="value">The value to add.</param>
+            <param name="compare">The value to compare with the current value, if present.</param>
+            <param name="comparer">An <see cref="T:System.Collections.Generic.IEqualityComparer`1"/> to use to compare <paramref name="compare"/> with the current value.</param>
+            <param name="previous">The previous value, if there was one, or the default value for <c>TValue</c> otherwise.</param>
+            <returns>True if the value was set (added or updated), false otherwise.</returns>
+        </member>
+        <member name="M:Ariadne.Collections.ThreadSafeDictionary`2.AddOrUpdate(`0,`1,`1,System.Collections.Generic.IEqualityComparer{`1})">
+            <summary>Adds a value for a key, or updates it if the current value matches one given.</summary>
+            <param name="key">The key to add or change the value for.</param>
+            <param name="value">The value to add.</param>
+            <param name="compare">The value to compare with the current value, if present.</param>
+            <param name="comparer">An <see cref="T:System.Collections.Generic.IEqualityComparer`1"/> to use to compare <paramref name="compare"/> with the current value.</param>
+            <returns>True if the value was set (added or updated), false otherwise.</returns>
+        </member>
+        <member name="M:Ariadne.Collections.ThreadSafeDictionary`2.AddOrUpdate(`0,`1,`1,`1@)">
+            <summary>Adds a value for a key, or updates it if the current value matches one given.</summary>
+            <param name="key">The key to add or change the value for.</param>
+            <param name="value">The value to add.</param>
+            <param name="compare">The value to compare with the current value, if present.</param>
+            <param name="previous">The previous value, if there was one, or the default value for <c>TValue</c> otherwise.</param>
+            <returns>True if the value was set (added or updated), false otherwise.</returns>
+        </member>
+        <member name="M:Ariadne.Collections.ThreadSafeDictionary`2.AddOrUpdate(`0,`1,`1)">
+            <summary>Adds a value for a key, or updates it if the current value matches one given.</summary>
+            <param name="key">The key to add or change the value for.</param>
+            <param name="value">The value to add.</param>
+            <param name="compare">The value to compare with the current value, if present.</param>
+            <returns>True if the value was set (added or updated), false otherwise.</returns>
+        </member>
+        <member name="M:Ariadne.Collections.ThreadSafeDictionary`2.AddOrUpdate(`0,`1,System.Func{`0,`1,`1},`1@)">
+            <summary>Adds a value for a key, or updates it if the current value matches one given.</summary>
+            <param name="key">The key to add or change the value for.</param>
+            <param name="addValue">The value to add, if none is present.</param>
+            <param name="updater">A <see cref="T:System.Func`3"/> that will produce a value from the key and current value
+            to update the current value.</param>
+            <param name="previous">The previous value, if there was one, or the default value for <c>TValue</c> otherwise.</param>
+            <returns>The new value.</returns>
+            <remarks>While the addition or update will be atomic when it happens, and <paramref name="updater"/> will only be
+            called if there is a value present, it will not block other threads from changing or removing the value while it
+            is running. It is therefore possible for it to be called multiple times, or for <paramref name="addValue"/> to
+            be used after it was called.</remarks>
+        </member>
+        <member name="M:Ariadne.Collections.ThreadSafeDictionary`2.AddOrUpdate(`0,`1,System.Func{`0,`1,`1})">
+            <summary>Adds a value for a key, or updates it if the current value matches one given.</summary>
+            <param name="key">The key to add or change the value for.</param>
+            <param name="addValue">The value to add, if none is present.</param>
+            <param name="updater">A <see cref="T:System.Func`3"/> that will produce a value from the key and current value
+            to update the current value.</param>
+            <returns>The new value.</returns>
+            <remarks>While the addition or update will be atomic when it happens, and <paramref name="updater"/> will only be
+            called if there is a value present, it will not block other threads from changing or removing the value while it
+            is running. It is therefore possible for it to be called multiple times, or for <paramref name="addValue"/> to
+            be used after it was called.</remarks>
+        </member>
+        <member name="M:Ariadne.Collections.ThreadSafeDictionary`2.AddOrUpdate(`0,System.Func{`0,`1},System.Func{`0,`1,`1},`1@)">
+            <summary>Adds a value for a key, or updates it if the current value matches one given.</summary>
+            <param name="key">The key to add or change the value for.</param>
+            <param name="factory">A <see cref="T:System.Func`2"/> that will produce a value to add to the dictionary.</param>
+            <param name="updater">A <see cref="T:System.Func`3"/> that will produce a value from the key and current value
+            to update the current value.</param>
+            <param name="previous">The previous value, if there was one, or the default value for <c>TValue</c> otherwise.</param>
+            <returns>The new value.</returns>
+            <remarks>While the addition or update will be atomic when it happens, <paramref name="factory"/> will be called only
+            once and <paramref name="updater"/> will only be
+            called if there is a value present, <paramref name="factory"/> and <paramref name="updater"/>
+            will not block other threads from changing or removing the value while they are running
+            is running. It is therefore possible for <paramref name="updater"/> to be called multiple times,
+            for both <paramref name="factory"/> and <paramref name="updater"/> to be called, or for the result
+            of <paramref name="factory"/> to be used after <paramref name="updater"/> was called.</remarks>
+        </member>
+        <member name="M:Ariadne.Collections.ThreadSafeDictionary`2.AddOrUpdate(`0,System.Func{`0,`1},System.Func{`0,`1,`1})">
+            <summary>Adds a value for a key, or updates it if the current value matches one given.</summary>
+            <param name="key">The key to add or change the value for.</param>
+            <param name="factory">A <see cref="T:System.Func`2"/> that will produce a value to add to the dictionary.</param>
+            <param name="updater">A <see cref="T:System.Func`3"/> that will produce a value from the key and current value
+            to update the current value.</param>
+            <returns>The new value.</returns>
+            <remarks>While the addition or update will be atomic when it happens, <paramref name="factory"/> will be called only
+            once and <paramref name="updater"/> will only be
+            called if there is a value present, <paramref name="factory"/> and <paramref name="updater"/>
+            will not block other threads from changing or removing the value while they are running
+            is running. It is therefore possible for <paramref name="updater"/> to be called multiple times,
+            for both <paramref name="factory"/> and <paramref name="updater"/> to be called, or for the result
+            of <paramref name="factory"/> to be used after <paramref name="updater"/> was called.</remarks>
+        </member>
+        <member name="M:Ariadne.Collections.ThreadSafeDictionary`2.GetOrAdd(`0,`1,`1@)">
+            <summary>Gets the value for a key, or adds one if it isn’t present.</summary>
+            <param name="key">The key to examine or add.</param>
+            <param name="value">The value to add for the key if it wasn’t present.</param>
+            <param name="result">The value added or found.</param>
+            <returns>True if the value was added, false if the key was already present.</returns>
+        </member>
+        <member name="M:Ariadne.Collections.ThreadSafeDictionary`2.GetOrAdd(`0,`1)">
+            <summary>Gets the value for a key, or adds one if it isn’t present.</summary>
+            <param name="key">The key to examine or add.</param>
+            <param name="value">The value to add for the key if it wasn’t present.</param>
+            <returns>The value added or found.</returns>
+        </member>
+        <member name="M:Ariadne.Collections.ThreadSafeDictionary`2.GetOrAdd(`0,System.Func{`0,`1},`1@)">
+            <summary>Gets the value for a key, or adds one if it isn’t present.</summary>
+            <param name="key">The key to examine or add.</param>
+            <param name="factory">A <see cref="T:System.Func`2"/> that produces a value when passed a key, to
+            create a value if needed.</param>
+            <param name="value">The value added or found.</param>
+            <returns>True if the value was added, false if the key was already present.</returns>
+            <remarks><paramref name="factory"/> will only be called if the key is absent, and will only be called once,
+            however it does not block other threads from adding to the dictionary while it is running, so while the update
+            will be atomic if it happens, it is possible
+            for <paramref name="factory"/> to be called, but for the method to return an existing value.</remarks>
+        </member>
+        <member name="M:Ariadne.Collections.ThreadSafeDictionary`2.GetOrAdd(`0,System.Func{`0,`1})">
+            <summary>Gets the value for a key, or adds one if it isn’t present.</summary>
+            <param name="key">The key to examine or add.</param>
+            <param name="factory">A <see cref="T:System.Func`2"/> that produces a value when passed a key, to
+            create a value if needed.</param>
+            <returns>The value added or found.</returns>
+            <remarks><paramref name="factory"/> will only be called if the key is absent, and will only be called once,
+            however it does not block other threads from adding to the dictionary while it is running, so while the update
+            will be atomic if it happens, it is possible
+            for <paramref name="factory"/> to be called, but for the method to return an existing value.</remarks>
+        </member>
+        <member name="M:Ariadne.Collections.ThreadSafeDictionary`2.Remove(`0)">
+            <summary>Attempts to remove an item from the collection, identified by its key.</summary>
+            <param name="key">The key to remove.</param>
+            <returns>True if the item was removed, false if it wasn’t found.</returns>
+            <remarks>Removal internally requires an allocation. This is generally negliable, but it should be noted
+            that <see cref="T:System.OutOfMemoryException"/> exceptions are possible in memory-critical situations.</remarks>
+        </member>
+        <member name="M:Ariadne.Collections.ThreadSafeDictionary`2.Remove(`0,`1@)">
+            <summary>Attempts to remove an item from the collection, identified by its key.</summary>
+            <param name="key">The key to remove.</param>
+            <param name="value">The value that was removed, or the default value of <c>TValue</c> if the method failed.</param>
+            <returns>True if the item was removed, false if it wasn’t found.</returns>
+            <remarks>Removal internally requires an allocation. This is generally negliable, but it should be noted
+            that <see cref="T:System.OutOfMemoryException"/> exceptions are possible in memory-critical situations.</remarks>
+        </member>
+        <member name="M:Ariadne.Collections.ThreadSafeDictionary`2.TryGetValue(`0,`1@)">
+            <summary>Attempts to retrieve the value associated with a key.</summary>
+            <param name="key">The key searched for.</param>
+            <param name="value">The value found (if successful).</param>
+            <returns>True if the key was found, false otherwise.</returns>
+        </member>
+        <member name="M:Ariadne.Collections.ThreadSafeDictionary`2.Add(System.Collections.Generic.KeyValuePair{`0,`1})">
+            <summary>Adds a key and value to the collection, as long as it is not currently present.</summary>
+            <param name="item">The key and value to add.</param>
+            <exception cref="T:System.ArgumentException">An item with the same key has already been added.</exception>
+        </member>
+        <member name="M:Ariadne.Collections.ThreadSafeDictionary`2.Clear">
+            <summary>Removes all items from the dictionary.</summary>
+            <remarks>All items are removed in a single atomic operation.</remarks>
+        </member>
+        <member name="M:Ariadne.Collections.ThreadSafeDictionary`2.Contains(System.Collections.Generic.KeyValuePair{`0,`1},System.Collections.Generic.IEqualityComparer{`1})">
+            <summary>Tests whether a key and value matching that passed are present in the dictionary.</summary>
+            <param name="item">A <see cref="T:System.Collections.Generic.KeyValuePair`2"/> defining the item sought.</param>
+            <param name="valueComparer">An <see cref="T:System.Collections.Generic.IEqualityComparer`1"/> used to test a value found
+            with that sought.</param>
+            <returns>True if the key and value are found, false otherwise.</returns>
+        </member>
+        <member name="M:Ariadne.Collections.ThreadSafeDictionary`2.Contains(System.Collections.Generic.KeyValuePair{`0,`1})">
+            <summary>Tests whether a key and value matching that passed are present in the dictionary.</summary>
+            <param name="item">A <see cref="T:System.Collections.Generic.KeyValuePair`2"/> defining the item sought.</param>
+            <returns>True if the key and value are found, false otherwise.</returns>
+        </member>
+        <member name="M:Ariadne.Collections.ThreadSafeDictionary`2.CopyTo(System.Collections.Generic.KeyValuePair{`0,`1}[],System.Int32)">
+            <summary>Copies the contents of the dictionary to an array.</summary>
+            <param name="array">The array to copy to.</param>
+            <param name="arrayIndex">The index within the array to start copying from</param>
+            <exception cref="T:System.ArgumentNullException"/>The array was null.
+            <exception cref="T:System.ArgumentOutOfRangeException"/>The array index was less than zero.
+            <exception cref="T:System.ArgumentException"/>The number of items in the collection was
+            too great to copy into the array at the index given.
+        </member>
+        <member name="M:Ariadne.Collections.ThreadSafeDictionary`2.Remove(System.Collections.Generic.KeyValuePair{`0,`1},System.Collections.Generic.IEqualityComparer{`1},System.Collections.Generic.KeyValuePair{`0,`1}@)">
+            <summary>Removes an item from the collection.</summary>
+            <param name="item">The item to remove</param>
+            <param name="valueComparer">A <see cref="T:System.Collections.Generic.IEqualityComparer`1"/> that is used in considering whether
+            an item found is equal to that searched for.</param>
+            <param name="removed">The item removed (if successful).</param>
+            <returns>True if the item was removed, false if no matching item was found.</returns>
+            <remarks>Removal internally requires an allocation. This is generally negliable, but it should be noted
+            that <see cref="T:System.OutOfMemoryException"/> exceptions are possible in memory-critical situations.</remarks>
+        </member>
+        <member name="M:Ariadne.Collections.ThreadSafeDictionary`2.Remove(System.Collections.Generic.KeyValuePair{`0,`1},System.Collections.Generic.IEqualityComparer{`1})">
+            <summary>Removes an item from the collection.</summary>
+            <param name="item">The item to remove</param>
+            <param name="valueComparer">An <see cref="T:System.Collections.Generic.IEqualityComparer`1"/> used to test a value found</param>
+            <returns>True if the item was removed, false if no matching item was found.</returns>
+            <remarks>Removal internally requires an allocation. This is generally negliable, but it should be noted
+            that <see cref="T:System.OutOfMemoryException"/> exceptions are possible in memory-critical situations.</remarks>
+        </member>
+        <member name="M:Ariadne.Collections.ThreadSafeDictionary`2.Remove(`0,`1,System.Collections.Generic.IEqualityComparer{`1},`1@)">
+            <summary>Removes an item from the collection.</summary>
+            <param name="key">The key to remove.</param>
+            <param name="cmpValue">The value to remove.</param>
+            <param name="valueComparer">A <see cref="T:System.Collections.Generic.IEqualityComparer`1"/> that is used in considering whether
+            an item found is equal to that searched for.</param>
+            <param name="removed">The item removed (if successful).</param>
+            <returns>True if the item was removed, false if no matching item was found.</returns>
+            <remarks>Removal internally requires an allocation. This is generally negliable, but it should be noted
+            that <see cref="T:System.OutOfMemoryException"/> exceptions are possible in memory-critical situations.</remarks>
+        </member>
+        <member name="M:Ariadne.Collections.ThreadSafeDictionary`2.Remove(`0,`1,`1@)">
+            <summary>Removes an item from the collection.</summary>
+            <param name="key">The key to remove.</param>
+            <param name="cmpValue">The value to remove.</param>
+            <param name="removed">The item removed (if successful).</param>
+            <returns>True if the item was removed, false if no matching item was found.</returns>
+            <remarks>Removal internally requires an allocation. This is generally negliable, but it should be noted
+            that <see cref="T:System.OutOfMemoryException"/> exceptions are possible in memory-critical situations.</remarks>
+        </member>
+        <member name="M:Ariadne.Collections.ThreadSafeDictionary`2.Remove(System.Collections.Generic.KeyValuePair{`0,`1})">
+            <summary>Removes a <see cref="T:System.Collections.Generic.KeyValuePair`2"/> from the collection.</summary>
+            <param name="item">The item to remove</param>
+            <returns>True if the item was removed, false if no matching item was found.</returns>
+            <remarks>Removal internally requires an allocation. This is generally negliable, but it should be noted
+            that <see cref="T:System.OutOfMemoryException"/> exceptions are possible in memory-critical situations.</remarks>
+        </member>
+        <member name="M:Ariadne.Collections.ThreadSafeDictionary`2.RemoveWhere(System.Func{`0,`1,System.Boolean})">
+            <summary>Removes items from the dictionary that match a predicate.</summary>
+            <param name="predicate">A <see cref="T:System.Func`3"/> that returns true for the items that should be removed.</param>
+            <returns>A <see cref="T:System.Collections.Generic.IEnumerable`1"/> of the items removed.</returns>
+            <remarks>Removal internally requires an allocation. This is generally negliable, but it should be noted
+            that <see cref="T:System.OutOfMemoryException"/> exceptions are possible in memory-critical situations.
+            <para>The returned enumerable is lazily executed, and items are only removed from the dictionary as it is enumerated.</para></remarks>
+        </member>
+        <member name="M:Ariadne.Collections.ThreadSafeDictionary`2.Reduce">
+            <summary>Ensures that the dictionary completes all pending resize operations, and allows the keys for all removed
+            values to be garbage collected.</summary>
+            <remarks>
+            <para>This method is offered purely as an optimisation for periods where the dictionary will only be read from. It will reduce
+            performance if there are continuing writes (which would continue the resize themselves more efficiently). If the dictionary will never
+            be written to again for the life-time of the application, it would be better still to replace it with a
+            <see cref="T:System.Collections.Generic.Dictionary`2"/> as per:</para>
+            <code>
+            static IDictionary&lt;string, string&gt; SharedDictionary = new ThreadSafeDictionary&lt;string, string&gt;();
+            /* 
+             * ⋮
+             */
+            private void DoneWriting()  // Called when there will be no more writing to the dictionary.
+            {
+                ThreadSafeDictionary&lt;string, string&gt; lfDict = (ThreadSafeDictionary&lt;string, string&gt;)SharedDictionary;
+                SharedDictionary = lfDict.ToDictionary();   //Create Dictionary&lt;string, string&gt; and over-write ThreadSafeDictionary
+                                                            //as Dictionary&lt;string, string&gt; is thread-safe when read-only.
+                Thread.MemoryBarrier(); //Optional. Ensure change of IDictionary is seen by other threads immediately.
+            }
+            </code>
+            <para>As such, <see cref="M:Ariadne.Collections.ThreadSafeDictionary`2.Reduce"/> falls into a middle-area that will rarely, if ever, arise.</para>
+            </remarks>
+        </member>
+        <member name="M:Ariadne.Collections.ThreadSafeDictionary`2.Remove(System.Func{`0,`1,System.Boolean})">
+            <summary>Removes all key-value pairs that match a predicate.</summary>
+            <param name="predicate">A <see cref="T:System.Func`3"/> that returns true when passed a key and value that should be removed.</param>
+            <returns>The number of items removed</returns>
+            <remarks>Removal internally requires an allocation. This is generally negliable, but it should be noted
+            that <see cref="T:System.OutOfMemoryException"/> exceptions are possible in memory-critical situations.</remarks>
+        </member>
+        <member name="M:Ariadne.Collections.ThreadSafeDictionary`2.GetEnumerator">
+            <summary>Returns an enumerator that iterates through the collection.</summary>
+            <returns>The enumerator.</returns>
+        </member>
+        <member name="P:Ariadne.Collections.ThreadSafeDictionary`2.Capacity">
+            <summary>The current capacity of the dictionary.</summary>
+            <remarks>If the dictionary is in the midst of a resize, the capacity it is resizing to is returned, ignoring other internal storage in use.</remarks>
+        </member>
+        <member name="P:Ariadne.Collections.ThreadSafeDictionary`2.Item(`0)">
+            <summary>Gets or sets the value for a particular key.</summary>
+            <exception cref="T:System.Collections.Generic.KeyNotFoundException">The key was not present in the dictionary.</exception>
+        </member>
+        <member name="P:Ariadne.Collections.ThreadSafeDictionary`2.Keys">
+            <summary>Returns the collection of keys in the system.</summary>
+            <remarks>This is a live collection, which changes with changes to the dictionary.</remarks>
+        </member>
+        <member name="P:Ariadne.Collections.ThreadSafeDictionary`2.Values">
+            <summary>Returns the collection of values in the system.</summary>
+            <remarks>This is a live collection, which changes with changes to the dictionary.</remarks>
+        </member>
+        <member name="P:Ariadne.Collections.ThreadSafeDictionary`2.Count">
+            <summary>Returns an estimate of the current number of items in the dictionary.</summary>
+        </member>
+        <member name="T:Ariadne.Collections.ThreadSafeDictionary`2.RemovingEnumeration">
+            <summary>Enumerates a <see cref="T:Ariadne.Collections.ThreadSafeDictionary`2"/>, returning items that match a predicate,
+            and removing them from the dictionary.</summary>
+            <threadsafety static="true" instance="false">This class is not thread-safe in itself, though its methods may be called
+            concurrently with other operations on the same collection.</threadsafety>
+            <tocexclude/>
+        </member>
+        <member name="M:Ariadne.Collections.ThreadSafeDictionary`2.RemovingEnumeration.MoveNext">
+            <summary>Moves to the next item being enumerated.</summary>
+            <returns>True if an item is found, false if the end of the enumeration is reached,</returns>
+        </member>
+        <member name="M:Ariadne.Collections.ThreadSafeDictionary`2.RemovingEnumeration.GetEnumerator">
+            <summary>Returns the enumeration itself, used with for-each constructs as this object serves as both enumeration and eumerator.</summary>
+            <returns>The enumeration itself.</returns>
+        </member>
+        <member name="P:Ariadne.Collections.ThreadSafeDictionary`2.RemovingEnumeration.Current">
+            <summary>The current pair being enumerated.</summary>
+        </member>
+        <member name="T:Ariadne.Collections.ThreadSafeDictionary`2.Enumerator">
+            <summary>Enumerates a ThreadSafeDictionary&lt;TKey, TValue&gt;.</summary>
+            <remarks>The use of a value type for <see cref="T:System.Collections.Generic.List`1.Enumerator"/> has drawn some criticism.
+            Note that this does not apply here, as the state that changes with enumeration is not maintained by the structure itself.</remarks>
+            <tocexclude/>
+        </member>
+        <member name="M:Ariadne.Collections.ThreadSafeDictionary`2.Enumerator.MoveNext">
+            <summary>Moves to the next item in the enumeration.</summary>
+            <returns>True if another item was found, false if the end of the enumeration was reached.</returns>
+        </member>
+        <member name="M:Ariadne.Collections.ThreadSafeDictionary`2.Enumerator.Reset">
+            <summary>Reset the enumeration.</summary>
+        </member>
+        <member name="P:Ariadne.Collections.ThreadSafeDictionary`2.Enumerator.Current">
+            <summary>Returns the current <see cref="T:System.Collections.Generic.KeyValuePair`2"/> being enumerated.</summary>
+        </member>
+        <member name="T:Ariadne.Collections.ThreadSafeDictionary`2.ValueCollection">
+            <summary>A collection of the values in a ThreadSafeDictionary.</summary>
+            <remarks>The collection is "live" and immediately reflects changes in the dictionary.</remarks>
+            <threadsafety static="true" instance="true"/>
+            <tocexclude/>
+        </member>
+        <member name="M:Ariadne.Collections.ThreadSafeDictionary`2.ValueCollection.Contains(`1,System.Collections.Generic.IEqualityComparer{`1})">
+            <summary>Tests the collection for the presence of an item.</summary>
+            <param name="item">The item to search for.</param>
+            <param name="cmp">An <see cref="T:System.Collections.Generic.IEqualityComparer`1"/> to use in comparing
+            items found with that sought.</param>
+            <returns>True if a matching item  was found, false otherwise.</returns>
+        </member>
+        <member name="M:Ariadne.Collections.ThreadSafeDictionary`2.ValueCollection.Contains(`1)">
+            <summary>Tests the collection for the presence of an item.</summary>
+            <param name="item">The item to search for.</param>
+            <returns>True if a matching item  was found, false otherwise.</returns>
+        </member>
+        <member name="M:Ariadne.Collections.ThreadSafeDictionary`2.ValueCollection.CopyTo(`1[],System.Int32)">
+            <summary>Copies the contents of the collection to an array.</summary>
+            <param name="array">The array to copy to.</param>
+            <param name="arrayIndex">The index within the array to start copying from</param>
+            <exception cref="T:System.ArgumentNullException"/>The array was null.
+            <exception cref="T:System.ArgumentOutOfRangeException"/>The array index was less than zero.
+            <exception cref="T:System.ArgumentException"/>The number of items in the collection was
+            too great to copy into the array at the index given.
+        </member>
+        <member name="M:Ariadne.Collections.ThreadSafeDictionary`2.ValueCollection.GetEnumerator">
+            <summary>Returns an enumerator that iterates through the collection.</summary>
+            <returns>The <see cref="T:Ariadne.Collections.ThreadSafeDictionary`2.ValueCollection.Enumerator"/> that performs the iteration.</returns>
+        </member>
+        <member name="P:Ariadne.Collections.ThreadSafeDictionary`2.ValueCollection.Count">
+            <summary>The number of items in the collection.</summary>
+        </member>
+        <member name="T:Ariadne.Collections.ThreadSafeDictionary`2.ValueCollection.Enumerator">
+            <summary>Enumerates a value collection.</summary>
+            <remarks>The use of a value type for <see cref="T:System.Collections.Generic.List`1.Enumerator"/> has drawn some criticism.
+            Note that this does not apply here, as the state that changes with enumeration is not maintained by the structure itself.</remarks>
+            <threadsafety static="true" instance="false">This class is not thread-safe in itself, though its methods may be called
+            concurrently with other operations on the same collection.</threadsafety>
+        </member>
+        <member name="M:Ariadne.Collections.ThreadSafeDictionary`2.ValueCollection.Enumerator.MoveNext">
+            <summary>Moves to the next item being iterated.</summary>
+            <returns>True if another item is found, false if the end of the collection is reached.</returns>
+        </member>
+        <member name="M:Ariadne.Collections.ThreadSafeDictionary`2.ValueCollection.Enumerator.Reset">
+            <summary>Reset the enumeration.</summary>
+        </member>
+        <member name="P:Ariadne.Collections.ThreadSafeDictionary`2.ValueCollection.Enumerator.Current">
+            <summary>Returns the current value being enumerated.</summary>
+        </member>
+        <member name="T:Ariadne.Collections.ThreadSafeDictionary`2.KeyCollection">
+            <summary>A collection of the keys in a ThreadSafeDictionary.</summary>
+            <remarks>The collection is "live" and immediately reflects changes in the dictionary.</remarks>
+            <threadsafety static="true" instance="true"/>
+            <tocexclude/>
+        </member>
+        <member name="M:Ariadne.Collections.ThreadSafeDictionary`2.KeyCollection.Contains(`0)">
+            <summary>Tests for the presence of a key in the collection.</summary>
+            <param name="item">The key to search for.</param>
+            <returns>True if the key is found, false otherwise.</returns>
+        </member>
+        <member name="M:Ariadne.Collections.ThreadSafeDictionary`2.KeyCollection.CopyTo(`0[],System.Int32)">
+            <summary>Copies the contents of the dictionary to an array.</summary>
+            <param name="array">The array to copy to.</param>
+            <param name="arrayIndex">The index within the array to start copying from</param>
+            <exception cref="T:System.ArgumentNullException"/>The array was null.
+            <exception cref="T:System.ArgumentOutOfRangeException"/>The array index was less than zero.
+            <exception cref="T:System.ArgumentException"/>The number of items in the collection was
+            too great to copy into the array at the index given.
+        </member>
+        <member name="M:Ariadne.Collections.ThreadSafeDictionary`2.KeyCollection.GetEnumerator">
+            <summary>Returns an enumerator that iterates through the collection.</summary>
+            <returns>The enumerator.</returns>
+        </member>
+        <member name="P:Ariadne.Collections.ThreadSafeDictionary`2.KeyCollection.Count">
+            <summary>The number of items in the collection.</summary>
+        </member>
+        <member name="T:Ariadne.Collections.ThreadSafeDictionary`2.KeyCollection.Enumerator">
+            <summary>Enumerates a key collection.</summary>
+            <remarks>The use of a value type for <see cref="T:System.Collections.Generic.List`1.Enumerator"/> has drawn some criticism.
+            Note that this does not apply here, as the state that changes with enumeration is not maintained by the structure itself.</remarks>
+            <threadsafety static="true" instance="false">This class is not thread-safe in itself, though its methods may be called
+            concurrently with other operations on the same collection.</threadsafety>
+        </member>
+        <member name="M:Ariadne.Collections.ThreadSafeDictionary`2.KeyCollection.Enumerator.MoveNext">
+            <summary>Moves to the next item in the enumeration.</summary>
+            <returns>True if another item was found, false if the end of the enumeration was reached.</returns>
+        </member>
+        <member name="M:Ariadne.Collections.ThreadSafeDictionary`2.KeyCollection.Enumerator.Reset">
+            <summary>Reset the enumeration.</summary>
+        </member>
+        <member name="P:Ariadne.Collections.ThreadSafeDictionary`2.KeyCollection.Enumerator.Current">
+            <summary>Returns the current item being enumerated.</summary>
+        </member>
+        <member name="T:Ariadne.Collections.ThreadSafeSet`1">
+            <summary>A hash-based set which is thread-safe for all operations, without locking.</summary>
+            <typeparam name="T">The type of the values stored.</typeparam>
+            <threadsafety static="true" instance="true"/>
+        </member>
+        <member name="M:Ariadne.Collections.ThreadSafeSet`1.#ctor(System.Int32,System.Collections.Generic.IEqualityComparer{`0})">
+            <summary>Creates a new lock-free set.</summary>
+            <param name="capacity">The initial capacity of the set.</param>
+            <param name="comparer">An <see cref="T:System.Collections.Generic.IEqualityComparer`1"/> that compares the items.</param>
+        </member>
+        <member name="M:Ariadne.Collections.ThreadSafeSet`1.#ctor(System.Int32)">
+            <summary>Creates a new lock-free set.</summary>
+            <param name="capacity">The initial capacity of the set.</param>
+        </member>
+        <member name="M:Ariadne.Collections.ThreadSafeSet`1.#ctor(System.Collections.Generic.IEqualityComparer{`0})">
+            <summary>Creates a new lock-free set.</summary>
+            <param name="comparer">An <see cref="T:System.Collections.Generic.IEqualityComparer`1"/> that compares the items.</param>
+        </member>
+        <member name="M:Ariadne.Collections.ThreadSafeSet`1.#ctor">
+            <summary>Creates a new lock-free set.</summary>
+        </member>
+        <member name="M:Ariadne.Collections.ThreadSafeSet`1.#ctor(System.Collections.Generic.IEnumerable{`0},System.Collections.Generic.IEqualityComparer{`0})">
+            <summary>Creates a new lock-free set.</summary>
+            <param name="collection">An <see cref="T:System.Collections.Generic.IEnumerable`1"/> from which the set is filled upon creation.</param>
+            <param name="comparer">An <see cref="T:System.Collections.Generic.IEqualityComparer`1"/> that compares the items.</param>
+        </member>
+        <member name="M:Ariadne.Collections.ThreadSafeSet`1.#ctor(System.Collections.Generic.IEnumerable{`0})">
+            <summary>Creates a new lock-free set.</summary>
+            <param name="collection">An <see cref="T:System.Collections.Generic.IEnumerable`1"/> from which the set is filled upon creation.</param>
+        </member>
+        <member name="M:Ariadne.Collections.ThreadSafeSet`1.Add(`0)">
+            <summary>Attempts to add an item to the set.</summary>
+            <param name="item">The item to add.</param>
+            <returns>True if the item was added, false if a matching item was already present.</returns>
+        </member>
+        <member name="M:Ariadne.Collections.ThreadSafeSet`1.FilterAdd(System.Collections.Generic.IEnumerable{`0})">
+            <summary>Attempts to add a collection of items to the set, returning those which were added.</summary>
+            <param name="items">The items to add.</param>
+            <returns>An enumeration of those items which where added to the set, excluding those which were already present.</returns>
+            <remarks>The returned enumerable is lazily executed, and items are only added to the set as it is enumerated.</remarks>
+        </member>
+        <member name="M:Ariadne.Collections.ThreadSafeSet`1.AddRange(System.Collections.Generic.IEnumerable{`0})">
+            <summary>Attempts to add a collection of items to the set, returning the number added.</summary>
+            <param name="items">The items to add.</param>
+            <returns>The number of items added, excluding those which were already present.</returns>
+        </member>
+        <member name="M:Ariadne.Collections.ThreadSafeSet`1.Find(`0)">
+            <summary>Retrieves a reference to the specified item.</summary>
+            <param name="item">The item sought.</param>
+            <returns>A reference to a matching item if it is present in the set, null otherwise.</returns>
+            <exception cref="T:System.InvalidOperationException"> An attempt was made to use this when the generic type of the
+            set is not a reference type (that is, a value or pointer type).</exception>
+            <remarks>This allows use of the set to restrain a group of objects to exclude duplicates, allowing for reduced
+            memory use, and reference-based equality checking, comparable with how <see cref="M:System.String.IsInterned(System.String)"/> allows
+            one to check for a copy of a string in the CLR intern pool, but also allowing for removal, clearing and multiple pools. This is clearly
+            only valid for reference types.</remarks>
+        </member>
+        <member name="M:Ariadne.Collections.ThreadSafeSet`1.FindOrStore(`0)">
+            <summary>Retrieves a reference to the specified item, adding it if necessary.</summary>
+            <param name="item">The item sought.</param>
+            <returns>A reference to a matching item if it is present in the set, using the item given if there isn’t
+            already a matching item.</returns>
+            <exception cref="T:System.InvalidOperationException"> An attempt was made to use this when the generic type of the
+            set is not a reference type (that is, a value or pointer type).</exception>
+            <remarks>This allows use of the set to restrain a group of objects to exclude duplicates, allowing for reduced
+            memory use, and reference-based equality checking, comparable with how <see cref="M:System.String.Intern(System.String)"/> allows
+            one to check for a copy of a string in the CLR intern pool, but also allowing for removal, clearing and multiple pools. This is clearly
+            only valid for reference types.</remarks>
+        </member>
+        <member name="M:Ariadne.Collections.ThreadSafeSet`1.UnionWith(System.Collections.Generic.IEnumerable{`0})">
+            <summary>Modifies the current set so that it contains all elements that are present in both the current set and in the specified collection.</summary>
+            <param name="other">The collection to compare to the current set.</param>
+            <remarks>As this method will operate without locking, additions and removals from other threads may result in inconsistent results. For most
+            purposes it will be only be useful while the collection is being operated upon by only one thread (perhaps before or after unlocked multi-threaded
+            use).</remarks>
+        </member>
+        <member name="M:Ariadne.Collections.ThreadSafeSet`1.IntersectWith(System.Collections.Generic.IEnumerable{`0})">
+            <summary>Modifies the current set so that it contains only elements that are also in a specified collection.</summary>
+            <param name="other">The collection to compare to the current set.</param>
+            <remarks>As this method will operate without locking, additions and removals from other threads may result in inconsistent results. For most
+            purposes it will be only be useful while the collection is being operated upon by only one thread (perhaps before or after unlocked multi-threaded
+            use).</remarks>
+        </member>
+        <member name="M:Ariadne.Collections.ThreadSafeSet`1.ExceptWith(System.Collections.Generic.IEnumerable{`0})">
+            <summary>Removes all elements in the specified collection from the current set.</summary>
+            <param name="other">The collection to compare to the current set.</param>
+            <remarks>As this method will operate without locking, additions and removals from other threads may result in inconsistent results. For most
+            purposes it will be only be useful while the collection is being operated upon by only one thread (perhaps before or after unlocked multi-threaded
+            use).</remarks>
+        </member>
+        <member name="M:Ariadne.Collections.ThreadSafeSet`1.SymmetricExceptWith(System.Collections.Generic.IEnumerable{`0})">
+            <summary>Modifies the current set so that it contains only elements that are present either in the current set or in the specified collection, but not both.</summary>
+            <param name="other">The collection to compare to the current set.</param>
+            <remarks>As this method will operate without locking, additions and removals from other threads may result in inconsistent results. For most
+            purposes it will be only be useful while the collection is being operated upon by only one thread (perhaps before or after unlocked multi-threaded
+            use).</remarks>
+        </member>
+        <member name="M:Ariadne.Collections.ThreadSafeSet`1.IsSubsetOf(System.Collections.Generic.IEnumerable{`0})">
+            <summary>Determines whether a set is a subset of a specified collection.</summary>
+            <param name="other">The collection to compare to the current set.</param>
+            <returns>True if the set is a subset of the parameter, false otherwise.</returns>
+            <remarks>As this method will operate without locking, additions and removals from other threads may result in inconsistent results. For most
+            purposes it will be only be useful while the collection is being operated upon by only one thread (perhaps before or after unlocked multi-threaded
+            use).</remarks>
+        </member>
+        <member name="M:Ariadne.Collections.ThreadSafeSet`1.IsSupersetOf(System.Collections.Generic.IEnumerable{`0})">
+            <summary>Determines whether the current set is a superset of a specified collection.</summary>
+            <param name="other">The collection to compare to the current set.</param>
+            <returns>True if the set is a superset of the parameter, false otherwise.</returns>
+            <remarks>As this method will operate without locking, additions and removals from other threads may result in inconsistent results. For most
+            purposes it will be only be useful while the collection is being operated upon by only one thread (perhaps before or after unlocked multi-threaded
+            use).</remarks>
+        </member>
+        <member name="M:Ariadne.Collections.ThreadSafeSet`1.IsProperSupersetOf(System.Collections.Generic.IEnumerable{`0})">
+            <summary>Determines whether the current set is a correct superset of a specified collection.</summary>
+            <param name="other">The collection to compare to the current set.</param>
+            <returns>True if the set is a proper superset of the parameter, false otherwise.</returns>
+            <remarks>As this method will operate without locking, additions and removals from other threads may result in inconsistent results. For most
+            purposes it will be only be useful while the collection is being operated upon by only one thread (perhaps before or after unlocked multi-threaded
+            use).</remarks>
+        </member>
+        <member name="M:Ariadne.Collections.ThreadSafeSet`1.IsProperSubsetOf(System.Collections.Generic.IEnumerable{`0})">
+            <summary>Determines whether the current set is a property (strict) subset of a specified collection.</summary>
+            <param name="other">The collection to compare to the current set.</param>
+            <returns>True if the set is a proper subset of the parameter, false otherwise.</returns>
+            <remarks>As this method will operate without locking, additions and removals from other threads may result in inconsistent results. For most
+            purposes it will be only be useful while the collection is being operated upon by only one thread (perhaps before or after unlocked multi-threaded
+            use).</remarks>
+        </member>
+        <member name="M:Ariadne.Collections.ThreadSafeSet`1.Overlaps(System.Collections.Generic.IEnumerable{`0})">
+            <summary>Determines whether the current set overlaps with the specified collection.</summary>
+            <param name="other">The collection to compare to the current set.</param>
+            <returns>True if the sets have at least one item in common, false otherwise.</returns>
+            <remarks>As this method will operate without locking, additions and removals from other threads may result in inconsistent results. For most
+            purposes it will be only be useful while the collection is being operated upon by only one thread (perhaps before or after unlocked multi-threaded
+            use).</remarks>
+        </member>
+        <member name="M:Ariadne.Collections.ThreadSafeSet`1.SetEquals(System.Collections.Generic.IEnumerable{`0})">
+            <summary>Determines whether the current set and the specified collection contain the same elements.</summary>
+            <param name="other">The collection to compare to the current set.</param>
+            <returns>True if the sets have the same items, false otherwise.</returns>
+            <remarks>As this method will operate without locking, additions and removals from other threads may result in inconsistent results. For most
+            purposes it will be only be useful while the collection is being operated upon by only one thread (perhaps before or after unlocked multi-threaded
+            use).</remarks>
+        </member>
+        <member name="M:Ariadne.Collections.ThreadSafeSet`1.Clear">
+            <summary>Removes all items from the set.</summary>
+            <remarks>All items are removed in a single atomic operation.</remarks>
+        </member>
+        <member name="M:Ariadne.Collections.ThreadSafeSet`1.Contains(`0)">
+            <summary>Determines whether an item is present in the set.</summary>
+            <param name="item">The item sought.</param>
+            <returns>True if the item is found, false otherwise.</returns>
+        </member>
+        <member name="M:Ariadne.Collections.ThreadSafeSet`1.CopyTo(`0[],System.Int32)">
+            <summary>Copies the contents of the set to an array.</summary>
+            <param name="array">The array to copy to.</param>
+            <param name="arrayIndex">The index within the array to start copying from</param>
+            <exception cref="T:System.ArgumentNullException"/>The array was null.
+            <exception cref="T:System.ArgumentOutOfRangeException"/>The array index was less than zero.
+            <exception cref="T:System.ArgumentException"/>The number of items in the collection was
+            too great to copy into the array at the index given.
+        </member>
+        <member name="M:Ariadne.Collections.ThreadSafeSet`1.CopyTo(`0[])">
+            <summary>Copies the contents of the set to an array.</summary>
+            <param name="array">The array to copy to.</param>
+            <exception cref="T:System.ArgumentNullException"/>The array was null.
+            <exception cref="T:System.ArgumentException"/>The number of items in the collection was
+            too great to copy into the array.
+        </member>
+        <member name="M:Ariadne.Collections.ThreadSafeSet`1.Remove(`0)">
+            <summary>Removes an item from the set.</summary>
+            <param name="item">The item to remove.</param>
+            <returns>True if the item was removed, false if it was not found.</returns>
+            <remarks>Removal internally requires an allocation. This is generally negliable, but it should be noted
+            that <see cref="T:System.OutOfMemoryException"/> exceptions are possible in memory-critical situations.</remarks>
+        </member>
+        <member name="M:Ariadne.Collections.ThreadSafeSet`1.Remove(`0,`0@)">
+            <summary>Removes an item from the set.</summary>
+            <param name="item">The item to remove.</param>
+            <param name="removed">Upon returning, the item removed.</param>
+            <returns>True if an item was removed, false if no matching item was found.</returns>
+        </member>
+        <member name="M:Ariadne.Collections.ThreadSafeSet`1.RemoveWhere(System.Func{`0,System.Boolean})">
+            <summary>Removes items from the set that match a predicate.</summary>
+            <param name="predicate">A <see cref="T:System.Func`2"/> that returns true for the items that should be removed.</param>
+            <returns>A <see cref="T:System.Collections.Generic.IEnumerable`1"/> of the items removed.</returns>
+            <remarks>Removal internally requires an allocation. This is generally negliable, but it should be noted
+            that <see cref="T:System.OutOfMemoryException"/> exceptions are possible in memory-critical situations.
+            <para>The returned enumerable is lazily executed, and items are only removed from the dictionary as it is enumerated.</para></remarks>
+        </member>
+        <member name="M:Ariadne.Collections.ThreadSafeSet`1.Remove(System.Func{`0,System.Boolean})">
+            <summary>Removes all items that match a predicate.</summary>
+            <param name="predicate">A <see cref="T:System.Func`2"/> that returns true when passed an item that should be removed.</param>
+            <returns>The number of items removed</returns>
+            <remarks>Removal internally requires an allocation. This is generally negliable, but it should be noted
+            that <see cref="T:System.OutOfMemoryException"/> exceptions are possible in memory-critical situations.</remarks>
+        </member>
+        <member name="M:Ariadne.Collections.ThreadSafeSet`1.GetEnumerator">
+            <summary>Returns an enumerator that iterates through the collection.</summary>
+            <returns>The enumerator.</returns>
+        </member>
+        <member name="M:Ariadne.Collections.ThreadSafeSet`1.Clone">
+            <summary>Returns a copy of the current set.</summary>
+            <remarks>Because this operation does not lock, the resulting set’s contents
+            could be inconsistent in terms of an application’s use of the values.
+            <para>If there is a value stored with a null key, it is ignored.</para></remarks>
+            <returns>The <see cref="T:Ariadne.Collections.ThreadSafeSet`1"/>.</returns>
+        </member>
+        <member name="M:Ariadne.Collections.ThreadSafeSet`1.ToHashSet">
+            <summary>Returns a <see cref="T:System.Collections.Generic.HashSet`1"/> with the same contents and equality comparer as
+            the lock-free set.</summary>
+            <returns>The HashSet.</returns>
+            <remarks>Because this operation does not lock, the resulting set’s contents
+            could be inconsistent in terms of an application’s use of the values.</remarks>
+        </member>
+        <member name="M:Ariadne.Collections.ThreadSafeSet`1.ToList">
+            <summary>Returns a <see cref="T:System.Collections.Generic.List`1"/> with the same contents as
+            the lock-free set.</summary>
+            <returns>The List.</returns>
+            <remarks>Because this operation does not lock, the resulting set’s contents
+            could be inconsistent in terms of an application’s use of the values, or include duplicate items</remarks>
+        </member>
+        <member name="M:Ariadne.Collections.ThreadSafeSet`1.ToArray">
+            <summary>Returns an array with the same contents as
+            the lock-free set.</summary>
+            <returns>The array.</returns>
+            <remarks>Because this operation does not lock, the resulting set’s contents
+            could be inconsistent in terms of an application’s use of the values, or include duplicate items</remarks>
+        </member>
+        <member name="M:Ariadne.Collections.ThreadSafeSet`1.TryTake(`0@)">
+            <summary>Attempts to take a single item from the set.</summary>
+            <param name="item">On return, the item removed, if successful.</param>
+            <returns>True if an item was removed, false if the set had been empty.</returns>
+            <remarks>The item returned is arbitrarily determined, with no guaranteed ordering.</remarks>
+        </member>
+        <member name="P:Ariadne.Collections.ThreadSafeSet`1.Count">
+            <summary>Returns an estimate of the current number of items in the set.</summary>
+        </member>
+        <member name="P:Ariadne.Collections.ThreadSafeSet`1.Capacity">
+            <summary>The current capacity of the set.</summary>
+            <remarks>If the set is in the midst of a resize, the capacity it is resizing to is returned, ignoring other internal storage in use.</remarks>
+        </member>
+        <member name="T:Ariadne.Collections.ThreadSafeSet`1.AddedEnumeration">
+            <summary>An enumeration that adds to the set as it is enumerated, returning only those items added.</summary>
+            <threadsafety static="true" instance="false">This class is not thread-safe in itself, though its methods may be called
+            concurrently with other operations on the same collection.</threadsafety>
+            <tocexclude/>
+        </member>
+        <member name="M:Ariadne.Collections.ThreadSafeSet`1.AddedEnumeration.GetEnumerator">
+            <summary>Returns an enumerator that iterates through the collection.</summary>
+            <returns>The enumerator.</returns>
+        </member>
+        <member name="M:Ariadne.Collections.ThreadSafeSet`1.AddedEnumeration.Dispose">
+            <summary>Disposes of the enumeration, doing any necessary clean-up operations.</summary>
+        </member>
+        <member name="M:Ariadne.Collections.ThreadSafeSet`1.AddedEnumeration.MoveNext">
+            <summary>Moves to the next item in the enumeration.</summary>
+            <returns>True if an item was found, false it the end of the enumeration was reached.</returns>
+        </member>
+        <member name="M:Ariadne.Collections.ThreadSafeSet`1.AddedEnumeration.Reset">
+            <summary>Resets the enumerations.</summary>
+            <exception cref="T:System.NotSupportedException"/>The source enumeration does not support resetting (
+        </member>
+        <member name="P:Ariadne.Collections.ThreadSafeSet`1.AddedEnumeration.Current">
+            <summary>Returns the current item.</summary>
+        </member>
+        <member name="T:Ariadne.Collections.ThreadSafeSet`1.RemovingEnumeration">
+            <summary>Enumerates a <see cref="T:Ariadne.Collections.ThreadSafeSet`1"/>, returning items that match a predicate,
+            and removing them from the dictionary.</summary>
+            <threadsafety static="true" instance="false">This class is not thread-safe in itself, though its methods may be called
+            concurrently with other operations on the same collection.</threadsafety>
+            <tocexclude/>
+        </member>
+        <member name="M:Ariadne.Collections.ThreadSafeSet`1.RemovingEnumeration.MoveNext">
+            <summary>Moves to the next item being enumerated.</summary>
+            <returns>True if an item is found, false if the end of the enumeration is reached,</returns>
+        </member>
+        <member name="M:Ariadne.Collections.ThreadSafeSet`1.RemovingEnumeration.GetEnumerator">
+            <summary>Returns the enumeration itself, used with for-each constructs as this object serves as both enumeration and eumerator.</summary>
+            <returns>The enumeration itself.</returns>
+        </member>
+        <member name="P:Ariadne.Collections.ThreadSafeSet`1.RemovingEnumeration.Current">
+            <summary>The current item being enumerated.</summary>
+        </member>
+        <member name="T:Ariadne.Collections.ThreadSafeSet`1.Enumerator">
+            <summary>Enumerates a ThreadSafeSet&lt;T&gt;.</summary>
+            <remarks>The use of a value type for <see cref="T:System.Collections.Generic.List`1.Enumerator"/> has drawn some criticism.
+            Note that this does not apply here, as the state that changes with enumeration is not maintained by the structure itself.</remarks>
+            <threadsafety static="true" instance="false">This class is not thread-safe in itself, though its methods may be called
+            concurrently with other operations on the same collection.</threadsafety>
+        </member>
+        <member name="M:Ariadne.Collections.ThreadSafeSet`1.Enumerator.MoveNext">
+            <summary>Moves to the next item in the enumeration.</summary>
+            <returns>True if another item was found, false if the end of the enumeration was reached.</returns>
+        </member>
+        <member name="M:Ariadne.Collections.ThreadSafeSet`1.Enumerator.Reset">
+            <summary>Reset the enumeration</summary>
+        </member>
+        <member name="P:Ariadne.Collections.ThreadSafeSet`1.Enumerator.Current">
+            <summary>Returns the current item being enumerated.</summary>
+        </member>
+        <member name="T:Ariadne.Collections.ReferenceEqualityComparer">
+            <summary>An implementation of <see cref="T:System.Collections.IEqualityComparer"/> which
+            compares for object identity (reference equality), ignoring any overrides
+            of <see cref="M:System.Object.Equals(System.Object)"/> and <see cref="M:System.Object.GetHashCode"/>
+            or any implementation of <see cref="T:System.IEquatable`1"/>.</summary>
+            <threadsafety static="true" instance="true"/>
+        </member>
+        <member name="F:Ariadne.Collections.ReferenceEqualityComparer.RootHashCode">
+            <summary>When called, returns the identity-based hash-code for the argument,
+            as defined in <see cref="T:System.Object"/>, ignoring any overrides.</summary>
+        </member>
+        <member name="M:Ariadne.Collections.ReferenceEqualityComparer.Equals(System.Object,System.Object)">
+            <summary>Returns true if the two arguments are the same object, false otherwise.</summary>
+            <param name="x">The first item to compare.</param>
+            <param name="y">The second item to compare.</param>
+            <returns>True if they are the same object, false otherwise.</returns>
+        </member>
+        <member name="M:Ariadne.Collections.ReferenceEqualityComparer.GetHashCode(System.Object)">
+            <summary>Returns the identity-based hash-code defined in <see cref="T:System.Object"/>,
+            ignoring any overrides.</summary>
+            <param name="obj">The object to obtain a hash-code for.</param>
+            <returns>The hash-code.</returns>
+        </member>
+        <member name="T:Ariadne.Collections.ReferenceEqualityComparer`1">
+            <summary>An implementation of <see cref="T:System.Collections.Generic.IEqualityComparer`1"/> which
+            compares for object identity (reference equality), ignoring any overrides
+            of <see cref="M:System.Object.Equals(System.Object)"/> and <see cref="M:System.Object.GetHashCode"/>
+            or any implementation of <see cref="T:System.IEquatable`1"/>.</summary>
+            <typeparam name="T">The type of objects to compare.</typeparam>
+            <threadsafety static="true" instance="true"/>
+        </member>
+        <member name="M:Ariadne.Collections.ReferenceEqualityComparer`1.Equals(`0,`0)">
+            <summary>Returns true if the two arguments are the same object, false otherwise.</summary>
+            <param name="x">The first item to compare.</param>
+            <param name="y">The second item to compare.</param>
+            <returns>True if they are the same object, false otherwise.</returns>
+        </member>
+        <member name="M:Ariadne.Collections.ReferenceEqualityComparer`1.GetHashCode(`0)">
+            <summary>Returns the identity-based hash-code defined in <see cref="T:System.Object"/>,
+            ignoring any overrides.</summary>
+            <param name="obj">The object to obtain a hash-code for.</param>
+            <returns>The hash-code.</returns>
+        </member>
+        <member name="T:Ariadne.Counter">
+            <summary>A counter designed for highly concurrent use.</summary>
+            <remarks>This counter tends to be appreciably slower than using <see cref="M:System.Threading.Interlocked.Increment(System.Int32@)"/>
+            when there is little contention. However, it is much faster in the face of contending threads, with the
+            comparable cost of <see cref="M:System.Threading.Interlocked.Increment(System.Int32@)"/> increasing nearly expotentially to
+            the number of contending threads.</remarks>
+        </member>
+        <member name="M:Ariadne.Counter.#ctor">
+            <summary>Creates a new <see cref="T:Ariadne.Counter"/> with an initial value of zero.</summary>
+        </member>
+        <member name="M:Ariadne.Counter.#ctor(System.Int32)">
+            <summary>Creates a new <see cref="T:Ariadne.Counter"/> with an initial value of <paramref name="startingValue"/>.</summary>
+            <param name="startingValue">The initial value for the <see cref="T:Ariadne.Counter"/>.</param>
+        </member>
+        <member name="M:Ariadne.Counter.op_Implicit(Ariadne.Counter)~System.Int32">
+            <summary>Returns the value of the <see cref="T:Ariadne.Counter"/>.</summary>
+            <param name="counter">The <see cref="T:Ariadne.Counter"/> to cast.</param>
+            <returns>An integer of the same value as the <see cref="T:Ariadne.Counter"/>.</returns>
+        </member>
+        <member name="M:Ariadne.Counter.Increment">
+            <summary>Atomically increments the <see cref="T:Ariadne.Counter"/> by one.</summary>
+        </member>
+        <member name="M:Ariadne.Counter.Decrement">
+            <summary>Atomically decrements the <see cref="T:Ariadne.Counter"/> by one.</summary>
+        </member>
+        <member name="M:Ariadne.Counter.op_Increment(Ariadne.Counter)">
+            <summary>Atomically increments <paramref name="counter"/> by one.</summary>
+            <param name="counter">The <see cref="T:Ariadne.Counter"/> to increment.</param>
+            <returns>The <see cref="T:Ariadne.Counter"/> that was operated on.</returns>
+        </member>
+        <member name="M:Ariadne.Counter.op_Decrement(Ariadne.Counter)">
+            <summary>Atomically decrements <paramref name="counter"/> by one.</summary>
+            <param name="counter">The <see cref="T:Ariadne.Counter"/> to decrement.</param>
+            <returns>The <see cref="T:Ariadne.Counter"/> that was operated on.</returns>
+        </member>
+        <member name="P:Ariadne.Counter.Value">
+            <summary>The current value of the counter.</summary>
+        </member>
+        <member name="T:Ariadne.ThreadSafeAtomizer`1">
+            <summary>Allows for one copy of each distinct value of a reference type to be stored,
+            reducing memory use and often speeding equality comparisons. It can be the basis of
+            the flyweight pattern, and similar. Comparable to the
+            string intern pool, but available for other types, and other equality comparisons
+            (e.g. case-insensitive), removal of objects, and maintaining separate pools.
+            This is a wrapper around <see cref="T:Ariadne.Collections.ThreadSafeSet`1"/> (the implementation may change in the
+            future to wrap another set-type class), that calls into the FindOrStore and Find
+            methods, which exist with exactly this sort of functionality in mind - considering
+            the lack of such functionality in <see cref="T:System.Collections.Generic.HashSet`1"/> to be a lack.</summary>
+            <typeparam name="T">The type of the values stored (must be a reference type).</typeparam>
+            <threadsafety static="true" instance="true"/>
+        </member>
+        <member name="M:Ariadne.ThreadSafeAtomizer`1.#ctor(System.Int32,System.Collections.Generic.IEqualityComparer{`0})">
+            <summary>Creates a new <see cref="!:LockFreeAtomizer&lt;T&gt;"/>.</summary>
+            <param name="capacity">The initial capacity of the atomizer.</param>
+            <param name="comparer">An <see cref="T:System.Collections.Generic.IEqualityComparer`1"/> to use when comparing items
+            added to the store.</param>
+        </member>
+        <member name="M:Ariadne.ThreadSafeAtomizer`1.#ctor(System.Int32)">
+            <summary>Creates a new <see cref="!:LockFreeAtomizer&lt;T&gt;"/>.</summary>
+            <param name="capacity">The initial capacity of the atomizer.</param>
+        </member>
+        <member name="M:Ariadne.ThreadSafeAtomizer`1.#ctor(System.Collections.Generic.IEqualityComparer{`0})">
+            <summary>Creates a new <see cref="!:LockFreeAtomizer&lt;T&gt;"/>.</summary>
+            <param name="comparer">An <see cref="T:System.Collections.Generic.IEqualityComparer`1"/> to use when comparing items
+            added to the store.</param>
+        </member>
+        <member name="M:Ariadne.ThreadSafeAtomizer`1.#ctor">
+            <summary>Creates a new <see cref="!:LockFreeAtomizer&lt;T&gt;"/>.</summary>
+        </member>
+        <member name="M:Ariadne.ThreadSafeAtomizer`1.#ctor(System.Collections.Generic.IEnumerable{`0},System.Collections.Generic.IEqualityComparer{`0})">
+            <summary>Creates a new <see cref="!:LockFreeAtomizer&lt;T&gt;"/> and fills it from the collection passed.</summary>
+            <param name="collection">The <see cref="T:System.Collections.Generic.IEnumerable`1"/> to fill the atomizer with on construction.</param>
+            <param name="comparer">An <see cref="T:System.Collections.Generic.IEqualityComparer`1"/> to use when comparing items
+            added to the collection.</param>
+        </member>
+        <member name="M:Ariadne.ThreadSafeAtomizer`1.#ctor(System.Collections.Generic.IEnumerable{`0})">
+            <summary>Creates a new <see cref="!:LockFreeAtomizer&lt;T&gt;"/> and fills it from the collection passed.</summary>
+            <param name="collection">The <see cref="T:System.Collections.Generic.IEnumerable`1"/> to fill the atomizer with on construction.</param>
+        </member>
+        <member name="M:Ariadne.ThreadSafeAtomizer`1.Atomize(`0)">
+            <summary>Searches for an equivalent item, adding it if not present, and returning either the item found
+            or the item passed if there was none that matched.</summary>
+            <param name="item">The item to store.</param>
+            <returns>The item passed, or an equivalent item if one already exists.</returns>
+        </member>
+        <member name="M:Ariadne.ThreadSafeAtomizer`1.IsAtomized(`0)">
+            <summary>Returns an equivalent item if it exists in the store, or null if none is present.</summary>
+            <param name="item">The item to search for.</param>
+            <returns>An equivalent item if it exists in the store, or null if none is present.</returns>
+        </member>
+        <member name="M:Ariadne.ThreadSafeAtomizer`1.Remove(`0)">
+            <summary>Removes an item from the store.</summary>
+            <param name="item">The item to remove.</param>
+            <returns>True if an item was removed, false if no equivalent item was found.</returns>
+        </member>
+        <member name="M:Ariadne.ThreadSafeAtomizer`1.Clone">
+            <summary>Returns another <see cref="!:LockFreeAtomizer&lt;T&gt;"/> with the same contents as this.</summary>
+            <returns>The copied <see cref="!:LockFreeAtomizer&lt;T&gt;"/>.</returns>
+        </member>
+        <member name="M:Ariadne.ThreadSafeAtomizer`1.Clear">
+            <summary>Removes all items from the store.</summary>
+        </member>
+        <member name="P:Ariadne.ThreadSafeAtomizer`1.Count">
+            <summary>The number of items in the store.</summary>
+        </member>
+        <member name="T:Ariadne.Pool`1">
+            <summary>A thread-safe pool of objects.</summary>
+            <remarks>
+            <para>Pooling objects can be beneficial if creating them carries expense beyond that of allocation (e.g. they hold a
+            handle to an expensive resource) or if they adapt while being used (e.g. XmlNameTables), and if the object itself
+            is not thread-safe.</para>
+            <para>Any object that implements <see cref="T:System.Collections.Concurrent.IProducerConsumerCollection`1"/> can be used as the underlying store,
+            with the thread-safety coming from the thread-safety of that object. If none is passed to the constructor,
+            a <see cref="T:Ariadne.Collections.LLQueue`1"/> is used.</para>
+            <para>The pool does not ensure that the same object is not put in the pool twice. A backing store can be selected
+            to ensure this (e.g. <see cref="T:Ariadne.Collections.ThreadSafeSet`1"/>) but this will not guard against the set of items both currently
+            pooled and currently in use, containing the same item twice.</para>
+            </remarks>
+            <typeparam name="T">The type of the objects in the pool.</typeparam>
+            <threadsafety static="true" instance="true">The class is intended for cases where it would be thread-safe for
+            all calls to instance methods, but this thread-safety comes from the underlying <see cref="T:System.Collections.Concurrent.IProducerConsumerCollection`1"/>
+            implementation, and will not be thread safe if its implementations of <see cref="M:System.Collections.Concurrent.IProducerConsumerCollection`1.TryTake(`0@)"/>
+            and <see cref="M:System.Collections.Concurrent.IProducerConsumerCollection`1.TryAdd(`0)"/> are not thread-safe.</threadsafety>
+        </member>
+        <member name="M:Ariadne.Pool`1.#ctor(System.Collections.Concurrent.IProducerConsumerCollection{`0},System.Func{`0},System.Int32,System.Int32)">
+            <summary>Creates a new <see cref="T:Ariadne.Pool`1"/> object.</summary>
+            <param name="store">The <see cref="T:System.Collections.Concurrent.IProducerConsumerCollection`1"/> to use as a backing store to the pool.</param>
+            <param name="factory">The default factory to create new items as needed. It can be null, but in this case
+            the overload of <see cref="M:Ariadne.Pool`1.Get"/> that doesn’t take a factory as a parameter will throw <see cref="T:System.InvalidOperationException"/>.</param>
+            <param name="max">A maximum size for the pool. If <see cref="F:System.Int32.MaxValue"/> is passed, the
+            maximum is ignored.</param>
+            <param name="prefill">The pool will be prefilled with this many calls to <paramref name="factory"/> as per calling <see cref="M:Ariadne.Pool`1.Fill(System.Int32)"/></param>
+            <exception cref="T:System.ArgumentNullException"><paramref name="store"/> was null.</exception>
+            <exception cref="T:System.ArgumentOutOfRangeException"><paramref name="max"/> was less than one or <paramref name="prefill"/> is less than zero.</exception>
+            <exception cref="T:System.ArgumentException">Both <paramref name="factory"/> is null and <paramref name="prefill"/> is greater than zero.</exception>
+        </member>
+        <member name="M:Ariadne.Pool`1.#ctor(System.Collections.Concurrent.IProducerConsumerCollection{`0},System.Func{`0},System.Int32)">
+            <summary>Creates a new <see cref="T:Ariadne.Pool`1"/> object.</summary>
+            <param name="store">The <see cref="T:System.Collections.Concurrent.IProducerConsumerCollection`1"/> to use as a backing store to the pool.</param>
+            <param name="factory">The default factory to create new items as needed. It can be null, but in this case
+            the overload of <see cref="M:Ariadne.Pool`1.Get"/> that doesn’t take a factory as a parameter will throw <see cref="T:System.InvalidOperationException"/>.</param>
+            <param name="max">A maximum size for the pool. If <see cref="F:System.Int32.MaxValue"/> is passed, the
+            maximum is ignored.</param>
+            <exception cref="T:System.ArgumentNullException"><paramref name="store"/> was null.</exception>
+            <exception cref="T:System.ArgumentOutOfRangeException"><paramref name="max"/> was less than one.</exception>
+        </member>
+        <member name="M:Ariadne.Pool`1.#ctor(System.Collections.Concurrent.IProducerConsumerCollection{`0},System.Func{`0})">
+            <summary>Creates a new <see cref="T:Ariadne.Pool`1"/> object.</summary>
+            <param name="store">The <see cref="T:System.Collections.Concurrent.IProducerConsumerCollection`1"/> to use as a backing store to the pool.</param>
+            <param name="factory">The default factory to create new items as needed. It can be null, but in this case
+            the overload of <see cref="M:Ariadne.Pool`1.Get"/> that doesn’t take a factory as a parameter will throw <see cref="T:System.InvalidOperationException"/>.</param>
+            <exception cref="T:System.ArgumentNullException"><paramref name="store"/> was null.</exception>
+        </member>
+        <member name="M:Ariadne.Pool`1.#ctor(System.Collections.Concurrent.IProducerConsumerCollection{`0},System.Int32)">
+            <summary>Creates a new <see cref="T:Ariadne.Pool`1"/> object.</summary>
+            <param name="store">The <see cref="T:System.Collections.Concurrent.IProducerConsumerCollection`1"/> to use as a backing store to the pool.</param>
+            <param name="max">A maximum size for the pool. If <see cref="F:System.Int32.MaxValue"/> is passed, the
+            maximum is ignored.</param>
+            <exception cref="T:System.ArgumentNullException"><paramref name="store"/> was null.</exception>
+        </member>
+        <member name="M:Ariadne.Pool`1.#ctor(System.Collections.Concurrent.IProducerConsumerCollection{`0})">
+            <summary>Creates a new <see cref="T:Ariadne.Pool`1"/> object.</summary>
+            <param name="store">The <see cref="T:System.Collections.Concurrent.IProducerConsumerCollection`1"/> to use as a backing store to the pool.</param>
+            <exception cref="T:System.ArgumentNullException"><paramref name="store"/> was null.</exception>
+        </member>
+        <member name="M:Ariadne.Pool`1.#ctor(System.Func{`0},System.Int32,System.Int32)">
+            <summary>Creates a new <see cref="T:Ariadne.Pool`1"/> object.</summary>
+            <param name="factory">The default factory to create new items as needed. It can be null, but in this case
+            the overload of <see cref="M:Ariadne.Pool`1.Get"/> that doesn’t take a factory as a parameter will throw <see cref="T:System.InvalidOperationException"/>.</param>
+            <param name="max">A maximum size for the pool. If <see cref="F:System.Int32.MaxValue"/> is passed, the
+            maximum is ignored.</param>
+            <param name="prefill">The pool will be prefilled with this many calls to <paramref name="factory"/> as per calling <see cref="M:Ariadne.Pool`1.Fill(System.Int32)"/></param>
+            <exception cref="T:System.ArgumentOutOfRangeException"><paramref name="max"/> was less than one or <paramref name="prefill"/> is less than zero.</exception>
+            <exception cref="T:System.ArgumentException">Both <paramref name="factory"/> is null and <paramref name="prefill"/> is greater than zero.</exception>
+        </member>
+        <member name="M:Ariadne.Pool`1.#ctor(System.Func{`0},System.Int32)">
+            <summary>Creates a new <see cref="T:Ariadne.Pool`1"/> object.</summary>
+            <param name="factory">The default factory to create new items as needed. It can be null, but in this case
+            the overload of <see cref="M:Ariadne.Pool`1.Get"/> that doesn’t take a factory as a parameter will throw <see cref="T:System.InvalidOperationException"/>.</param>
+            <param name="max">A maximum size for the pool. If <see cref="F:System.Int32.MaxValue"/> is passed, the
+            maximum is ignored.</param>
+            <exception cref="T:System.ArgumentOutOfRangeException"><paramref name="max"/> was less than one.</exception>
+        </member>
+        <member name="M:Ariadne.Pool`1.#ctor(System.Func{`0})">
+            <summary>Creates a new <see cref="T:Ariadne.Pool`1"/> object.</summary>
+            <param name="factory">The default factory to create new items as needed. It can be null, but in this case
+            the overload of <see cref="M:Ariadne.Pool`1.Get"/> that doesn’t take a factory as a parameter will throw <see cref="T:System.InvalidOperationException"/>.</param>
+        </member>
+        <member name="M:Ariadne.Pool`1.#ctor(System.Int32)">
+            <summary>Creates a new <see cref="T:Ariadne.Pool`1"/> object.</summary>
+            <param name="max">A maximum size for the pool. If <see cref="F:System.Int32.MaxValue"/> is passed, the
+            maximum is ignored.</param>
+            <exception cref="T:System.ArgumentOutOfRangeException"><paramref name="max"/> was less than one.</exception>
+        </member>
+        <member name="M:Ariadne.Pool`1.#ctor">
+            <summary>Creates a new <see cref="T:Ariadne.Pool`1"/> object.</summary>
+        </member>
+        <member name="M:Ariadne.Pool`1.Fill(System.Int32)">
+            <summary>Calls the default factory <paramref name="count"/> times, and adds the results to the pool.</summary>
+            <param name="count">The number of objects to add.</param>
+            <remarks>If the underlying store rejects some of the items, this is ignored.</remarks>
+        </member>
+        <member name="M:Ariadne.Pool`1.TryGet(`0@)">
+            <summary>Attempts to obtain an object from the pool.</summary>
+            <param name="item">The item obtained if successful, or the default value for <c>T</c> otherwise.</param>
+            <returns>True if the method succeeds, false if there were </returns>
+        </member>
+        <member name="M:Ariadne.Pool`1.Get">
+            <summary>Obtains an object from the pool, or creates one with the default factory.</summary>
+            <returns>The object obtained or created</returns>
+            <exception cref="T:System.InvalidOperationException">The pool was empty, and no default factory
+            was passed to the pool’s constructor.</exception>
+        </member>
+        <member name="M:Ariadne.Pool`1.Get(System.Func{`0})">
+            <summary>Obtains an object from the pool, or creates one with the factory passed.</summary>
+            <param name="factory">A <see cref="T:System.Func`1"/> to create a new object, if the pool is empty.</param>
+            <returns>The object obtained or created.</returns>
+        </member>
+        <member name="M:Ariadne.Pool`1.Store(`0)">
+            <summary>Stores an object in the pool.</summary>
+            <param name="item">The object to store.</param>
+            <returns>True if the object was stored, false if the maximum size of the pool is not
+            set to <see cref="F:System.Int32.MaxValue"/> and the pool’s size is already of maximum size.</returns>
+            <exception cref="T:System.ArgumentNullException"><paramref name="item"/> is null.</exception>
+            <remarks>
+            <para>The size of the pool is tested by calling the underlying store’s
+            <see cref="P:System.Collections.ICollection.Count"/> property, and is hence
+            as performant as that property.</para>
+            <para>Multiple simultaneous calls can result in the queue exceeding its maximum size. It is assumed
+            that such races, while perhaps sub-optimal, are not harmful.</para>
+            </remarks>
+        </member>
+        <member name="M:Ariadne.Pool`1.GetHandle">
+            <overloads>
+            <summary>Returns a <see cref="T:Ariadne.Pool`1.Handle"/> that will obtain an object from the
+            pool or created by a factory, and return it to the pool upon disposal.</summary>
+            <returns>A <see cref="T:Ariadne.Pool`1.Handle"/> with an object from the pool.</returns>
+            <example>
+            <code>
+            using(var poolHandle = pool.GetHandle())
+            {
+               var obj = poolHandle.Object;
+                /*
+                 *
+                 * use obj here.
+                 * 
+                 */
+            } // obj returned to the pool here.
+            </code>
+            </example>
+            </overloads>
+            <summary>Returns a <see cref="T:Ariadne.Pool`1.Handle"/> that will obtain an object from the
+            pool or create it with the pool’s default factory, and return it to the pool upon disposal.</summary>
+            <returns>A <see cref="T:Ariadne.Pool`1.Handle"/> with an object from the pool.</returns>
+            <example>
+            <code>
+            using(var poolHandle = pool.GetHandle())
+            {
+               var obj = poolHandle.Object;
+                /*
+                 *
+                 * use obj here.
+                 * 
+                 */
+            } // obj returned to the pool here.
+            </code>
+            </example>
+            <exception cref="T:System.InvalidOperationException">The pool did not have a default factory defined when
+            it was constructed.</exception>
+        </member>
+        <member name="M:Ariadne.Pool`1.GetHandle(System.Func{`0})">
+            <summary>Returns a <see cref="T:Ariadne.Pool`1.Handle"/> that will obtain an object from the
+            pool or create it with the factory passed to it, and return it to the pool upon disposal.</summary>
+            <param name="factory">The <see cref="T:System.Func`1"/> to create an object, should the pool be empty.</param>
+            <returns>A <see cref="T:Ariadne.Pool`1.Handle"/> with an object from the pool.</returns>
+            <example>
+            <code>
+            using(var poolHandle = pool.GetHandle(() =&gt; CreateObject()))
+            {
+               var obj = poolHandle.Object;
+                /*
+                 *
+                 * use obj here.
+                 * 
+                 */
+            } // obj returned to the pool here.
+            </code>
+            </example>
+        </member>
+        <member name="P:Ariadne.Pool`1.Count">
+            <summary>Returns the number of items in the pool.</summary>
+            <remarks>The size of the pool is tested by calling the underlying store’s
+            <see cref="P:System.Collections.ICollection.Count"/> property, and is hence
+            as performant as that property.</remarks>
+        </member>
+        <member name="T:Ariadne.Pool`1.Handle">
+            <summary>Keeps track of an object from the pool, and returns it to the pool upon disposal.</summary>
+            <remarks>
+            <para>This class is intended to make it easy to ensure that objects are returned to the pool as per
+            the example.</para>
+            <para>The intention is that the object should be returned to the pool, even when the code using
+            it throws an exception. It should <strong>not</strong> be used if this could corrupt the
+            state of the object.</para>
+            </remarks>
+            <example>
+            <code>
+            using(var poolHandle = pool.GetHandle(() => CreateObject()))
+            {
+               var obj = poolHandle.Object;
+                /*
+                 *
+                 * use obj here.
+                 * 
+                 */
+            } // obj returned to the pool here.
+            </code>
+            </example>
+            <threadsafety static="true" instance="false">This class is not thread-safe in itself. It is designed
+            to allow a single thread a means to ensure it will always return an object to the pool, and as
+            such should only be disposed by a single thread.</threadsafety>
+            <tocexclude/>
+        </member>
+        <member name="M:Ariadne.Pool`1.Handle.Dispose">
+            <summary>Places the object back in the pool. After this is called,
+            <see cref="P:Ariadne.Pool`1.Handle.Object"/> will return the default value of <c>T</c>
+            (<c>null</c> for reference types).</summary>
+        </member>
+        <member name="P:Ariadne.Pool`1.Handle.Object">
+            <summary>Returns the object that the handle holds.</summary>
+        </member>
+        <member name="T:Ariadne.SharedInt">
+            <summary>A simple means to share an atomically-maintained count between objects.</summary>
+            <threadsafety static="true" instance="true"/>
+        </member>
+        <member name="M:Ariadne.SharedInt.#ctor">
+            <summary>Creates a new AliasedInt with a value of zero.</summary>
+        </member>
+        <member name="M:Ariadne.SharedInt.#ctor(System.Int32)">
+            <summary>Creates a new AliasedInt.</summary>
+            <param name="value">The initial value of the object.</param>
+        </member>
+        <member name="M:Ariadne.SharedInt.op_Implicit(Ariadne.SharedInt)~System.Int32">
+            <summary>Returns the value of the AliasedInt.</summary>
+            <param name="ri">The AliasedInt to cast.</param>
+            <returns>An integer of the same value as the AliasedInt.</returns>
+        </member>
+        <member name="M:Ariadne.SharedInt.Increment">
+            <summary>Atomically increment the value of the AliasedInt by one.</summary>
+            <returns>The new value.</returns>
+        </member>
+        <member name="M:Ariadne.SharedInt.Decrement">
+            <summary>Atomically decrement the value of the AliasedInt by one.</summary>
+            <returns>The new value.</returns>
+        </member>
+        <member name="M:Ariadne.SharedInt.Add(System.Int32)">
+            <summary>Atomically add a value to the AliasedInt.</summary>
+            <param name="addend">The number to add to the AliasedInt.</param>
+            <returns>The new value.</returns>
+        </member>
+        <member name="M:Ariadne.SharedInt.Exchange(System.Int32)">
+            <summary>Atomically replace the value of the AliasedInt, returning the previous value.</summary>
+            <param name="value">The number to set the AliasedInt to.</param>
+            <returns>The old value.</returns>
+        </member>
+        <member name="M:Ariadne.SharedInt.Subtract(System.Int32)">
+            <summary>Atomically subtract a value from the AliasedInt.</summary>
+            <param name="subtrahend">The number to subtract from the AliasedInt.</param>
+            <returns>The new value.</returns>
+        </member>
+        <member name="P:Ariadne.SharedInt.Value">
+            <summary>Returns the value of the AliasedInt.</summary>
+        </member>
+    </members>
+</doc>
