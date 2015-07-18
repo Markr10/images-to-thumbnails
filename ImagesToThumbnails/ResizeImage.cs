@@ -1,4 +1,5 @@
 ﻿using Ariadne.Collections;
+using Extension;
 using ImageResizer.Encoding;
 using System;
 using System.Collections.Generic;
@@ -7,6 +8,7 @@ using System.Drawing;
 using System.Drawing.Drawing2D;
 using System.Drawing.Imaging;
 using System.IO;
+using System.Threading;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
@@ -14,64 +16,260 @@ namespace ImagesToThumbnails
 {
     public partial class ResizeImage : Form
     {
+        // TODO Use a seperate thread safe counter class to keep track of the running threads
+        // TODO Make thread safe methods for increasing and decreasing, if possible use 'this' for the lock in that class.
+        private ThreadSafeDictionary<string, Thread> tasks;
+        /// <summary>
+        /// Keeps track of the number for the name of the next task.
+        /// This number is unrelated to the running tasks.
+        /// </summary>
+        private int tasksCounter;
+        // TODO Encapsulation in a class?
+        private bool noErrors;
+
         public ResizeImage()
         {
             InitializeComponent();
+            tasks = new ThreadSafeDictionary<string, Thread>();
+            tasksCounter = 0;
+
+            // Open automatically the My Pictures/Pictures folder
+            // TODO Uncomment
+            //folderBrowserDialog.SelectedPath = Environment.GetFolderPath(Environment.SpecialFolder.MyPictures);
+
+            // TODO Shutdown all (foreground) threads on application shutdown!
         }
 
         private void button1_Click(object sender, EventArgs e)
         {
-            openFileDialog1.ShowDialog();
+            // When the user selected a folder try to process all files
+            if (folderBrowserDialog.ShowDialog() == DialogResult.OK)
+            {
+                int numberOfThreads = -1;
+                if (! cbAutoCalcThreads.Checked)
+                {
+                    numberOfThreads = (int)nudThreads.Value;
+                }
+
+                // Grab size
+                // Initialise with default value to prevent use of unassigned local variable and convert to null problem.
+                Size boxSize = new Size(100, 100);
+                if (rbSize200x200.Checked)
+                {
+                    boxSize = new Size(200, 200);
+                }
+                else if (! rbSize100x100.Checked)
+                {
+                    throw new ArgumentException("Size is not selected or not supported.");
+                }
+
+                // Grab fitMode
+                // Initialise with default value to prevent use of unassigned local variable and convert to null problem.
+                FitMode fitMode = FitMode.Fit;
+                if (rbFitModeFitHeight.Checked)
+                {
+                    fitMode = FitMode.FitHeight;
+                }
+                else if (rbFitModeFitWidth.Checked)
+                {
+                    fitMode = FitMode.FitWidth;
+                }
+                else if (rbFitModeStretch.Checked)
+                {
+                    fitMode = FitMode.Stretch;
+                }
+                else if(! rbFitModeFit.Checked)
+                {
+                    throw new ArgumentException("Fit mode is not selected or not supported.");
+                }
+
+                // Start task as thread
+                string taskName = "Task " + ++tasksCounter;
+
+                // TODO Create thread, maybe as backgroundworker
+                //      So create a custom backgroundworker class with a property to set the name (NamedBackgroundWorker?)
+                // TODO Set the do worker event handler of Backgroundworker as a lambda Expressions?
+                //      Pass the parameters of the StartProcessingFiles call below.
+                // TODO Replace with commented line: remove next line and uncomment the second next line
+                // TODO Then replace it with the newly created increase method of the counter class 
+                tasks.Add(taskName, null);
+                //tasks.Add(taskName, backgroundworker);
+
+                // TODO Start thread/backgroundworker
+                //      Maybe remove taskName
+                // Start processing with selected arguments
+                StartProcessingFiles(folderBrowserDialog.SelectedPath, boxSize, fitMode, cbOverwriteExistingfiles.Checked, taskName, numberOfThreads);
+            }
         }
 
-        // TODO Method comments
-        private void openFileDialog1_FileOk(object sender, CancelEventArgs e)
+        // TODO Rename method and change parameters to come in accordance with the backgroundworker
+        private void StartProcessingFiles(string directoryPath, Size boxSize, FitMode fitMode, bool overwriteExistingfiles, string taskName, int numberOfThreads)
         {
-            // Returns the full filepath
-            string filePath = openFileDialog1.FileName;
-
-            // Collect exceptions for the dialog
-            ThreadSafeDictionary<string, Exception> exceptions = new ThreadSafeDictionary<string, Exception>();
-            try
+            // REMARK
+            // Validate arguments
+            if (boxSize == null)
             {
-                CreateAndSaveImage(filePath);
+                throw new ArgumentNullException("boxSize");
             }
-            catch (Exception exception)
+            else if (fitMode == null)
             {
-                exceptions.Add(Path.GetFileName(filePath), exception);
+                throw new ArgumentNullException("fitMode");
+            }
+            else if (numberOfThreads < 1 && numberOfThreads != -1)
+            {
+                throw new ArgumentException("numberOfThreads should be -1 or > 0.");
             }
 
-            // Show dialog after processing all images
-            // Create dialog text
-            string messageboxTitle = String.Empty;
-            string messageboxText = String.Empty;
+            // TODO Remove the next line or place it to another location
+            noErrors = true;
 
-            if(exceptions.Count > 0)
+            // Change cursor to notify the user that we are busy.
+            if (Cursor.Current != Cursors.WaitCursor)
             {
-                messageboxTitle = "Not successfully created all thumbnails";
-                messageboxText = "Some thumbnails where not successfully created:\n\n";
-                foreach (KeyValuePair<string, Exception> entry in exceptions)
-                {
-                    messageboxText += entry.Key + "\t" + entry.Value.Message + "\n";
-                }
+                Cursor.Current = Cursors.WaitCursor;
+                // REMARK maybe needed to add to show the cursor - Application.DoEvents();
+            }
+
+            // TODO Replace with commented line: remove next line and uncomment the second next line
+            tbOutput.AppendText(taskName + " started...\r\n");
+            //tbOutput.AppendText(NamedBackgroundWorker)sender.Name + " - Started...\r\n");
+
+            // Get all files
+            string[] files = Directory.GetFiles(directoryPath);
+
+            // Calculate the number of files per thread
+            // Don't create threads with no images to process
+            // REMARK // Stel gelijk de standaard instelling in omdat anders het twee keer zal gebeuren
+            int filesPerThread = 1;
+            if(numberOfThreads > 0 && numberOfThreads <= files.Length)
+            {
+
+                // REMARK spelling and calculation
+                // Floors integer automatically
+                filesPerThread = files.Length / numberOfThreads; 
             }
             else
             {
-                messageboxTitle = "Successfully created";
-                messageboxText = "The thumbnails are successfully created.";
+                // prevent setting value twice
+                if (numberOfThreads <= files.Length)
+                {
+                    // throw message
+                }
+                // REMARK
+                // Automatically calculate threads
+                numberOfThreads = files.Length;
             }
-            MessageBox.Show(messageboxText, messageboxTitle);
-        }
 
-        private void CreateAndSaveImage(string filePath)
-        {
-            using (Bitmap newImage = CreateImage(filePath))
+            // TODO Use CountdownEvent with numberOfThreads to keep track of the finished threads.
+            // REMARK
+            for (int i = 0, filesIndex = 0; i < numberOfThreads; i++)
             {
-                SaveImage(filePath, newImage);
+                // Number of files for the last thread
+                if ((i + 1) == numberOfThreads && (numberOfThreads * filesPerThread != files.Length))
+                {
+                    filesPerThread += (files.Length % numberOfThreads);
+                }
+
+                // Create array with file paths to process
+                string[] threadFiles = new string[filesPerThread];
+                // REMARK Copy array method?
+                // filesIndex wordt automatisch berekend omdat deze nu bewaard blijft
+                for (int j = 0; j < filesPerThread; j++, filesIndex++)
+			    {
+			        threadFiles[j] = files[filesIndex];
+			    }
+
+                // Calculate filesIndex before increasing
+                // filesIndex // REMARK behoud de juiste index
+                // REMARK Verdeel elk bestand zo eerlijk mogelijk over een thread
+                // Voorkomt een vergelijking met 0 en -1 om de index te verkrijgen
+                //filesIndex += filesPerThread;
+
+                // TODO Setup the custom backgroundworker
+                //      Start thread within that method
+                //      Maybe remove some parameters
+                // REMARK Thread name is in lower case for the style
+                ProcessFiles(threadFiles, boxSize, fitMode, overwriteExistingfiles, taskName, "thread " + (i + 1));
+            }
+
+            // TODO Use the CountdownEvent to wait to all threads are done and then call this method.
+            FinishProcessingFiles(taskName, noErrors);
+        }
+
+        // TODO Rename method and change parameters to come in accordance with the backgroundworker
+        private void ProcessingFilesUpdate(string taskName, string threadName, string filePath, Exception exception)
+        {
+            // TODO Maybe include an invoke check.
+            //      This new method must be a called on an event (callback).
+            tbOutput.AppendText(taskName + " at " + threadName + " - Could not successfully create a thumbnail of \"" + Path.GetFileName(filePath) + "\": " + exception.Message + "\r\n");
+        }
+
+        // TODO Rename method and change parameters to come in accordance with the backgroundworker
+        private void FinishProcessingFiles(string taskName, bool noErrors)
+        {
+            // TODO Replace with commented line: remove next line and uncomment the second next line
+            // TODO Then replace it with the newly created decrease method of the counter class 
+            tasks.Remove("Task " + tasksCounter);
+            //tasks.Remove((NamedBackgroundWorker)sender.Name);
+
+            if (tasks.Count == 0)
+            {
+                // At this point there is no calculation so reset the pointer
+                Cursor.Current = Cursors.Default;
+            }
+
+            if (noErrors)
+            {
+                // Report at least once the progress of the task.
+                tbOutput.AppendText(taskName + " - The thumbnails are created successfully.\r\n");
+            }
+
+            tbOutput.AppendText(taskName + " finished.\r\n");
+        }
+
+        /// <summary>
+        /// // REMARK
+        /// </summary>
+        /// <param name="files"></param>
+        /// <param name="boxSize"></param>
+        /// <param name="fitMode"></param>
+        /// <param name="overwriteExistingfiles"></param>
+        private void ProcessFiles(string[] files, Size boxSize, FitMode fitMode, bool overwriteExistingfiles, string taskName, string threadName)
+        {
+            foreach (string filePath in files)
+            {
+                try
+                {
+                    CreateAndSaveImage(filePath, boxSize, fitMode, overwriteExistingfiles);
+                }
+                catch (Exception exception)
+                {
+                    // TODO Let set the completion method to an error when this occurs
+                    if (noErrors)
+                    {
+                        noErrors = false;
+                    }
+
+                    // Show the problem immediately to the user.
+                    ProcessingFilesUpdate(taskName, threadName, filePath, exception);
+                }
             }
         }
 
-        private Bitmap CreateImage(string filePath)
+        private void CreateAndSaveImage(string filePath, Size boxSize, FitMode fitMode, bool overwriteExistingfiles)
+        {
+            // Avoid unnecessary converting of files.
+            // Therefore use the output encoder to detect if the file extension is supported.
+            // In the end it determines whether the file can be saved and it supports less formats then the Bitmap class.
+            DefaultEncoder encoder = new DefaultEncoder(filePath);
+            
+            using (Bitmap newImage = CreateImage(filePath, boxSize, fitMode))
+            {
+                SaveImage(filePath, boxSize, fitMode, newImage, overwriteExistingfiles, encoder);
+            }
+        }
+
+        private Bitmap CreateImage(string filePath, Size boxSize, FitMode fitMode)
         {
             // Create the variable for the new image
             Bitmap newImage;
@@ -90,7 +288,7 @@ namespace ImagesToThumbnails
                 using (Bitmap originalImage = new Bitmap(memoryStream))
                 {
                     // Calculate the new size
-                    Size newImageSize = CalculateSize(originalImage.Size);
+                    Size newImageSize = ToNewSize(originalImage.Size, boxSize, fitMode);
 
                     // Create and draw the new image
                     newImage = new Bitmap(newImageSize.Width, newImageSize.Height, originalImage.PixelFormat);
@@ -119,17 +317,16 @@ namespace ImagesToThumbnails
             return newImage;
         }
 
-        private void SaveImage(string originalFilePath, Bitmap newImage)
+        private void SaveImage(string originalFilePath, Size boxSize, FitMode fitMode, Bitmap newImage, bool overwriteExistingfiles, IEncoder encoder)
         {
+            // REMARK Move to method comments
             // Encoder only needed to write files, so the interface provides enough methods.
             // Checks if it support the file format in the given path, so create this object before everything else.
-            // If you doesn't do this it is for example possible to create empty/overwrite files
+            // If you doesn't do this it is for example possible to create empty/overwrite existing files
             // because then a (new) empty file is created with the file stream method.
-            IEncoder encoder = new DefaultEncoder(originalFilePath);
 
-            // REMARK Dynamically use the correct size
             // Creates, if needed, the sub directory
-            string dirName = Path.Combine(Path.GetDirectoryName(originalFilePath), "100x100 - Fit");
+            string dirName = Path.Combine(Path.GetDirectoryName(originalFilePath), boxSize.Width + "x" + boxSize.Height + " - " + fitMode.ToSentenceCase());
             Directory.CreateDirectory(dirName);
 
             // Create a platform independent file path
@@ -139,7 +336,7 @@ namespace ImagesToThumbnails
             // REMARK
             // Set whether files should be overwritten.
             FileMode fileMode;
-            if (false)
+            if (overwriteExistingfiles)
             {
                 // Overwrite existing files
                 fileMode = FileMode.Create;
@@ -159,11 +356,10 @@ namespace ImagesToThumbnails
             }
         }
 
-        private Size CalculateSize(Size originalSize)
+        private static Size ToNewSize(Size originalSize, Size boxSize, FitMode fitMode)
         {
-            Size boxSize = new Size(100, 100);
             // REMARK
-            //if()
+            if (fitMode == FitMode.Fit)
             {
                 // Aspect ratio of the source image
                 double imageRatio = (double)originalSize.Width / (double)originalSize.Height;
@@ -175,7 +371,7 @@ namespace ImagesToThumbnails
                     if (imageRatio < (1 / (double)boxSize.Height))
                     {
                         // Aspect ratio can not be maintained.
-                        throw new ArgumentException("Aspect ratio can not be maintained. Height of image is too large");
+                        throw new ArgumentException("Aspect ratio can not be maintained. Height of image is too large.");
                     }
 
                     // Bound by height. Otherwise (so when you bound by width) the height will be out of bounds.
@@ -190,8 +386,17 @@ namespace ImagesToThumbnails
                 else
                 {
                     // Aspect ratio can not be maintained.
-                    throw new ArgumentException("Aspect ratio can not be maintained. Width of image is too large");
+                    throw new ArgumentException("Aspect ratio can not be maintained. Width of image is too large.");
                 }
+            }
+            else if (fitMode == FitMode.Stretch)
+            {
+                return boxSize;
+            }
+            else
+            {
+                // REMARK Spelling
+                throw new ArgumentException("Fit mode is not supported.");
             }
         }
 
@@ -222,6 +427,22 @@ namespace ImagesToThumbnails
         {
             // HARCODED VALUES
             return new Rectangle(0, 0, newImageSize.Width, newImageSize.Height);
+        }
+
+        private void tbOutput_TextChanged(object sender, EventArgs e)
+        {
+            // Enable the scrollbar when it is needed. No need to disable it again because the text will only increase.
+            
+            if (tbOutput.ScrollBars == ScrollBars.None && tbOutput.Lines.Length > 15)
+            {
+                tbOutput.ScrollBars = ScrollBars.Vertical;
+            }
+        }
+
+        private void cbAutoCalcThreads_CheckedChanged(object sender, EventArgs e)
+        {
+            // Disable number of threads control when they should be automatically calculated
+            nudThreads.Enabled = !cbAutoCalcThreads.Checked;
         }
     }
 }
