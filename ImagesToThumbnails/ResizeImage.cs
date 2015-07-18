@@ -165,9 +165,11 @@ namespace ImagesToThumbnails
             for (int i = 0, filesIndex = 0; i < numberOfThreads; i++)
             {
                 // Number of files for the last thread
-                if ((i + 1) == numberOfThreads && (numberOfThreads * filesPerThread != files.Length))
+                // REMARK Verdeel de files eerlijk/evenrediger? over de threads
+                // Voorkomt ingewikkelde code die out of bounds gaat 
+                if (numberOfThreads - (files.Length % numberOfThreads) == i)
                 {
-                    filesPerThread += (files.Length % numberOfThreads);
+                    filesPerThread++;
                 }
 
                 // Create array with file paths to process
