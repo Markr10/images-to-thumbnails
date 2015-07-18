@@ -72,14 +72,33 @@ namespace ImageResizer.Encoding
         /// Constructor that creates an instance of DefaultEncoder with the ImageFormat of the source image/path.
         /// It also initialises the default value for Jpeg compression quality.
         /// </summary>
-        /// <param name="original">A string path or the source image that was loaded from a stream</param>
-        public DefaultEncoder(object original)
+        /// <param name="filePath">A file path</param>
+        public DefaultEncoder(string filePath)
         {
-            //What format was the image originally (used as a fallback).
-            ImageFormat originalFormat = GetOriginalFormat(original);
+            //What format was the image originally.
+            ImageFormat originalFormat = GetImageFormatFromPhysicalPath(filePath);
             if (!IsValidOutputFormat(originalFormat))
             {
-                throw new ArgumentException("No valid info available about the original format.");
+                throw new ArgumentException("File extension is not found or not supported.");
+            }
+
+            //Ok, we've found our format.
+            this.OutputFormat = originalFormat;
+        }
+
+        /// <summary>
+        /// Constructor that creates an instance of DefaultEncoder with the ImageFormat of the source image/path.
+        /// It also initialises the default value for Jpeg compression quality.
+        /// </summary>
+        /// <param name="filePath">A file path</param>
+        /// <param name="image">The source image that was loaded from a stream</param>
+        public DefaultEncoder(string filePath, Image image)
+        {
+            //What format was the image originally.
+            ImageFormat originalFormat = GetOriginalFormat(filePath, image);
+            if (originalFormat == null)
+            {
+                throw new ArgumentException("Could not find the file format of the image.");
             }
 
             //Ok, we've found our format.
@@ -123,26 +142,23 @@ namespace ImageResizer.Encoding
 
         #region Static methods
         /// <summary>
-        /// Attempts to determine the ImageFormat of the source image. First attempts to parse the path, if 'original' is a string.
-        /// Falls back to using original.RawFormat. Returns null if both 'original' is null.
+        /// Attempts to determine the ImageFormat of the source image. First attempts to parse the path.
+        /// Falls back to using image.RawFormat. Returns null if both attempts return null.
         /// RawFormat has a bad reputation, so this may return unexpected values, like MemoryBitmap or something in some situations.
         /// </summary>
-        /// <param name="original">A string path or the source image that was loaded from a stream</param>
+        /// <param name="filePath">A file path</param>
+        /// <param name="image">The source image that was loaded from a stream</param>
         /// <returns></returns>
-        public static ImageFormat GetOriginalFormat(object original)
+        public static ImageFormat GetOriginalFormat(string filePath, Image image)
         {
-            if (original == null) return null;
             //Try to parse the original file extension first.
-            string path = original as string;
-
-            //We have a path? Parse it!
-            if (path != null)
+            if (filePath != null)
             {
-                ImageFormat f = DefaultEncoder.GetImageFormatFromPhysicalPath(path);
+                ImageFormat f = DefaultEncoder.GetImageFormatFromPhysicalPath(filePath);
                 if (f != null) return f; //From the path
             }
             //Ok, I guess it there (a) wasn't a path, or (b), it didn't have a recognizeable extension
-            if (original is Image) return ((Image)original).RawFormat;
+            if (image != null) return image.RawFormat;
             return null;
         }
 
