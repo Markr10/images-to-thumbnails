@@ -14,6 +14,7 @@ namespace ImagesToThumbnails
 namespace Extension
 {
     using ImagesToThumbnails;
+    using System;
     using System.Text.RegularExpressions;
 
     /// <summary>
@@ -22,14 +23,16 @@ namespace Extension
     /// <remarks>The extension method(s) can only be accessed when the Extension namespace is imported.</remarks>
     public static class FitModeExtensionMethods
     {
+        /// <summary>
+        /// Returns a string with the enum name in sentence case style.
+        /// </summary>
+        /// <returns>A string with the enum name in sentence case style</returns>
         public static string ToSentenceCase(this FitMode fitMode)
         {
-            Regex rgx = new Regex(@"
-                (?<=[A-Z])(?=[A-Z][a-z])(.) |
-                 (?<=[^A-Z])(?=[A-Z][A-Z]) |
-                 (?<=[^A-Z])(?=[A-Z])(.)", RegexOptions.IgnorePatternWhitespace);
+            Regex rgx = new Regex(@"(?<!^)[A-Z]", RegexOptions.ExplicitCapture);
 
-            return rgx.Replace(fitMode.ToString(), s => " " + s.Value.ToLower());
+            // It is possible in this situation to use Enum.GetName. It should be faster as ToString.
+            return rgx.Replace(Enum.GetName(typeof(FitMode), fitMode), s => " " + s.Value.ToLower());
         }
     }
 }
