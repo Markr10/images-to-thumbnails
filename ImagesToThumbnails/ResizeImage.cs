@@ -107,13 +107,10 @@ namespace ImagesToThumbnails
         {
             // REMARK
             // Validate arguments
+            // There is no need to check fitMode because it is an not nullable enum. That means that this argument will never be null, and will contain a valid FitMode value.
             if (boxSize == null)
             {
                 throw new ArgumentNullException("boxSize");
-            }
-            else if (fitMode == null)
-            {
-                throw new ArgumentNullException("fitMode");
             }
             else if (numberOfThreads < 1 && numberOfThreads != -1)
             {
