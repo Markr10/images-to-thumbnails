@@ -107,13 +107,10 @@ namespace ImagesToThumbnails
         {
             // REMARK
             // Validate arguments
+            // There is no need to check fitMode because it is an not nullable enum. That means that this argument will never be null, and will contain a valid FitMode value.
             if (boxSize == null)
             {
                 throw new ArgumentNullException("boxSize");
-            }
-            else if (fitMode == null)
-            {
-                throw new ArgumentNullException("fitMode");
             }
             else if (numberOfThreads < 1 && numberOfThreads != -1)
             {
@@ -308,7 +305,7 @@ namespace ImagesToThumbnails
                             // Fixes the 50% gray border issue on (mainly bright white or dark) images.
                             imageAttributes.SetWrapMode(WrapMode.TileFlipXY);
 
-                            graphics.DrawImage(originalImage, ToPointArray(newImageSize), ToRectangle(newImageSize), GraphicsUnit.Pixel, imageAttributes);
+                            graphics.DrawImage(originalImage, ToPointArray(newImageSize), ToRectangle(originalImage.Size), GraphicsUnit.Pixel, imageAttributes);
                         }
 
                         graphics.Flush(FlushIntention.Flush);  // REMARK Research parameter - Not sure if this is still needed
@@ -421,14 +418,14 @@ namespace ImagesToThumbnails
         }
 
         /// <summary>
-        /// Converts the new size of an image to a rectangle object.
+        /// Converts the size of an image to a rectangle object.
         /// </summary>
-        /// <param name="newImageSize">The size of the new image</param>
+        /// <param name="imageSize">The size of the image</param>
         /// <returns>A rectangle object based on the provided values</returns>
-        private static Rectangle ToRectangle(Size newImageSize)
+        private static Rectangle ToRectangle(Size imageSize)
         {
             // HARCODED VALUES
-            return new Rectangle(0, 0, newImageSize.Width, newImageSize.Height);
+            return new Rectangle(0, 0, imageSize.Width, imageSize.Height);
         }
 
         private void tbOutput_TextChanged(object sender, EventArgs e)
