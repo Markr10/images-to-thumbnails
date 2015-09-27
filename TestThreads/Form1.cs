@@ -5,13 +5,16 @@ using System.Data;
 using System.Drawing;
 using System.Linq;
 using System.Text;
-using System.Threading.Tasks;
+using System.Threading;
 using System.Windows.Forms;
 
 namespace TestThreads
 {
     public partial class Form1 : Form
     {
+        public int i, o = 0;
+        public string name1;
+
         public Form1()
         {
             InitializeComponent();
@@ -76,6 +79,21 @@ namespace TestThreads
             {
                 // Cancel the asynchronous operation. 
                 this.backgroundWorker1.CancelAsync();
+            }
+
+            private void button1_Click(object sender, EventArgs e)
+            {
+                
+                ThreadSleeper sleepThread = new ThreadSleeper();
+                for(i = 1; i < 4; i++)
+                {
+                    //string no = i.ToString();
+                    Thread myThread = new Thread(new ThreadStart(sleepThread.mySleepMethod));
+                    myThread.Name = "thread" + i;
+                    System.Diagnostics.Debug.WriteLine(myThread.Name + " is going!!!");
+                    myThread.Start();
+                }
+
             }
         }
 }
