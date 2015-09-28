@@ -27,12 +27,18 @@ namespace TestThreads
             System.Diagnostics.Debug.WriteLine(current.Name + " awake!");
         }
 
-                string sayWhat;
+        string whatWork;
         string info = "nevermind..";
 
-        public ThreadSleeper(string sayWhat)
+        int numb;
+        string name;
+        bool yesorno;
+
+        public ThreadSleeper(ValueObject object1)
         {
-            this.sayWhat = sayWhat;
+            numb = object1.getNumb();
+            name = object1.getName();
+            yesorno = object1.getYesorno();
         }
 
         public void ShareSomeInfo(string info)
@@ -43,7 +49,7 @@ namespace TestThreads
         public void DoSomeWork()
         {
             Thread current = Thread.CurrentThread;
-            System.Diagnostics.Debug.WriteLine(current.Name + " is running! " + sayWhat + ". Hear me out: "+info);
+            System.Diagnostics.Debug.WriteLine(current.Name + " is running! My work: "+ numb+"/"+name+"/"+yesorno);
         }
     }
 }

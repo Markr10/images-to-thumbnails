@@ -14,6 +14,7 @@ namespace TestThreads
     {
         public int i, o = 0;
         public string name1;
+        public ValueObject[] objectArray1 = new ValueObject[10];
 
         public Form1()
         {
@@ -84,24 +85,62 @@ namespace TestThreads
             private void button1_Click(object sender, EventArgs e)
             {
                 
-                ThreadSleeper sleepThread = new ThreadSleeper("I'm alive!");
-                for(i = 1; i < 4; i++)
+                //ThreadSleeper sleepThread = new ThreadSleeper("I'm alive!");
+                //for(i = 1; i < 4; i++)
+                //{
+                //    //string no = i.ToString();
+                //    Thread myThread = new Thread(new ThreadStart(sleepThread.mySleepMethod));
+                //    myThread.Name = "thread" + i;
+                //    System.Diagnostics.Debug.WriteLine(myThread.Name + " is going!!!");
+                //    myThread.Start();
+                //}
+                //// TEST!! Make threads and let them say they live in debug window
+                //for (int q = 0; q < 3; q++)
+                //{
+                //    Thread myThread = new Thread(new ThreadStart(sleepThread.DoSomeWork));
+                //    myThread.Name = "Thread 00" + q;
+                //    sleepThread.ShareSomeInfo("some parameter stuff");
+                //    myThread.Start();
+                //}
+
+                // Test; make array to store valueObjects
+                
+
+
+                // Test; make task into object and let thread run it
+                for(int d = 0; d < 5; d++)
                 {
-                    //string no = i.ToString();
-                    Thread myThread = new Thread(new ThreadStart(sleepThread.mySleepMethod));
-                    myThread.Name = "thread" + i;
-                    System.Diagnostics.Debug.WriteLine(myThread.Name + " is going!!!");
-                    myThread.Start();
-                }
-                // TEST!! Make threads and let them say they live in debug window
-                for (int q = 0; q < 3; q++)
-                {
-                    Thread myThread = new Thread(new ThreadStart(sleepThread.DoSomeWork));
-                    myThread.Name = "Thread 00" + q;
-                    sleepThread.ShareSomeInfo("some parameter stuff");
-                    myThread.Start();
+                    ValueObject task = new ValueObject(d, "task" + d, true);
+                    System.Diagnostics.Debug.WriteLine(task.getName());
+                    objectArray1[d] = task;
                 }
 
+                for(int r = 0; r < 5; r++)
+                {
+                    
+                }
+                
+
+                //Show whats in the array
+                //int counter = 0;
+                //foreach (object element in objectArray1)
+                //{
+                //    if (element != null) // Avoid NullReferenceException
+                //    {
+                //        Console.WriteLine(counter +"~"+element.ToString() +" -- "+element.GetType());
+                //        counter++;
+                //    }
+                //}
+
+                //make some threads and let them get names
+                for (int q = 0; q < 5; q++)
+                {
+                    ThreadSleeper sleepThread = new ThreadSleeper(objectArray1[q]);
+                    sleepThread.ShareSomeInfo(objectArray1[q].getName());
+                    Thread myThread = new Thread(new ThreadStart(sleepThread.DoSomeWork));
+                    myThread.Name = "Thread" + q;
+                    myThread.Start();
+                }
             }
         }
 }
