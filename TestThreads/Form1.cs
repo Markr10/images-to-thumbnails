@@ -84,13 +84,21 @@ namespace TestThreads
             private void button1_Click(object sender, EventArgs e)
             {
                 
-                ThreadSleeper sleepThread = new ThreadSleeper();
+                ThreadSleeper sleepThread = new ThreadSleeper("I'm alive!");
                 for(i = 1; i < 4; i++)
                 {
                     //string no = i.ToString();
                     Thread myThread = new Thread(new ThreadStart(sleepThread.mySleepMethod));
                     myThread.Name = "thread" + i;
                     System.Diagnostics.Debug.WriteLine(myThread.Name + " is going!!!");
+                    myThread.Start();
+                }
+                // TEST!! Make threads and let them say they live in debug window
+                for (int q = 0; q < 3; q++)
+                {
+                    Thread myThread = new Thread(new ThreadStart(sleepThread.DoSomeWork));
+                    myThread.Name = "Thread 00" + q;
+                    sleepThread.ShareSomeInfo("some parameter stuff");
                     myThread.Start();
                 }
 

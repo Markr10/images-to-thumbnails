@@ -17,7 +17,7 @@ namespace TestThreads
             sleepTime = random.Next(1000);
             return sleepTime;
         }
-
+        
         public void mySleepMethod()
         {
             int sleepytime = MySleepThread();
@@ -25,6 +25,25 @@ namespace TestThreads
             System.Diagnostics.Debug.WriteLine(current.Name + " sleeping for " + sleepytime);
             Thread.Sleep(sleepytime);
             System.Diagnostics.Debug.WriteLine(current.Name + " awake!");
+        }
+
+                string sayWhat;
+        string info = "nevermind..";
+
+        public ThreadSleeper(string sayWhat)
+        {
+            this.sayWhat = sayWhat;
+        }
+
+        public void ShareSomeInfo(string info)
+        {
+            this.info = info;
+        }
+
+        public void DoSomeWork()
+        {
+            Thread current = Thread.CurrentThread;
+            System.Diagnostics.Debug.WriteLine(current.Name + " is running! " + sayWhat + ". Hear me out: "+info);
         }
     }
 }
