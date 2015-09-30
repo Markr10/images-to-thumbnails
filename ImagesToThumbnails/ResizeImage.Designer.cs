@@ -43,6 +43,8 @@
             this.rbFitModeFitWidth = new System.Windows.Forms.RadioButton();
             this.rbFitModeFit = new System.Windows.Forms.RadioButton();
             this.cbOverwriteExistingfiles = new System.Windows.Forms.CheckBox();
+            this.button2 = new System.Windows.Forms.Button();
+            this.label1 = new System.Windows.Forms.Label();
             this.groupBox1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.nudThreads)).BeginInit();
             this.gbSize.SuspendLayout();
@@ -51,11 +53,12 @@
             // 
             // button1
             // 
-            this.button1.Location = new System.Drawing.Point(13, 13);
+            this.button1.Font = new System.Drawing.Font("SketchFlow Print", 99.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.button1.Location = new System.Drawing.Point(13, 352);
             this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(75, 23);
+            this.button1.Size = new System.Drawing.Size(736, 149);
             this.button1.TabIndex = 0;
-            this.button1.Text = "button1";
+            this.button1.Text = "RESIZE!";
             this.button1.UseVisualStyleBackColor = true;
             this.button1.Click += new System.EventHandler(this.button1_Click);
             // 
@@ -67,11 +70,11 @@
             // tbOutput
             // 
             this.tbOutput.BackColor = System.Drawing.SystemColors.Window;
-            this.tbOutput.Location = new System.Drawing.Point(6, 19);
+            this.tbOutput.Location = new System.Drawing.Point(12, 19);
             this.tbOutput.Multiline = true;
             this.tbOutput.Name = "tbOutput";
             this.tbOutput.ReadOnly = true;
-            this.tbOutput.Size = new System.Drawing.Size(654, 289);
+            this.tbOutput.Size = new System.Drawing.Size(574, 296);
             this.tbOutput.TabIndex = 1;
             this.tbOutput.TextChanged += new System.EventHandler(this.tbOutput_TextChanged);
             // 
@@ -84,9 +87,9 @@
             this.groupBox1.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
             this.groupBox1.BackColor = System.Drawing.SystemColors.Control;
             this.groupBox1.Controls.Add(this.tbOutput);
-            this.groupBox1.Location = new System.Drawing.Point(122, 12);
+            this.groupBox1.Location = new System.Drawing.Point(163, 12);
             this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(666, 327);
+            this.groupBox1.Size = new System.Drawing.Size(592, 334);
             this.groupBox1.TabIndex = 2;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Output";
@@ -94,7 +97,7 @@
             // nudThreads
             // 
             this.nudThreads.Enabled = false;
-            this.nudThreads.Location = new System.Drawing.Point(22, 163);
+            this.nudThreads.Location = new System.Drawing.Point(107, 156);
             this.nudThreads.Maximum = new decimal(new int[] {
             100000,
             0,
@@ -106,7 +109,7 @@
             0,
             0});
             this.nudThreads.Name = "nudThreads";
-            this.nudThreads.Size = new System.Drawing.Size(75, 20);
+            this.nudThreads.Size = new System.Drawing.Size(34, 20);
             this.nudThreads.TabIndex = 3;
             this.nudThreads.Value = new decimal(new int[] {
             1,
@@ -119,7 +122,8 @@
             this.cbAutoCalcThreads.AutoSize = true;
             this.cbAutoCalcThreads.Checked = true;
             this.cbAutoCalcThreads.CheckState = System.Windows.Forms.CheckState.Checked;
-            this.cbAutoCalcThreads.Location = new System.Drawing.Point(13, 140);
+            this.cbAutoCalcThreads.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.cbAutoCalcThreads.Location = new System.Drawing.Point(13, 156);
             this.cbAutoCalcThreads.Name = "cbAutoCalcThreads";
             this.cbAutoCalcThreads.Size = new System.Drawing.Size(88, 17);
             this.cbAutoCalcThreads.TabIndex = 4;
@@ -131,9 +135,10 @@
             // 
             this.gbSize.Controls.Add(this.rbSize200x200);
             this.gbSize.Controls.Add(this.rbSize100x100);
+            this.gbSize.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.gbSize.Location = new System.Drawing.Point(13, 46);
             this.gbSize.Name = "gbSize";
-            this.gbSize.Size = new System.Drawing.Size(103, 88);
+            this.gbSize.Size = new System.Drawing.Size(130, 88);
             this.gbSize.TabIndex = 5;
             this.gbSize.TabStop = false;
             this.gbSize.Text = "Size";
@@ -143,7 +148,7 @@
             this.rbSize200x200.AutoSize = true;
             this.rbSize200x200.Location = new System.Drawing.Point(7, 44);
             this.rbSize200x200.Name = "rbSize200x200";
-            this.rbSize200x200.Size = new System.Drawing.Size(72, 17);
+            this.rbSize200x200.Size = new System.Drawing.Size(80, 20);
             this.rbSize200x200.TabIndex = 1;
             this.rbSize200x200.Text = "200 x 200";
             this.rbSize200x200.UseVisualStyleBackColor = true;
@@ -154,7 +159,7 @@
             this.rbSize100x100.Checked = true;
             this.rbSize100x100.Location = new System.Drawing.Point(9, 20);
             this.rbSize100x100.Name = "rbSize100x100";
-            this.rbSize100x100.Size = new System.Drawing.Size(72, 17);
+            this.rbSize100x100.Size = new System.Drawing.Size(80, 20);
             this.rbSize100x100.TabIndex = 0;
             this.rbSize100x100.TabStop = true;
             this.rbSize100x100.Text = "100 x 100";
@@ -166,9 +171,9 @@
             this.gbFitMode.Controls.Add(this.rbFitModeFitHeight);
             this.gbFitMode.Controls.Add(this.rbFitModeFitWidth);
             this.gbFitMode.Controls.Add(this.rbFitModeFit);
-            this.gbFitMode.Location = new System.Drawing.Point(13, 205);
+            this.gbFitMode.Location = new System.Drawing.Point(13, 202);
             this.gbFitMode.Name = "gbFitMode";
-            this.gbFitMode.Size = new System.Drawing.Size(103, 134);
+            this.gbFitMode.Size = new System.Drawing.Size(130, 143);
             this.gbFitMode.TabIndex = 6;
             this.gbFitMode.TabStop = false;
             this.gbFitMode.Text = "Fit mode";
@@ -218,18 +223,44 @@
             // cbOverwriteExistingfiles
             // 
             this.cbOverwriteExistingfiles.AutoSize = true;
-            this.cbOverwriteExistingfiles.Location = new System.Drawing.Point(20, 346);
+            this.cbOverwriteExistingfiles.Checked = true;
+            this.cbOverwriteExistingfiles.CheckState = System.Windows.Forms.CheckState.Checked;
+            this.cbOverwriteExistingfiles.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.cbOverwriteExistingfiles.Location = new System.Drawing.Point(13, 182);
             this.cbOverwriteExistingfiles.Name = "cbOverwriteExistingfiles";
             this.cbOverwriteExistingfiles.Size = new System.Drawing.Size(130, 17);
             this.cbOverwriteExistingfiles.TabIndex = 7;
             this.cbOverwriteExistingfiles.Text = "Overwrite existing files";
             this.cbOverwriteExistingfiles.UseVisualStyleBackColor = true;
             // 
+            // button2
+            // 
+            this.button2.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.button2.Location = new System.Drawing.Point(13, 12);
+            this.button2.Name = "button2";
+            this.button2.Size = new System.Drawing.Size(130, 28);
+            this.button2.TabIndex = 8;
+            this.button2.Text = "Select folder";
+            this.button2.UseVisualStyleBackColor = true;
+            this.button2.Click += new System.EventHandler(this.button2_Click);
+            // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label1.Location = new System.Drawing.Point(10, 137);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(118, 16);
+            this.label1.TabIndex = 9;
+            this.label1.Text = "Number of threads";
+            // 
             // ResizeImage
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(794, 456);
+            this.ClientSize = new System.Drawing.Size(763, 513);
+            this.Controls.Add(this.label1);
+            this.Controls.Add(this.button2);
             this.Controls.Add(this.cbOverwriteExistingfiles);
             this.Controls.Add(this.gbFitMode);
             this.Controls.Add(this.gbSize);
@@ -269,5 +300,7 @@
         private System.Windows.Forms.RadioButton rbFitModeFitWidth;
         private System.Windows.Forms.RadioButton rbFitModeFit;
         private System.Windows.Forms.CheckBox cbOverwriteExistingfiles;
+        private System.Windows.Forms.Button button2;
+        private System.Windows.Forms.Label label1;
     }
 }

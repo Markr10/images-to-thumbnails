@@ -65,6 +65,8 @@
     <Compile Include="ResizeImage.Designer.cs">
       <DependentUpon>ResizeImage.cs</DependentUpon>
     </Compile>
+    <Compile Include="Task.cs" />
+    <Compile Include="Threads.cs" />
     <EmbeddedResource Include="Main.resx">
       <DependentUpon>Main.cs</DependentUpon>
     </EmbeddedResource>
