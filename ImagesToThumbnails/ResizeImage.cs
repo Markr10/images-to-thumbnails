@@ -155,7 +155,7 @@ namespace ImagesToThumbnails
             // Don't create threads with no images to process
             // REMARK // Stel gelijk de standaard instelling in omdat anders het twee keer zal gebeuren
             int filesPerThread = 1;
-            if(numberOfThreads > 0 && numberOfThreads <= files.Length)
+            if(numberOfThreads > 0 && numberOfThreads < files.Length)
             {
 
                 // REMARK spelling and calculation
@@ -185,7 +185,7 @@ namespace ImagesToThumbnails
             tbOutput.AppendText("Number of files: " + files.Length + " Number of threads to be made: " + numberOfThreads + " Tasks per thread: " + filesPerThread + "\r\n");
             Console.WriteLine("Number of files: " + files.Length + " Number of threads to be made: " + numberOfThreads + " Tasks per thread: " + filesPerThread);
 
-            for (int i = 0; i < numberOfThreads; i++)
+            for (int i = 0; i < files.Length; i++)
             {
                 // Number of files for the last thread
                 // REMARK Verdeel de files eerlijk/evenrediger? over de threads
@@ -209,10 +209,14 @@ namespace ImagesToThumbnails
                 Task task = new Task(files[i], boxSize, fitMode, overwriteExistingfiles, taskNumber);
                 taskArray[i] = task;
 
-                Threads mythread = new Threads(taskArray[i], threadNumber);
-                Thread newThread = new Thread(new ThreadStart(mythread.startThreadProcess));
-                newThread.Start();
-                threadNumber++;
+                for (int c = 0; c < filesPerThread; c++)
+                {
+                    int multi = c + i;
+                    Threads mythread = new Threads(taskArray[multi], threadNumber);
+                    Thread newThread = new Thread(new ThreadStart(mythread.startThreadProcess));
+                    newThread.Start();
+                    threadNumber++;
+                }
                 
                 }
 
