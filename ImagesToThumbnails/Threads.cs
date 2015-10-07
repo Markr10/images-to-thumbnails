@@ -16,21 +16,27 @@ namespace ImagesToThumbnails
 {
     class Threads
     {
+        Task[] taskArray;
+        int taskIndex = 0;
         string filePath;
         Size boxSize;
         FitMode fitMode;
         bool overwriteExistingfiles;
         string taskNumber;
         string threadName;
+        
 
-        public Threads(Task task, int threadNumber)
+        public Threads(int threadNumber, int arrayLength)
         {
-            filePath = task.getPath();
-            boxSize = task.getSize();
-            fitMode = task.getFitMode();
-            overwriteExistingfiles = task.getOverwrite();
-            taskNumber = task.getTaskNumber();
             threadName = "Thread " + threadNumber;
+            taskArray = new Task[arrayLength];
+            Console.WriteLine("New thread is made, " + threadName + " has this many tasks: " + arrayLength);
+        }
+
+        public void addTask(Task task)
+        {
+            taskArray[taskIndex] = task;
+            taskIndex++;
         }
 
         public string getTaskNumber()
@@ -39,14 +45,23 @@ namespace ImagesToThumbnails
         }
         public void startThreadProcess()
         {
-            try
+            foreach (Task task in taskArray)
             {
-                CreateAndSaveImage(filePath, boxSize, fitMode, overwriteExistingfiles);
-                Console.WriteLine(threadName + " is converting " + filePath);
-            }
-            catch (Exception exception)
-            {
-                Console.WriteLine(taskNumber + " at " + threadName + " - Could not successfully create a thumbnail of \"" + Path.GetFileName(filePath) + "\": " + exception.Message + "\r\n");
+                filePath = task.getPath();
+                boxSize = task.getSize();
+                fitMode = task.getFitMode();
+                overwriteExistingfiles = task.getOverwrite();
+                taskNumber = task.getTaskNumber();
+
+                try
+                {
+                    CreateAndSaveImage(filePath, boxSize, fitMode, overwriteExistingfiles);
+                    Console.WriteLine(threadName + " is converting " + filePath);
+                }
+                catch (Exception exception)
+                {
+                    Console.WriteLine(taskNumber + " at " + threadName + " - Could not successfully create a thumbnail of \"" + Path.GetFileName(filePath) + "\": " + exception.Message + "\r\n");
+                }
             }
         }
 

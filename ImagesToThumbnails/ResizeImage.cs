@@ -192,7 +192,7 @@ namespace ImagesToThumbnails
                 // Voorkomt ingewikkelde code die out of bounds gaat 
                 if (numberOfThreads - (files.Length % numberOfThreads) == i)
                 {
-                    filesPerThread++;
+                    //filesPerThread++;
                 }
 
                 // Calculate filesIndex before increasing
@@ -207,18 +207,32 @@ namespace ImagesToThumbnails
                 // REMARK Thread name is in lower case for the style
                 string taskNumber = "task" + i;
                 Task task = new Task(files[i], boxSize, fitMode, overwriteExistingfiles, taskNumber);
-                taskArray[i] = task;
+                taskArray[i] = task;                
+            }
 
-                for (int c = 0; c < filesPerThread; c++)
+            int taskIndex = 0;
+            for (int c = 0; c < taskArray.Length; c++)
+            {
+                Threads mythread = new Threads(threadNumber, filesPerThread);
+
+                if((taskArray.Length - taskIndex - 1) < filesPerThread)
                 {
-                    int multi = c + i;
-                    Threads mythread = new Threads(taskArray[multi], threadNumber);
-                    Thread newThread = new Thread(new ThreadStart(mythread.startThreadProcess));
-                    newThread.Start();
-                    threadNumber++;
+                    mythread.addTask(taskArray[taskIndex]);
                 }
-                
+                else
+                {
+                    for (int t = 0; t < filesPerThread; t++)
+                    {
+                        mythread.addTask(taskArray[taskIndex + t]);
+                    }
                 }
+                Thread newThread = new Thread(new ThreadStart(mythread.startThreadProcess));
+
+                newThread.Start();
+                threadNumber++;
+                taskIndex =+ filesPerThread;
+                Console.WriteLine(taskIndex + ": current index");
+            }
 
                 
 
