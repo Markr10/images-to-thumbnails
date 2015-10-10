@@ -223,8 +223,6 @@
             // cbOverwriteExistingfiles
             // 
             this.cbOverwriteExistingfiles.AutoSize = true;
-            this.cbOverwriteExistingfiles.Checked = true;
-            this.cbOverwriteExistingfiles.CheckState = System.Windows.Forms.CheckState.Checked;
             this.cbOverwriteExistingfiles.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.cbOverwriteExistingfiles.Location = new System.Drawing.Point(13, 182);
             this.cbOverwriteExistingfiles.Name = "cbOverwriteExistingfiles";

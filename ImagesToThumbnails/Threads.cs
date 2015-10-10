@@ -30,7 +30,7 @@ namespace ImagesToThumbnails
         {
             threadName = "Thread " + threadNumber;
             taskArray = new Task[arrayLength];
-            Console.WriteLine("New thread is made, " + threadName + " has this many tasks: " + arrayLength);
+            Console.WriteLine("New thread is made, " + threadName + " has this many tasks: " + taskArray.Length);
         }
 
         public void addTask(Task task)
@@ -47,14 +47,17 @@ namespace ImagesToThumbnails
         {
             foreach (Task task in taskArray)
             {
-                filePath = task.getPath();
-                boxSize = task.getSize();
-                fitMode = task.getFitMode();
-                overwriteExistingfiles = task.getOverwrite();
-                taskNumber = task.getTaskNumber();
+
+                
 
                 try
                 {
+                    filePath = task.getPath();
+                    boxSize = task.getSize();
+                    fitMode = task.getFitMode();
+                    overwriteExistingfiles = task.getOverwrite();
+                    taskNumber = task.getTaskNumber();
+
                     CreateAndSaveImage(filePath, boxSize, fitMode, overwriteExistingfiles);
                     Console.WriteLine(threadName + " is converting " + filePath);
                 }

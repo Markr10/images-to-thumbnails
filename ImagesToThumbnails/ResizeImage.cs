@@ -211,26 +211,46 @@ namespace ImagesToThumbnails
             }
 
             int taskIndex = 0;
+            int countdown = taskArray.Length;
+            bool uneven = false;
+            int leftover = taskArray.Length % filesPerThread; 
+            Console.WriteLine("LEFTOVER: " + leftover);
+            if (leftover > 0)
+            { uneven = true; }
             for (int c = 0; c < taskArray.Length; c++)
             {
-                Threads mythread = new Threads(threadNumber, filesPerThread);
+                
 
-                if((taskArray.Length - taskIndex - 1) < filesPerThread)
+
+                if(uneven == true)
                 {
-                    mythread.addTask(taskArray[taskIndex]);
+                    Threads mythread = new Threads(threadNumber, filesPerThread + leftover);
+                    for (int x = 0; x < (filesPerThread + leftover); x++)
+                    {
+                        mythread.addTask(taskArray[taskIndex]);
+                        countdown--;
+                        taskIndex++;
+                    }
+                    uneven = false;
+                    c = c + leftover + filesPerThread - 1;
+                    Thread newThread = new Thread(new ThreadStart(mythread.startThreadProcess));
+                    newThread.Start();
+                    threadNumber++;
                 }
                 else
                 {
+                    Threads mythread = new Threads(threadNumber, filesPerThread);
                     for (int t = 0; t < filesPerThread; t++)
                     {
-                        mythread.addTask(taskArray[taskIndex + t]);
+                        mythread.addTask(taskArray[taskIndex]);
+                        countdown--;
+                        taskIndex++;
                     }
+                    c = c + filesPerThread - 1;
+                    Thread newThread = new Thread(new ThreadStart(mythread.startThreadProcess));
+                    newThread.Start();
+                    threadNumber++;
                 }
-                Thread newThread = new Thread(new ThreadStart(mythread.startThreadProcess));
-
-                newThread.Start();
-                threadNumber++;
-                taskIndex =+ filesPerThread;
                 Console.WriteLine(taskIndex + ": current index");
             }
 
