@@ -16,15 +16,12 @@ namespace ImagesToThumbnails
 {
     public partial class ResizeImage : Form
     {
-        // TODO Use a seperate thread safe counter class to keep track of the running threads
-        // TODO Make thread safe methods for increasing and decreasing, if possible use 'this' for the lock in that class.
         private ThreadSafeDictionary<string, Thread> tasks;
         /// <summary>
         /// Keeps track of the number for the name of the next task.
         /// This number is unrelated to the running tasks.
         /// </summary>
         private int tasksCounter;
-        // TODO Encapsulation in a class?
         private bool noErrors;
         private string SelectedPath;
         
@@ -122,9 +119,7 @@ namespace ImagesToThumbnails
             else if (numberOfThreads < 1 && numberOfThreads != -1)
             {
                 throw new ArgumentException("numberOfThreads should be -1 or > 0.");
-            }
-
-            // TODO Remove the next line or place it to another location
+            }   
             noErrors = true;
 
             // Change cursor to notify the user that we are busy.
@@ -139,17 +134,17 @@ namespace ImagesToThumbnails
             //tbOutput.AppendText(NamedBackgroundWorker)sender.Name + " - Started...\r\n");
 
             // Get all files
-            Console.WriteLine("------------------------");
-            Console.WriteLine("Just made a list of files! Here they are:");
+            // Debug output:: Console.WriteLine("------------------------");
+            // Debug output:: Console.WriteLine("Just made a list of files! Here they are:");
             string[] files = Directory.GetFiles(directoryPath);
-            foreach (string element in files)
-            {
-                if (element != null) // Avoid NullReferenceException
-                {
-                    Console.WriteLine(element);
-                }
-            }
-            Console.WriteLine("------------------------");
+            // Debug output:: foreach (string element in files)
+            // Debug output:: {
+            // Debug output::     if (element != null) // Avoid NullReferenceException
+            // Debug output::     {
+            // Debug output::         Console.WriteLine(element);
+            // Debug output::     }
+            // Debug output:: }
+            // Debug output:: Console.WriteLine("------------------------");
 
             // Calculate the number of files per thread
             // Don't create threads with no images to process
@@ -174,54 +169,37 @@ namespace ImagesToThumbnails
                 numberOfThreads = files.Length;
             }
 
-            
-
-            // TODO Use CountdownEvent with numberOfThreads to keep track of the finished threads.
-            // REMARK
-
+            // Create an array to store the tasks in, same length as files
             Task[] taskArray = new Task[files.Length];
             int threadNumber = 0;
 
+            // Show how many files, threads and filesPerThread
             tbOutput.AppendText("Number of files: " + files.Length + " Number of threads to be made: " + numberOfThreads + " Tasks per thread: " + filesPerThread + "\r\n");
-            Console.WriteLine("Number of files: " + files.Length + " Number of threads to be made: " + numberOfThreads + " Tasks per thread: " + filesPerThread);
+            // Debug output:: Console.WriteLine("Number of files: " + files.Length + " Number of threads to be made: " + numberOfThreads + " Tasks per thread: " + filesPerThread);
 
+            // Go through all the files
             for (int i = 0; i < files.Length; i++)
             {
-                // Number of files for the last thread
-                // REMARK Verdeel de files eerlijk/evenrediger? over de threads
-                // Voorkomt ingewikkelde code die out of bounds gaat 
-                if (numberOfThreads - (files.Length % numberOfThreads) == i)
-                {
-                    //filesPerThread++;
-                }
-
-                // Calculate filesIndex before increasing
-                // filesIndex // REMARK behoud de juiste index
-                // REMARK Verdeel elk bestand zo eerlijk mogelijk over een thread
-                // Voorkomt een vergelijking met 0 en -1 om de index te verkrijgen
-                //filesIndex += filesPerThread;
-
-                // TODO Setup the custom backgroundworker
-                //      Start thread within that method
-                //      Maybe remove some parameters
-                // REMARK Thread name is in lower case for the style
+                // Create a task object for every file and put this in the task array
                 string taskNumber = "task" + i;
                 Task task = new Task(files[i], boxSize, fitMode, overwriteExistingfiles, taskNumber);
                 taskArray[i] = task;                
             }
 
+            // Initiate all variables, Index is current index in taskArray, countodwn is number of files left to process, 
+            // uneven is to make sure all files are being processed even if the result of files.Length / filesPerThread doesnt give a round number
+            // leftover is the number of files thats left over after files.Length / filesPerThread
             int taskIndex = 0;
             int countdown = taskArray.Length;
             bool uneven = false;
             int leftover = taskArray.Length % filesPerThread; 
-            Console.WriteLine("LEFTOVER: " + leftover);
+            // Debug output:: Console.WriteLine("LEFTOVER: " + leftover);
             if (leftover > 0)
             { uneven = true; }
+            // This forloop goes through all tasks
             for (int c = 0; c < taskArray.Length; c++)
             {
-                
-
-
+                // first part processes all files. First thread processes the leftover too, rest does regular filesPerThread amounts
                 if(uneven == true)
                 {
                     Threads mythread = new Threads(threadNumber, filesPerThread + leftover);
@@ -237,6 +215,7 @@ namespace ImagesToThumbnails
                     newThread.Start();
                     threadNumber++;
                 }
+                // if no leftover, process all threads like regular filesPerThread amounts
                 else
                 {
                     Threads mythread = new Threads(threadNumber, filesPerThread);
@@ -251,7 +230,7 @@ namespace ImagesToThumbnails
                     newThread.Start();
                     threadNumber++;
                 }
-                Console.WriteLine(taskIndex + ": current index");
+                // Debug output:: Console.WriteLine(taskIndex + ": current index");
             }
 
                 
@@ -260,7 +239,6 @@ namespace ImagesToThumbnails
             FinishProcessingFiles(taskName, noErrors);
         }
 
-        // TODO Rename method and change parameters to come in accordance with the backgroundworker
         private void ProcessingFilesUpdate(string taskName, string threadName, string filePath, Exception exception)
         {
             // TODO Maybe include an invoke check.
@@ -268,11 +246,8 @@ namespace ImagesToThumbnails
             tbOutput.AppendText(taskName + " at " + threadName + " - Could not successfully create a thumbnail of \"" + Path.GetFileName(filePath) + "\": " + exception.Message + "\r\n");
         }
 
-        // TODO Rename method and change parameters to come in accordance with the backgroundworker
         private void FinishProcessingFiles(string taskName, bool noErrors)
         {
-            // TODO Replace with commented line: remove next line and uncomment the second next line
-            // TODO Then replace it with the newly created decrease method of the counter class 
             tasks.Remove("Task " + tasksCounter);
             //tasks.Remove((NamedBackgroundWorker)sender.Name);
 
@@ -294,7 +269,6 @@ namespace ImagesToThumbnails
         private void tbOutput_TextChanged(object sender, EventArgs e)
         {
             // Enable the scrollbar when it is needed. No need to disable it again because the text will only increase.
-            
             if (tbOutput.ScrollBars == ScrollBars.None && tbOutput.Lines.Length > 15)
             {
                 tbOutput.ScrollBars = ScrollBars.Vertical;
