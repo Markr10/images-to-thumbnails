@@ -24,7 +24,6 @@ namespace ImagesToThumbnails
         private int tasksCounter;
         private bool noErrors;
         private string SelectedPath;
-        
 
         public ResizeImage()
         {
@@ -119,7 +118,7 @@ namespace ImagesToThumbnails
             else if (numberOfThreads < 1 && numberOfThreads != -1)
             {
                 throw new ArgumentException("numberOfThreads should be -1 or > 0.");
-            }   
+            }
             noErrors = true;
 
             // Change cursor to notify the user that we are busy.
@@ -196,10 +195,11 @@ namespace ImagesToThumbnails
             // Debug output:: Console.WriteLine("LEFTOVER: " + leftover);
             if (leftover > 0)
             { uneven = true; }
-            // This forloop goes through all tasks
+            // This for loop goes through all tasks
             for (int c = 0; c < taskArray.Length; c++)
             {
-                // first part processes all files. First thread processes the leftover too, rest does regular filesPerThread amounts
+                // First part processes all files.
+                // First thread processes the leftover too, rest does regular filesPerThread amounts
                 if(uneven == true)
                 {
                     Threads mythread = new Threads(threadNumber, filesPerThread + leftover);
@@ -215,7 +215,7 @@ namespace ImagesToThumbnails
                     newThread.Start();
                     threadNumber++;
                 }
-                // if no leftover, process all threads like regular filesPerThread amounts
+                // If no leftover, process all threads like regular filesPerThread amounts
                 else
                 {
                     Threads mythread = new Threads(threadNumber, filesPerThread);
@@ -233,8 +233,6 @@ namespace ImagesToThumbnails
                 // Debug output:: Console.WriteLine(taskIndex + ": current index");
             }
 
-                
-
             // TODO Use the CountdownEvent to wait to all threads are done and then call this method.
             FinishProcessingFiles(taskName, noErrors);
         }
@@ -249,7 +247,6 @@ namespace ImagesToThumbnails
         private void FinishProcessingFiles(string taskName, bool noErrors)
         {
             tasks.Remove("Task " + tasksCounter);
-            //tasks.Remove((NamedBackgroundWorker)sender.Name);
 
             if (tasks.Count == 0)
             {
@@ -268,7 +265,7 @@ namespace ImagesToThumbnails
 
         private void tbOutput_TextChanged(object sender, EventArgs e)
         {
-            // Enable the scrollbar when it is needed. No need to disable it again because the text will only increase.
+            // Enable the scrollbar when it is needed. There is no need to disable it again because the text will only increase.
             if (tbOutput.ScrollBars == ScrollBars.None && tbOutput.Lines.Length > 15)
             {
                 tbOutput.ScrollBars = ScrollBars.Vertical;

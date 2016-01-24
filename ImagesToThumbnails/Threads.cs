@@ -16,7 +16,7 @@ namespace ImagesToThumbnails
 {
     class Threads
     {
-        // Initiate vars
+        // Define vars
         Task[] taskArray;
         int taskIndex = 0;
         string filePath;
@@ -25,8 +25,8 @@ namespace ImagesToThumbnails
         bool overwriteExistingfiles;
         string taskNumber;
         string threadName;
-        
-        // Makes a new threead 
+
+        // Makes a new thread 
         public Threads(int threadNumber, int arrayLength)
         {
             threadName = "Thread " + threadNumber;
@@ -87,6 +87,10 @@ namespace ImagesToThumbnails
         {
             // Create the variable for the new image
             Bitmap newImage;
+            // Don't use Image.FromFile because it locks the file. Use instead a stream and copy it to another stream to release it early.
+            // Furthermore according KB814675 keep the (second/memory) stream open for the lifetime of the image.
+            // That means that there must be a reference to it between methods or the bitmap must be 'pixel perfect' copied (not Cloned).
+            // Use using (with for example Graphics, Bitmap or Stream objects) to dispose the memory earlier.
             using (MemoryStream memoryStream = new MemoryStream())
             {
                 // Allow early disposal of the stream of the original image
@@ -129,6 +133,11 @@ namespace ImagesToThumbnails
 
         private void SaveImage(string originalFilePath, Size boxSize, FitMode fitMode, Bitmap newImage, bool overwriteExistingfiles, IEncoder encoder)
         {
+            // Encoder only needed to write files, so the interface provides enough methods.
+            // Checks if it support the file format in the given path, so create this object before everything else.
+            // If you don't do this, it is for example possible to create empty/overwrite existing files
+            // because then a (new) empty file is created with the file stream method.
+
             // Creates, if needed, the sub directory
             string dirName = Path.Combine(Path.GetDirectoryName(originalFilePath), boxSize.Width + "x" + boxSize.Height + " - " + fitMode.ToSentenceCase());
             Directory.CreateDirectory(dirName);
