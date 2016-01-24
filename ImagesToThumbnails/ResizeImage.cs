@@ -49,60 +49,60 @@ namespace ImagesToThumbnails
         private void button1_Click(object sender, EventArgs e)
         {
             // When the user selected a folder try to process all files
-                int numberOfThreads = -1;
-                if (! cbAutoCalcThreads.Checked)
-                {
-                    numberOfThreads = (int)nudThreads.Value;
-                }
+            int numberOfThreads = -1;
+            if (!cbAutoCalcThreads.Checked)
+            {
+                numberOfThreads = (int)nudThreads.Value;
+            }
 
-                // Grab size
-                // Initialise with default value to prevent use of unassigned local variable and convert to null problem.
-                Size boxSize = new Size(100, 100);
-                if (rbSize200x200.Checked)
-                {
-                    boxSize = new Size(200, 200);
-                }
-                else if (! rbSize100x100.Checked)
-                {
-                    throw new ArgumentException("Size is not selected or not supported.");
-                }
+            // Grab size
+            // Initialise with default value to prevent use of unassigned local variable and convert to null problem.
+            Size boxSize = new Size(100, 100);
+            if (rbSize200x200.Checked)
+            {
+                boxSize = new Size(200, 200);
+            }
+            else if (!rbSize100x100.Checked)
+            {
+                throw new ArgumentException("Size is not selected or not supported.");
+            }
 
-                // Grab fitMode
-                // Initialise with default value to prevent use of unassigned local variable and convert to null problem.
-                FitMode fitMode = FitMode.Fit;
-                if (rbFitModeFitHeight.Checked)
-                {
-                    fitMode = FitMode.FitHeight;
-                }
-                else if (rbFitModeFitWidth.Checked)
-                {
-                    fitMode = FitMode.FitWidth;
-                }
-                else if (rbFitModeStretch.Checked)
-                {
-                    fitMode = FitMode.Stretch;
-                }
-                else if(! rbFitModeFit.Checked)
-                {
-                    throw new ArgumentException("Fit mode is not selected or not supported.");
-                }
+            // Grab fitMode
+            // Initialise with default value to prevent use of unassigned local variable and convert to null problem.
+            FitMode fitMode = FitMode.Fit;
+            if (rbFitModeFitHeight.Checked)
+            {
+                fitMode = FitMode.FitHeight;
+            }
+            else if (rbFitModeFitWidth.Checked)
+            {
+                fitMode = FitMode.FitWidth;
+            }
+            else if (rbFitModeStretch.Checked)
+            {
+                fitMode = FitMode.Stretch;
+            }
+            else if (!rbFitModeFit.Checked)
+            {
+                throw new ArgumentException("Fit mode is not selected or not supported.");
+            }
 
-                // Start task as thread
-                string taskName = "Task " + ++tasksCounter;
+            // Start task as thread
+            string taskName = "Task " + ++tasksCounter;
 
-                // TODO Create thread, maybe as backgroundworker
-                //      So create a custom backgroundworker class with a property to set the name (NamedBackgroundWorker?)
-                // TODO Set the do worker event handler of Backgroundworker as a lambda Expressions?
-                //      Pass the parameters of the StartProcessingFiles call below.
-                // TODO Replace with commented line: remove next line and uncomment the second next line
-                // TODO Then replace it with the newly created increase method of the counter class 
-                tasks.Add(taskName, null);
-                //tasks.Add(taskName, backgroundworker);
+            // TODO Create thread, maybe as backgroundworker
+            //      So create a custom backgroundworker class with a property to set the name (NamedBackgroundWorker?)
+            // TODO Set the do worker event handler of Backgroundworker as a lambda Expressions?
+            //      Pass the parameters of the StartProcessingFiles call below.
+            // TODO Replace with commented line: remove next line and uncomment the second next line
+            // TODO Then replace it with the newly created increase method of the counter class 
+            tasks.Add(taskName, null);
+            //tasks.Add(taskName, backgroundworker);
 
-                // TODO Start thread/backgroundworker
-                //      Maybe remove taskName
-                // Start processing with selected arguments
-                StartProcessingFiles(SelectedPath, boxSize, fitMode, cbOverwriteExistingfiles.Checked, taskName, numberOfThreads);
+            // TODO Start thread/backgroundworker
+            //      Maybe remove taskName
+            // Start processing with selected arguments
+            StartProcessingFiles(SelectedPath, boxSize, fitMode, cbOverwriteExistingfiles.Checked, taskName, numberOfThreads);
         }
 
         // TODO Rename method and change parameters to come in accordance with the backgroundworker
@@ -149,12 +149,12 @@ namespace ImagesToThumbnails
             // Don't create threads with no images to process
             // REMARK // Stel gelijk de standaard instelling in omdat anders het twee keer zal gebeuren
             int filesPerThread = 1;
-            if(numberOfThreads > 0 && numberOfThreads < files.Length)
+            if (numberOfThreads > 0 && numberOfThreads < files.Length)
             {
 
                 // REMARK spelling and calculation
                 // Floors integer automatically
-                filesPerThread = files.Length / numberOfThreads; 
+                filesPerThread = files.Length / numberOfThreads;
             }
             else
             {
@@ -182,7 +182,7 @@ namespace ImagesToThumbnails
                 // Create a task object for every file and put this in the task array
                 string taskNumber = "task" + i;
                 Task task = new Task(files[i], boxSize, fitMode, overwriteExistingfiles, taskNumber);
-                taskArray[i] = task;                
+                taskArray[i] = task;
             }
 
             // Initiate all variables, Index is current index in taskArray, countodwn is number of files left to process, 
@@ -191,7 +191,7 @@ namespace ImagesToThumbnails
             int taskIndex = 0;
             int countdown = taskArray.Length;
             bool uneven = false;
-            int leftover = taskArray.Length % filesPerThread; 
+            int leftover = taskArray.Length % filesPerThread;
             // Debug output:: Console.WriteLine("LEFTOVER: " + leftover);
             if (leftover > 0)
             { uneven = true; }
@@ -200,7 +200,7 @@ namespace ImagesToThumbnails
             {
                 // First part processes all files.
                 // First thread processes the leftover too, rest does regular filesPerThread amounts
-                if(uneven == true)
+                if (uneven == true)
                 {
                     Threads mythread = new Threads(threadNumber, filesPerThread + leftover);
                     for (int x = 0; x < (filesPerThread + leftover); x++)
