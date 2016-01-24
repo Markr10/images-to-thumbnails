@@ -42,7 +42,7 @@ namespace ImagesToThumbnails
         }
 
         /// <summary>
-        /// Textbox change event
+        /// Output textbox change event
         /// </summary>
         /// <param name="sender">Sender</param>
         /// <param name="e">Event arguments</param>
@@ -56,7 +56,7 @@ namespace ImagesToThumbnails
         }
 
         /// <summary>
-        /// Checkbox checked changed event
+        /// Automatically calculation of threads checkbox checked changed event
         /// </summary>
         /// <param name="sender">Sender</param>
         /// <param name="e">Event arguments</param>
@@ -67,7 +67,7 @@ namespace ImagesToThumbnails
         }
 
         /// <summary>
-        /// Button click event
+        /// Folder button click event
         /// </summary>
         /// <param name="sender">Sender</param>
         /// <param name="e">Event arguments</param>
@@ -80,7 +80,7 @@ namespace ImagesToThumbnails
         }
 
         /// <summary>
-        /// Button click event
+        /// Resize button click event
         /// </summary>
         /// <param name="sender">Sender</param>
         /// <param name="e">Event arguments</param>
