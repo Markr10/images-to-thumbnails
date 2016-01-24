@@ -25,6 +25,9 @@ namespace ImagesToThumbnails
         private bool noErrors;
         private string SelectedPath;
 
+        /// <summary>
+        /// Constructor
+        /// </summary>
         public ResizeImage()
         {
             InitializeComponent();
@@ -38,6 +41,36 @@ namespace ImagesToThumbnails
             // TODO Shutdown all (foreground) threads on application shutdown!
         }
 
+        /// <summary>
+        /// Textbox change event
+        /// </summary>
+        /// <param name="sender">Sender</param>
+        /// <param name="e">Event arguments</param>
+        private void tbOutput_TextChanged(object sender, EventArgs e)
+        {
+            // Enable the scrollbar when it is needed. There is no need to disable it again because the text will only increase.
+            if (tbOutput.ScrollBars == ScrollBars.None && tbOutput.Lines.Length > 15)
+            {
+                tbOutput.ScrollBars = ScrollBars.Vertical;
+            }
+        }
+
+        /// <summary>
+        /// Checkbox checked changed event
+        /// </summary>
+        /// <param name="sender">Sender</param>
+        /// <param name="e">Event arguments</param>
+        private void cbAutoCalcThreads_CheckedChanged(object sender, EventArgs e)
+        {
+            // Disable number of threads control when they should be automatically calculated
+            nudThreads.Enabled = !cbAutoCalcThreads.Checked;
+        }
+
+        /// <summary>
+        /// Button click event
+        /// </summary>
+        /// <param name="sender">Sender</param>
+        /// <param name="e">Event arguments</param>
         private void button2_Click(object sender, EventArgs e)
         {
             if (folderBrowserDialog.ShowDialog() == DialogResult.OK)
@@ -46,6 +79,11 @@ namespace ImagesToThumbnails
             }
         }
 
+        /// <summary>
+        /// Button click event
+        /// </summary>
+        /// <param name="sender">Sender</param>
+        /// <param name="e">Event arguments</param>
         private void button1_Click(object sender, EventArgs e)
         {
             // When the user selected a folder try to process all files
@@ -237,6 +275,13 @@ namespace ImagesToThumbnails
             FinishProcessingFiles(taskName, noErrors);
         }
 
+        /// <summary>
+        /// Updates the progress when there is an error.
+        /// </summary>
+        /// <param name="taskName">The name of the task</param>
+        /// <param name="threadName">The name of the thread</param>
+        /// <param name="filePath">The file path of the image</param>
+        /// <param name="exception">The exception that occurred</param>
         private void ProcessingFilesUpdate(string taskName, string threadName, string filePath, Exception exception)
         {
             // TODO Maybe include an invoke check.
@@ -244,6 +289,11 @@ namespace ImagesToThumbnails
             tbOutput.AppendText(taskName + " at " + threadName + " - Could not successfully create a thumbnail of \"" + Path.GetFileName(filePath) + "\": " + exception.Message + "\r\n");
         }
 
+        /// <summary>
+        /// Finishes the task.
+        /// </summary>
+        /// <param name="taskName">The name of the thread</param>
+        /// <param name="noErrors">If there were errors with processing or not</param>
         private void FinishProcessingFiles(string taskName, bool noErrors)
         {
             tasks.Remove("Task " + tasksCounter);
@@ -261,21 +311,6 @@ namespace ImagesToThumbnails
             }
 
             tbOutput.AppendText(taskName + " finished.\r\n");
-        }
-
-        private void tbOutput_TextChanged(object sender, EventArgs e)
-        {
-            // Enable the scrollbar when it is needed. There is no need to disable it again because the text will only increase.
-            if (tbOutput.ScrollBars == ScrollBars.None && tbOutput.Lines.Length > 15)
-            {
-                tbOutput.ScrollBars = ScrollBars.Vertical;
-            }
-        }
-
-        private void cbAutoCalcThreads_CheckedChanged(object sender, EventArgs e)
-        {
-            // Disable number of threads control when they should be automatically calculated
-            nudThreads.Enabled = !cbAutoCalcThreads.Checked;
         }
     }
 }

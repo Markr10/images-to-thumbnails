@@ -70,6 +70,13 @@ namespace ImagesToThumbnails
             }
         }
 
+        /// <summary>
+        /// Creates and saves a new image of the image on the given path with respecting the boxSize and fitMode.
+        /// </summary>
+        /// <param name="filePath">The file path of the original image</param>
+        /// <param name="boxSize">The preferred size of the new image</param>
+        /// <param name="fitMode">The fitMode that is used to convert the size of the image to the preferred size</param>
+        /// <param name="overwriteExistingfiles">If a file on the generated location exists, it will be overwritten</param>
         private void CreateAndSaveImage(string filePath, Size boxSize, FitMode fitMode, bool overwriteExistingfiles)
         {
             // Avoid unnecessary converting of files.
@@ -83,6 +90,13 @@ namespace ImagesToThumbnails
             }
         }
 
+        /// <summary>
+        /// Creates a new image of the image on the given path with respecting the boxSize and fitMode.
+        /// </summary>
+        /// <param name="filePath">The file path of the original image</param>
+        /// <param name="boxSize">The preferred size of the new image</param>
+        /// <param name="fitMode">The fitMode that is used to convert the size of the image to the preferred size</param>
+        /// <returns>The newly created image</returns>
         private Bitmap CreateImage(string filePath, Size boxSize, FitMode fitMode)
         {
             // Create the variable for the new image
@@ -131,13 +145,27 @@ namespace ImagesToThumbnails
             return newImage;
         }
 
+        /// <summary>
+        /// Saves a new image to a location.
+        /// This location will be based on the value of the given parameters.
+        /// </summary>
+        /// <param name="originalFilePath">The file path of the original image</param>
+        /// <param name="boxSize">The preferred size of the image</param>
+        /// <param name="fitMode">The fitMode that should be used convert the size</param>
+        /// <param name="newImage">The new image</param>
+        /// <param name="overwriteExistingfiles">If an existing file must be overwritten</param>
+        /// <param name="encoder">
+        /// The encoder that is used to write the image.
+        /// <remarks>
+        /// The encoder is only needed to write files, so the interface provides enough methods.
+        /// At creation it checks if it support the file format in the given path, so
+        /// create this object before everything else (like converting the image).
+        /// If you don't do this, it is for example possible to create empty/overwrite existing files
+        /// because then a (new) empty file is created with the file stream method.
+        /// </remarks>
+        /// </param>
         private void SaveImage(string originalFilePath, Size boxSize, FitMode fitMode, Bitmap newImage, bool overwriteExistingfiles, IEncoder encoder)
         {
-            // Encoder only needed to write files, so the interface provides enough methods.
-            // Checks if it support the file format in the given path, so create this object before everything else.
-            // If you don't do this, it is for example possible to create empty/overwrite existing files
-            // because then a (new) empty file is created with the file stream method.
-
             // Creates, if needed, the sub directory
             string dirName = Path.Combine(Path.GetDirectoryName(originalFilePath), boxSize.Width + "x" + boxSize.Height + " - " + fitMode.ToSentenceCase());
             Directory.CreateDirectory(dirName);
@@ -169,6 +197,13 @@ namespace ImagesToThumbnails
             }
         }
 
+        /// <summary>
+        /// Converts a size to a new size while respecting the fitMode.
+        /// </summary>
+        /// <param name="originalSize">The original size of the image</param>
+        /// <param name="boxSize">The preferred size</param>
+        /// <param name="fitMode">The fitMode that should be used to convert the size</param>
+        /// <returns>The converted size</returns>
         private static Size ToNewSize(Size originalSize, Size boxSize, FitMode fitMode)
         {
             // REMARK
