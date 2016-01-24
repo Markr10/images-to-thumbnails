@@ -39,8 +39,6 @@
             this.rbSize100x100 = new System.Windows.Forms.RadioButton();
             this.gbFitMode = new System.Windows.Forms.GroupBox();
             this.rbFitModeStretch = new System.Windows.Forms.RadioButton();
-            this.rbFitModeFitHeight = new System.Windows.Forms.RadioButton();
-            this.rbFitModeFitWidth = new System.Windows.Forms.RadioButton();
             this.rbFitModeFit = new System.Windows.Forms.RadioButton();
             this.cbOverwriteExistingfiles = new System.Windows.Forms.CheckBox();
             this.btnFolder = new System.Windows.Forms.Button();
@@ -168,12 +166,10 @@
             // gbFitMode
             // 
             this.gbFitMode.Controls.Add(this.rbFitModeStretch);
-            this.gbFitMode.Controls.Add(this.rbFitModeFitHeight);
-            this.gbFitMode.Controls.Add(this.rbFitModeFitWidth);
             this.gbFitMode.Controls.Add(this.rbFitModeFit);
             this.gbFitMode.Location = new System.Drawing.Point(13, 202);
             this.gbFitMode.Name = "gbFitMode";
-            this.gbFitMode.Size = new System.Drawing.Size(130, 143);
+            this.gbFitMode.Size = new System.Drawing.Size(130, 88);
             this.gbFitMode.TabIndex = 6;
             this.gbFitMode.TabStop = false;
             this.gbFitMode.Text = "Fit mode";
@@ -181,38 +177,18 @@
             // rbFitModeStretch
             // 
             this.rbFitModeStretch.AutoSize = true;
-            this.rbFitModeStretch.Location = new System.Drawing.Point(16, 108);
+            this.rbFitModeStretch.Location = new System.Drawing.Point(9, 42);
             this.rbFitModeStretch.Name = "rbFitModeStretch";
             this.rbFitModeStretch.Size = new System.Drawing.Size(59, 17);
             this.rbFitModeStretch.TabIndex = 5;
             this.rbFitModeStretch.Text = "Stretch";
             this.rbFitModeStretch.UseVisualStyleBackColor = true;
             // 
-            // rbFitModeFitHeight
-            // 
-            this.rbFitModeFitHeight.AutoSize = true;
-            this.rbFitModeFitHeight.Location = new System.Drawing.Point(16, 85);
-            this.rbFitModeFitHeight.Name = "rbFitModeFitHeight";
-            this.rbFitModeFitHeight.Size = new System.Drawing.Size(68, 17);
-            this.rbFitModeFitHeight.TabIndex = 4;
-            this.rbFitModeFitHeight.Text = "Fit height";
-            this.rbFitModeFitHeight.UseVisualStyleBackColor = true;
-            // 
-            // rbFitModeFitWidth
-            // 
-            this.rbFitModeFitWidth.AutoSize = true;
-            this.rbFitModeFitWidth.Location = new System.Drawing.Point(16, 62);
-            this.rbFitModeFitWidth.Name = "rbFitModeFitWidth";
-            this.rbFitModeFitWidth.Size = new System.Drawing.Size(64, 17);
-            this.rbFitModeFitWidth.TabIndex = 3;
-            this.rbFitModeFitWidth.Text = "Fit width";
-            this.rbFitModeFitWidth.UseVisualStyleBackColor = true;
-            // 
             // rbFitModeFit
             // 
             this.rbFitModeFit.AutoSize = true;
             this.rbFitModeFit.Checked = true;
-            this.rbFitModeFit.Location = new System.Drawing.Point(16, 41);
+            this.rbFitModeFit.Location = new System.Drawing.Point(9, 19);
             this.rbFitModeFit.Name = "rbFitModeFit";
             this.rbFitModeFit.Size = new System.Drawing.Size(36, 17);
             this.rbFitModeFit.TabIndex = 2;
@@ -294,8 +270,6 @@
         private System.Windows.Forms.RadioButton rbSize100x100;
         private System.Windows.Forms.GroupBox gbFitMode;
         private System.Windows.Forms.RadioButton rbFitModeStretch;
-        private System.Windows.Forms.RadioButton rbFitModeFitHeight;
-        private System.Windows.Forms.RadioButton rbFitModeFitWidth;
         private System.Windows.Forms.RadioButton rbFitModeFit;
         private System.Windows.Forms.CheckBox cbOverwriteExistingfiles;
         private System.Windows.Forms.Button btnFolder;

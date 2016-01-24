@@ -35,8 +35,7 @@ namespace ImagesToThumbnails
             tasksCounter = 0;
 
             // Open automatically the My Pictures/Pictures folder
-            // TODO Uncomment
-            //folderBrowserDialog.SelectedPath = Environment.GetFolderPath(Environment.SpecialFolder.MyPictures);
+            folderBrowserDialog.SelectedPath = Environment.GetFolderPath(Environment.SpecialFolder.MyPictures);
 
             // TODO Shutdown all (foreground) threads on application shutdown!
         }
@@ -108,15 +107,7 @@ namespace ImagesToThumbnails
             // Grab fitMode
             // Initialise with default value to prevent use of unassigned local variable and convert to null problem.
             FitMode fitMode = FitMode.Fit;
-            if (rbFitModeFitHeight.Checked)
-            {
-                fitMode = FitMode.FitHeight;
-            }
-            else if (rbFitModeFitWidth.Checked)
-            {
-                fitMode = FitMode.FitWidth;
-            }
-            else if (rbFitModeStretch.Checked)
+            if (rbFitModeStretch.Checked)
             {
                 fitMode = FitMode.Stretch;
             }
