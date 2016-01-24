@@ -28,7 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.button1 = new System.Windows.Forms.Button();
+            this.btnResize = new System.Windows.Forms.Button();
             this.folderBrowserDialog = new System.Windows.Forms.FolderBrowserDialog();
             this.tbOutput = new System.Windows.Forms.TextBox();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
@@ -43,7 +43,7 @@
             this.rbFitModeFitWidth = new System.Windows.Forms.RadioButton();
             this.rbFitModeFit = new System.Windows.Forms.RadioButton();
             this.cbOverwriteExistingfiles = new System.Windows.Forms.CheckBox();
-            this.button2 = new System.Windows.Forms.Button();
+            this.btnFolder = new System.Windows.Forms.Button();
             this.label1 = new System.Windows.Forms.Label();
             this.groupBox1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.nudThreads)).BeginInit();
@@ -51,16 +51,16 @@
             this.gbFitMode.SuspendLayout();
             this.SuspendLayout();
             // 
-            // button1
+            // btnResize
             // 
-            this.button1.Font = new System.Drawing.Font("SketchFlow Print", 99.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.button1.Location = new System.Drawing.Point(13, 352);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(736, 149);
-            this.button1.TabIndex = 0;
-            this.button1.Text = "RESIZE!";
-            this.button1.UseVisualStyleBackColor = true;
-            this.button1.Click += new System.EventHandler(this.button1_Click);
+            this.btnResize.Font = new System.Drawing.Font("Microsoft Sans Serif", 99.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnResize.Location = new System.Drawing.Point(13, 352);
+            this.btnResize.Name = "btnResize";
+            this.btnResize.Size = new System.Drawing.Size(736, 149);
+            this.btnResize.TabIndex = 0;
+            this.btnResize.Text = "RESIZE!";
+            this.btnResize.UseVisualStyleBackColor = true;
+            this.btnResize.Click += new System.EventHandler(this.btnResize_Click);
             // 
             // folderBrowserDialog
             // 
@@ -231,16 +231,16 @@
             this.cbOverwriteExistingfiles.Text = "Overwrite existing files";
             this.cbOverwriteExistingfiles.UseVisualStyleBackColor = true;
             // 
-            // button2
+            // btnFolder
             // 
-            this.button2.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.button2.Location = new System.Drawing.Point(13, 12);
-            this.button2.Name = "button2";
-            this.button2.Size = new System.Drawing.Size(130, 28);
-            this.button2.TabIndex = 8;
-            this.button2.Text = "Select folder";
-            this.button2.UseVisualStyleBackColor = true;
-            this.button2.Click += new System.EventHandler(this.button2_Click);
+            this.btnFolder.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnFolder.Location = new System.Drawing.Point(13, 12);
+            this.btnFolder.Name = "btnFolder";
+            this.btnFolder.Size = new System.Drawing.Size(130, 28);
+            this.btnFolder.TabIndex = 8;
+            this.btnFolder.Text = "Select folder";
+            this.btnFolder.UseVisualStyleBackColor = true;
+            this.btnFolder.Click += new System.EventHandler(this.btnFolder_Click);
             // 
             // label1
             // 
@@ -258,14 +258,14 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(763, 513);
             this.Controls.Add(this.label1);
-            this.Controls.Add(this.button2);
+            this.Controls.Add(this.btnFolder);
             this.Controls.Add(this.cbOverwriteExistingfiles);
             this.Controls.Add(this.gbFitMode);
             this.Controls.Add(this.gbSize);
             this.Controls.Add(this.cbAutoCalcThreads);
             this.Controls.Add(this.nudThreads);
             this.Controls.Add(this.groupBox1);
-            this.Controls.Add(this.button1);
+            this.Controls.Add(this.btnResize);
             this.MaximizeBox = false;
             this.Name = "ResizeImage";
             this.Text = "ResizeImage";
@@ -283,7 +283,7 @@
 
         #endregion
 
-        private System.Windows.Forms.Button button1;
+        private System.Windows.Forms.Button btnResize;
         private System.Windows.Forms.FolderBrowserDialog folderBrowserDialog;
         private System.Windows.Forms.TextBox tbOutput;
         private System.Windows.Forms.GroupBox groupBox1;
@@ -298,7 +298,7 @@
         private System.Windows.Forms.RadioButton rbFitModeFitWidth;
         private System.Windows.Forms.RadioButton rbFitModeFit;
         private System.Windows.Forms.CheckBox cbOverwriteExistingfiles;
-        private System.Windows.Forms.Button button2;
+        private System.Windows.Forms.Button btnFolder;
         private System.Windows.Forms.Label label1;
     }
 }

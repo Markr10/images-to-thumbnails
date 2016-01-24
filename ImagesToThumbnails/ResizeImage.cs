@@ -71,7 +71,7 @@ namespace ImagesToThumbnails
         /// </summary>
         /// <param name="sender">Sender</param>
         /// <param name="e">Event arguments</param>
-        private void button2_Click(object sender, EventArgs e)
+        private void btnFolder_Click(object sender, EventArgs e)
         {
             if (folderBrowserDialog.ShowDialog() == DialogResult.OK)
             {
@@ -84,7 +84,7 @@ namespace ImagesToThumbnails
         /// </summary>
         /// <param name="sender">Sender</param>
         /// <param name="e">Event arguments</param>
-        private void button1_Click(object sender, EventArgs e)
+        private void btnResize_Click(object sender, EventArgs e)
         {
             // When the user selected a folder try to process all files
             int numberOfThreads = -1;
